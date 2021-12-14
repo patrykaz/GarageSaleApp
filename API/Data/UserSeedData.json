@@ -1,0 +1,29 @@
+﻿[
+  {
+    "UserName": "patryk",
+    "FirstName": "Patryk",
+    "LastName": "Staron",
+    "Gender": "male",
+    "DateOfBirth": "1997-10-16",
+    "Created": "2020-04-02",
+    "LastActive": "2020-05-28"
+  },
+  {
+    "UserName": "pawel",
+    "FirstName": "Pawel",
+    "LastName": "Gawel",
+    "Gender": "male",
+    "DateOfBirth": "1997-10-16",
+    "Created": "2020-04-02",
+    "LastActive": "2020-05-28"
+  },
+  {
+    "UserName": "bartosz",
+    "FirstName": "Bartosz",
+    "LastName": "Nowak",
+    "Gender": "male",
+    "DateOfBirth": "1997-10-16",
+    "Created": "2020-04-02",
+    "LastActive": "2020-05-28"
+  }
+]
