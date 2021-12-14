@@ -1,4 +1,6 @@
-﻿using API.Entity;
+﻿using API.DTOs;
+using API.Entity;
+using API.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,5 +13,6 @@ namespace API.Interfaces
         void Update(Announcement announcement);
         void AddAnnouncement(Announcement announcement);
         Task<Announcement> GetAnnouncementByIdAsync(int id);
+        Task<PagedList<AnnouncementDto>> GetAnnouncementsAsync(AnnouncementParams announcementParams);
     }
 }

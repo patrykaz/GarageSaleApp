@@ -1,7 +1,10 @@
 ﻿using API.Data;
+using API.DTOs;
 using API.Entity;
+using API.Helpers;
 using API.Interfaces;
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -35,6 +38,22 @@ namespace API.Services
         public async Task<Announcement> GetAnnouncementByIdAsync(int id)
         {
             return await context.Announcements.FindAsync(id);
+        }
+
+        public async Task<PagedList<AnnouncementDto>> GetAnnouncementsAsync(AnnouncementParams announcementParams)
+        {
+            var query = context.Announcements.AsQueryable();
+
+            // switch wybiera wartość, a jeśli jej nie ma wybiera domyślną _=>
+            query = announcementParams.OrderBy switch
+            {
+                "startDate" => query.OrderByDescending(u => u.StartDate),
+                _ => query.OrderByDescending(u => u.Name)
+            };
+
+            // AsNotTracking nie wysyła zapytania do serwera
+            return await PagedList<AnnouncementDto>.CreateAsync(query.ProjectTo<AnnouncementDto>(mapper.ConfigurationProvider).AsNoTracking(),
+                announcementParams.PageNumber, announcementParams.PageSize);
         }
     }
 }

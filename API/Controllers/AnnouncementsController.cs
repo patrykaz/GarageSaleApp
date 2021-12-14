@@ -1,6 +1,7 @@
 ﻿using API.DTOs;
 using API.Entity;
 using API.Extensions;
+using API.Helpers;
 using API.Interfaces;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
@@ -25,6 +26,16 @@ namespace API.Controllers
         {
             this.mapper = mapper;
             this.unitOfWork = unitOfWork;
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<ActionResult<IEnumerable<AnnouncementDto>>> GetAnnouncements([FromQuery] AnnouncementParams announcementParams) // FromQuery jest potrzebne ponieważ musimy wskazać, skąd ma pobrać nasze parametry, czyli z ciagu zapytania
+        {
+            var announcements = await unitOfWork.AnnouncementRepository.GetAnnouncementsAsync(announcementParams);
+            // dodajemy do odpowiedzi paginacje uzytkownika, którą wysłał z rządaniem get
+            Response.AddPaginationHeader(announcements.CurrentPage, announcements.PagesSize, announcements.TotalCount, announcements.TotalPages);
+            return Ok(announcements);
         }
 
         [HttpPost]
