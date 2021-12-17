@@ -40,6 +40,7 @@ namespace API.Services
             return await context.Announcements
                 .Include(p => p.Photos)
                 .Include(x => x.Address)
+                .Include(z => z.AppUser)
                 .SingleOrDefaultAsync(p => p.Id == id);
         }
 

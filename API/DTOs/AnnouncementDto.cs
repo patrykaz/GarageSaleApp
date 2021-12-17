@@ -12,10 +12,9 @@ namespace API.DTOs
         public string Description { get; set; }
         public DateTime StartDate { get; set; }
         public float Duration { get; set; }
-        public bool IsActive { get; set; } = true;
-        public bool IsAccepted { get; set; } = false;
+        public string PhotoUrl { get; set; }
         public DateTime? Created { get; set; }
-        public int AppUserId { get; set; }
+        public MemberDto User { get; set; }
         public AddressDto Address { get; set; }
         public ICollection<PhotoDto> Photos { get; set; }
     }

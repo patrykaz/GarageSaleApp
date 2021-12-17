@@ -28,10 +28,10 @@ namespace API.Helpers
             CreateMap<UpdateAnnouncementByUserDto, Announcement>()
                 .ForMember(a => a.Address, b => b.MapFrom(c => c.Address));
 
-
-            //CreateMap<UpdateAnnouncementByUserDto, Announcement>();
-
-            CreateMap<Announcement, AnnouncementDto>();
+            CreateMap<Announcement, AnnouncementDto>()
+                .ForMember(a => a.Address, b => b.MapFrom(c => c.Address))
+                .ForMember(a => a.User, b => b.MapFrom(c => c.AppUser))
+                .ForMember(a => a.PhotoUrl, b => b.MapFrom(c => c.Photos.FirstOrDefault(x => x.IsMain).Url));
 
             // Address
             CreateMap<AddressDto, Address>()
@@ -39,7 +39,6 @@ namespace API.Helpers
 
 
             // Photo
-
             CreateMap<Photo, PhotoDto>();
         }
     }
