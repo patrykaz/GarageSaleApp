@@ -49,22 +49,37 @@ namespace API.Controllers
 
             if(updateUserByUserDto.Address is null)
             {
+                currentUser.Address = null;
+                currentUser.AddressId = null;
                 mapper.Map(updateUserByUserDto, currentUser);
                 unitOfWork.UserRepository.Update(currentUser);
-                if (await unitOfWork.Complete()) return Ok(mapper.Map<MemberDto>(currentUser));
-                    return BadRequest("Błąd w aktualizacji użytkownika");
             }
             else
             {
-                Address newAddress = new Address();
-                mapper.Map(updateUserByUserDto.Address, newAddress);
-                unitOfWork.AddressRepository.Add(newAddress);
-                mapper.Map(updateUserByUserDto, currentUser);
-                currentUser.Address = newAddress;
-                if (await unitOfWork.Complete()) return Ok(mapper.Map<MemberDto>(currentUser));
-                    return BadRequest("Błąd w aktualizacji użytkownika");
+                var addressExist = unitOfWork.AddressRepository.FindAddresByProperties(updateUserByUserDto.Address.Street, updateUserByUserDto.Address.City, updateUserByUserDto.Address.PostalCode);
+
+                if (addressExist is null)
+                {
+                    currentUser.Address = null;
+                    mapper.Map(updateUserByUserDto, currentUser);
+                }
+                else
+                {
+                    if (currentUser.AddressId != addressExist.Id)
+                    {
+                        updateUserByUserDto.Address = null;
+                        mapper.Map(updateUserByUserDto, currentUser);
+                        currentUser.Address = addressExist;
+                    }
+                    else
+                    {
+                        mapper.Map(updateUserByUserDto, currentUser);
+                    }
+                }
             }
-           
+
+            if (await unitOfWork.Complete()) return Ok(mapper.Map<MemberDto>(currentUser));
+            return BadRequest("Błąd w aktualizacji użytkownika");
         }
 
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace API.DTOs
@@ -16,7 +17,7 @@ namespace API.DTOs
         public DateTime StartDate { get; set; }
         [Required]
         public float Duration { get; set; }
-        public int AddressId { get; set; }
+        [Required]
         public AddressDto Address { get; set; }
     }
 }

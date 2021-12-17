@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace API.DTOs
 {
     public class AddressDto
-    {   
+    {
         [Required]
         public string Street { get; set; }
         [Required]

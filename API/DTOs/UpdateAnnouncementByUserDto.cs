@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace API.DTOs
@@ -18,7 +19,6 @@ namespace API.DTOs
         public float Duration { get; set; }
         [Required]
         public bool IsActive { get; set; }
-        public int AddressId { get; set; }
         public AddressDto Address { get; set; }
     }
 }
