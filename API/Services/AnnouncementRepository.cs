@@ -38,6 +38,7 @@ namespace API.Services
         public async Task<Announcement> GetAnnouncementByIdAsync(int id)
         {
             return await context.Announcements
+                .Include(p => p.Photos)
                 .Include(x => x.Address)
                 .SingleOrDefaultAsync(p => p.Id == id);
         }

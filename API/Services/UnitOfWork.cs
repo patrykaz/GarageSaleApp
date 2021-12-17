@@ -23,7 +23,7 @@ namespace API.Services
 
         public IAnnouncementRepository AnnouncementRepository => new AnnouncementRepository(context, mapper);
 
-        public IAddressRepository AddressRepository => new AddressRepository(context, mapper);
+        public IAddressRepository AddressRepository => new AddressRepository(context);
 
         public async Task<bool> Complete()
         {

@@ -13,12 +13,10 @@ namespace API.Services
     public class AddressRepository : IAddressRepository
     {
         private readonly GarageSaleDbContext context;
-        private readonly IMapper mapper;
 
-        public AddressRepository(GarageSaleDbContext context, IMapper mapper)
+        public AddressRepository(GarageSaleDbContext context)
         {
             this.context = context;
-            this.mapper = mapper;
         }
 
         public void Update(Address address)

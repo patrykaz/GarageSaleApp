@@ -22,6 +22,7 @@ namespace API.Entity
         public AppUser AppUser { get; set; }
         public int AddressId { get; set; }
         public Address Address { get; set; }
+        public ICollection<Photo> Photos { get; set; }
 
     }
 }

@@ -21,15 +21,17 @@ namespace API.Controllers
     {
         private readonly IMapper mapper;
         private readonly IUnitOfWork unitOfWork;
+        private readonly IPhotoService photoService;
 
-        public AnnouncementsController(IMapper mapper, IUnitOfWork unitOfWork)
+        public AnnouncementsController(IMapper mapper, IUnitOfWork unitOfWork, IPhotoService photoService)
         {
             this.mapper = mapper;
             this.unitOfWork = unitOfWork;
+            this.photoService = photoService;
         }
 
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "Fetch")]
         public async Task<ActionResult<AnnouncementDto>> Fetch(int id)
         {
             var entity = await unitOfWork.AnnouncementRepository.GetAnnouncementByIdAsync(id);
@@ -56,7 +58,7 @@ namespace API.Controllers
         {
             var announcementCreater = await unitOfWork.UserRepository.GetUserByUsernameAsync(User.GetUsername());
 
-            Announcement newAnnouncement = new Announcement();
+            Announcement newAnnouncement = new();
 
             var addressExist = unitOfWork.AddressRepository.FindAddresByProperties(createAnnouncementDto.Address.Street, createAnnouncementDto.Address.City, createAnnouncementDto.Address.PostalCode);
             if (addressExist is null)
@@ -150,6 +152,95 @@ namespace API.Controllers
             if (await unitOfWork.Complete()) return Ok();
 
             return BadRequest("Wystąpił problem z usunięciem ogłoszenia");
+        }
+
+        [HttpPost("{id}/add-photo")]
+        public async Task<ActionResult<PhotoDto>> AddPhoto([FromForm(Name = "file")] IFormFile file, int id)
+         {
+            var user = await unitOfWork.UserRepository.GetUserByUsernameAsync(User.GetUsername());
+
+            var announcement = await unitOfWork.AnnouncementRepository.GetAnnouncementByIdAsync(id);
+            if (announcement == null)
+                return NotFound();
+
+            if (announcement.AppUserId != user.Id)
+                return Unauthorized();
+
+            var result = await photoService.AddPhotoAsync(file);
+            if (result.Error != null) return BadRequest(result.Error.Message);
+
+            var photo = new Photo
+            {
+                Url = result.SecureUrl.AbsoluteUri,
+                PublicId = result.PublicId
+            };
+
+            if (announcement.Photos.Count == 0)
+            {
+                photo.IsMain = true;
+            }
+
+            announcement.Photos.Add(photo);
+
+            if (await unitOfWork.Complete())
+            {
+                return CreatedAtRoute("Fetch", new { id = announcement.Id }, mapper.Map<AnnouncementDto>(announcement));
+            }
+
+
+            return BadRequest("Problem z dodaniem zdjęcia");
+        }
+
+        [HttpDelete("{id}/delete-photo/{photoId}")]
+        public async Task<ActionResult> DeletePhoto(int id, int photoId)
+        {
+            var user = await unitOfWork.UserRepository.GetUserByUsernameAsync(User.GetUsername());
+
+            var announcement = await unitOfWork.AnnouncementRepository.GetAnnouncementByIdAsync(id);
+            if (announcement == null)
+                return NotFound();
+
+            if (announcement.AppUserId != user.Id)
+                return Unauthorized();
+
+            var photo = announcement.Photos.FirstOrDefault(x => x.Id == photoId);
+            if (photo == null) return NotFound();
+            if (photo.IsMain) return BadRequest("Nie możesz usunąć głównego zdjęcia");
+            if (photo.PublicId != null)
+            {
+                var result = await photoService.DeletePhotoAsync(photo.PublicId);
+                if (result.Error != null) return BadRequest(result.Error.Message);
+            }
+            announcement.Photos.Remove(photo);
+
+            if (await unitOfWork.Complete()) return Ok();
+
+            return BadRequest("Błąd podczas usuwania zdjęcia");
+        }
+
+        [HttpPut("{id}/set-main-photo/{photoId}")]
+        public async Task<ActionResult> SetMainPhoto(int id, int photoId)
+        {
+            var user = await unitOfWork.UserRepository.GetUserByUsernameAsync(User.GetUsername());
+
+            var announcement = await unitOfWork.AnnouncementRepository.GetAnnouncementByIdAsync(id);
+            if (announcement == null)
+                return NotFound();
+
+            if (announcement.AppUserId != user.Id)
+                return Unauthorized();
+
+            var photo = announcement.Photos.FirstOrDefault(x => x.Id == photoId);
+
+            if (photo.IsMain) return BadRequest("To zdjęcie jest już głównym zdjęciem");
+
+            var currentMain = announcement.Photos.FirstOrDefault(x => x.IsMain);
+            if (currentMain != null) currentMain.IsMain = false;
+            photo.IsMain = true;
+
+            if (await unitOfWork.Complete()) return NoContent();
+
+            return BadRequest("Błąd w ustawnieniu głównego zdjęcia");
         }
 
     }

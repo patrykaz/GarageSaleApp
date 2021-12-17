@@ -17,5 +17,6 @@ namespace API.DTOs
         public DateTime? Created { get; set; }
         public int AppUserId { get; set; }
         public AddressDto Address { get; set; }
+        public ICollection<PhotoDto> Photos { get; set; }
     }
 }

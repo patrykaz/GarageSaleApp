@@ -78,7 +78,9 @@ namespace API.Controllers
                 }
             }
 
-            if (await unitOfWork.Complete()) return Ok(mapper.Map<MemberDto>(currentUser));
+            if (await unitOfWork.Complete()) 
+                return Ok(mapper.Map<MemberDto>(currentUser));
+
             return BadRequest("Błąd w aktualizacji użytkownika");
         }
 

@@ -28,6 +28,7 @@ namespace API.Helpers
             CreateMap<UpdateAnnouncementByUserDto, Announcement>()
                 .ForMember(a => a.Address, b => b.MapFrom(c => c.Address));
 
+
             //CreateMap<UpdateAnnouncementByUserDto, Announcement>();
 
             CreateMap<Announcement, AnnouncementDto>();
@@ -35,7 +36,11 @@ namespace API.Helpers
             // Address
             CreateMap<AddressDto, Address>()
                 .ReverseMap();
-            
+
+
+            // Photo
+
+            CreateMap<Photo, PhotoDto>();
         }
     }
 }
