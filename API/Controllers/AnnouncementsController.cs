@@ -28,6 +28,19 @@ namespace API.Controllers
             this.unitOfWork = unitOfWork;
         }
 
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<AnnouncementDto>> Fetch(int id)
+        {
+            var entity = await unitOfWork.AnnouncementRepository.GetAnnouncementByIdAsync(id);
+
+            if (entity == null)
+                return NotFound();
+
+            return mapper.Map<AnnouncementDto>(entity);
+        }
+
+    
         [HttpGet]
         [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<AnnouncementDto>>> GetAnnouncements([FromQuery] AnnouncementParams announcementParams) // FromQuery jest potrzebne ponieważ musimy wskazać, skąd ma pobrać nasze parametry, czyli z ciagu zapytania
@@ -39,28 +52,60 @@ namespace API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<AnnouncementDto>> CreateAnnouncement(CreateAnnouncementDto createAnnouncementDto)
+        public async Task<ActionResult<AnnouncementDto>> CreateAnnouncement([FromBody] CreateAnnouncementDto createAnnouncementDto)
         {
-            var username = User.GetUsername();
-            var AnnouncementCreater = await unitOfWork.UserRepository.GetUserByUsernameAsync(username);
-            var announcement = new Announcement
-            {
-                AppUser = AnnouncementCreater,
-                Name = createAnnouncementDto.Name,
-                Description = createAnnouncementDto.Description,
-                StartDate = createAnnouncementDto.StartDate,
-                Duration = createAnnouncementDto.Duration
-            };
+            if (createAnnouncementDto.AddressId == 0 && createAnnouncementDto.Address is null)
+                return BadRequest("Adres jest wymagany");
 
+            var announcementCreater = await unitOfWork.UserRepository.GetUserByUsernameAsync(User.GetUsername());
+
+            Announcement announcement = new Announcement();
+
+            if (createAnnouncementDto.AddressId == 0)
+            {
+                var addressExist = unitOfWork.AddressRepository.FindAddresByProperties(createAnnouncementDto.Address.Street, createAnnouncementDto.Address.City, createAnnouncementDto.Address.PostalCode);
+                if (addressExist is null)
+                {
+                    mapper.Map(createAnnouncementDto, announcement);
+                }
+                else
+                {
+                    createAnnouncementDto.AddressId = addressExist.Id;
+                    createAnnouncementDto.Address = null;
+                    mapper.Map(createAnnouncementDto, announcement);
+                }
+            }
+            else
+            {
+                var address = unitOfWork.AddressRepository.GetAddressByIdAsync(createAnnouncementDto.AddressId);
+                if (address is null)
+                    return BadRequest("Podany adres nie istnieje w bazie danych");
+                mapper.Map(createAnnouncementDto, announcement);
+            }
+
+            announcement.AppUser = announcementCreater;
+        
             unitOfWork.AnnouncementRepository.AddAnnouncement(announcement);
-            if (await unitOfWork.Complete()) return Ok(mapper.Map<AnnouncementDto>(announcement));
+            if (await unitOfWork.Complete())
+            {
+                var entity = await unitOfWork.AnnouncementRepository.GetAnnouncementByIdAsync(announcement.Id);
+                if (entity == null)
+                    return NotFound();
+
+                return Ok(mapper.Map<AnnouncementDto>(entity));
+            }
 
             return BadRequest("Błąd w dodawaniu nowego ogłoszenia");
 
         }
 
+        private ActionResult<AnnouncementDto> Json(string v)
+        {
+            throw new NotImplementedException();
+        }
+
         [HttpPut("{id}")]
-        public async Task<ActionResult> UpdateAnnouncement(UpdateAnnouncementByUserDto updateAnnouncementByUserDto, int id)
+        public async Task<ActionResult<AnnouncementDto>> UpdateAnnouncement(UpdateAnnouncementByUserDto updateAnnouncementByUserDto, int id)
         {
             var user = await unitOfWork.UserRepository.GetUserByUsernameAsync(User.GetUsername());
 
@@ -71,16 +116,43 @@ namespace API.Controllers
             if (announcement.AppUserId != user.Id)
                 return Unauthorized();
 
-            // mapuje automatycznie dane które wróciły od klienta z updateAnnouncementByUserDto do announcement
-            mapper.Map(updateAnnouncementByUserDto, announcement);
+            if (updateAnnouncementByUserDto.AddressId == 0 && updateAnnouncementByUserDto.Address is null)
+                return BadRequest("Adres jest wymagany");
+
+
+            if (updateAnnouncementByUserDto.AddressId == 0)
+            {
+                var addressExist = unitOfWork.AddressRepository.FindAddresByProperties(updateAnnouncementByUserDto.Address.Street, updateAnnouncementByUserDto.Address.City, updateAnnouncementByUserDto.Address.PostalCode);
+                if (addressExist is null)
+                {
+                    announcement.AddressId = 0;
+                    announcement.Address = null;
+                    mapper.Map(updateAnnouncementByUserDto, announcement);
+                }
+                else
+                {
+                    updateAnnouncementByUserDto.AddressId = addressExist.Id;
+                    mapper.Map(updateAnnouncementByUserDto, announcement);
+                }
+            }
+            else
+            {
+                var address = unitOfWork.AddressRepository.GetAddressByIdAsync(updateAnnouncementByUserDto.AddressId);
+                if (address is null)
+                    return BadRequest("Podany adres nie istnieje w bazie danych");
+               
+                mapper.Map(updateAnnouncementByUserDto, announcement);
+            }
 
             unitOfWork.AnnouncementRepository.Update(announcement);
+            if (await unitOfWork.Complete())
+            {
+                var entity = await unitOfWork.AnnouncementRepository.GetAnnouncementByIdAsync(announcement.Id);
+                if (entity == null)
+                    return NotFound();
 
-            AnnouncementDto announcementDto = new AnnouncementDto();
-
-            mapper.Map(announcement, announcementDto);
-
-            if (await unitOfWork.Complete()) return Ok(announcementDto);
+                return Ok(mapper.Map<AnnouncementDto>(entity));
+            }
 
             return BadRequest("Błąd w aktualizacji ogłoszenia");
         }

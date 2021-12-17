@@ -17,6 +17,7 @@ namespace API.Data
         }
 
         public DbSet<Announcement> Announcements { get; set; }
+        public DbSet<Address> Addresses { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)

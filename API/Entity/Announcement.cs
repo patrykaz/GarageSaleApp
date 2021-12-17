@@ -20,6 +20,8 @@ namespace API.Entity
         public DateTime? Deleted { get; set; }
         public int AppUserId { get; set; }
         public AppUser AppUser { get; set; }
-        
+        public int AddressId { get; set; }
+        public Address Address { get; set; }
+
     }
 }

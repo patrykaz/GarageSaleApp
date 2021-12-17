@@ -37,7 +37,9 @@ namespace API.Services
 
         public async Task<Announcement> GetAnnouncementByIdAsync(int id)
         {
-            return await context.Announcements.FindAsync(id);
+            return await context.Announcements
+                .Include(x => x.Address)
+                .SingleOrDefaultAsync(p => p.Id == id);
         }
 
         public async Task<PagedList<AnnouncementDto>> GetAnnouncementsAsync(AnnouncementParams announcementParams)

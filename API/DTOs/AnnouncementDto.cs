@@ -16,5 +16,6 @@ namespace API.DTOs
         public bool IsAccepted { get; set; } = false;
         public DateTime? Created { get; set; }
         public int AppUserId { get; set; }
+        public AddressDto Address { get; set; }
     }
 }

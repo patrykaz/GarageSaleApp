@@ -1,4 +1,6 @@
 ﻿using API.DTOs;
+using API.Entity;
+using API.Extensions;
 using API.Interfaces;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
@@ -33,9 +35,38 @@ namespace API.Controllers
         [HttpGet("{username}")]
         public async Task<ActionResult<MemberDto>> GetUser(string username)
         {
-            return await unitOfWork.UserRepository.GetMemberAsync(username);
+            var user = await unitOfWork.UserRepository.GetMemberAsync(username);
+            if (user is null)
+                return NotFound();
+
+            return Ok(user);
         }
 
- 
+        [HttpPut]
+        public async Task<ActionResult<UpdateUserByUserDto>> UpdateUser([FromBody] UpdateUserByUserDto updateUserByUserDto)
+        {
+            var currentUser = await unitOfWork.UserRepository.GetUserByUsernameAsync(User.GetUsername());
+
+            if(updateUserByUserDto.Address is null)
+            {
+                mapper.Map(updateUserByUserDto, currentUser);
+                unitOfWork.UserRepository.Update(currentUser);
+                if (await unitOfWork.Complete()) return Ok(mapper.Map<MemberDto>(currentUser));
+                    return BadRequest("Błąd w aktualizacji użytkownika");
+            }
+            else
+            {
+                Address newAddress = new Address();
+                mapper.Map(updateUserByUserDto.Address, newAddress);
+                unitOfWork.AddressRepository.Add(newAddress);
+                mapper.Map(updateUserByUserDto, currentUser);
+                currentUser.Address = newAddress;
+                if (await unitOfWork.Complete()) return Ok(mapper.Map<MemberDto>(currentUser));
+                    return BadRequest("Błąd w aktualizacji użytkownika");
+            }
+           
+        }
+
+
     }
 }

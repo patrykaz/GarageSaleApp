@@ -16,5 +16,7 @@ namespace API.DTOs
         public DateTime StartDate { get; set; }
         [Required]
         public float Duration { get; set; }
+        public int AddressId { get; set; }
+        public AddressDto Address { get; set; }
     }
 }

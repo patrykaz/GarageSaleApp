@@ -12,17 +12,29 @@ namespace API.Helpers
     {
         public AutoMapperProfiles()
         {
-            //User
+            // User
             CreateMap<RegisterDto, AppUser>();
 
-            CreateMap<AppUser, MemberDto>();
+            CreateMap<AppUser, MemberDto>()
+                .ForMember(a => a.Address, b => b.MapFrom(c => c.Address));
+
+            CreateMap<UpdateUserByUserDto, AppUser>()
+                .ForMember(a => a.Address, b => b.MapFrom(c => c.Address));
 
             // Announcement
-            CreateMap<CreateAnnouncementDto, Announcement>();
+            CreateMap<CreateAnnouncementDto, Announcement>()
+                .ForMember(a => a.Address, b => b.MapFrom(c => c.Address));
+
+            CreateMap<UpdateAnnouncementByUserDto, Announcement>()
+                .ForMember(a => a.Address, b => b.MapFrom(c => c.Address));
 
             CreateMap<UpdateAnnouncementByUserDto, Announcement>();
 
             CreateMap<Announcement, AnnouncementDto>();
+
+            // Address
+            CreateMap<AddressDto, Address>()
+                .ReverseMap();
             
         }
     }

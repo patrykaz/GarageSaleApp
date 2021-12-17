@@ -16,6 +16,7 @@ namespace API.Entity
         public DateTime Created { get; set; } = DateTime.Now;
         public DateTime LastActive { get; set; } = DateTime.Now;
         public ICollection<AppUserRole> UserRoles { get; set; }
-        public ICollection<Announcement> Announcements { get; set; }
+        public int? AddressId { get; set; }
+        public Address Address { get; set; }
     }
 }

@@ -23,6 +23,8 @@ namespace API.Services
 
         public IAnnouncementRepository AnnouncementRepository => new AnnouncementRepository(context, mapper);
 
+        public IAddressRepository AddressRepository => new AddressRepository(context, mapper);
+
         public async Task<bool> Complete()
         {
             return await context.SaveChangesAsync() > 0;

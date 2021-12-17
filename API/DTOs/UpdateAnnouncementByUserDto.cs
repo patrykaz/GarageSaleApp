@@ -18,5 +18,7 @@ namespace API.DTOs
         public float Duration { get; set; }
         [Required]
         public bool IsActive { get; set; }
+        public int AddressId { get; set; }
+        public AddressDto Address { get; set; }
     }
 }
