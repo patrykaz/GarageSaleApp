@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace API.Entity
 {
-    public class AppUser : IdentityUser<int> // it is for Authorization from AspNetCore
+    public class AppUser : IdentityUser<long> // it is for Authorization from AspNetCore
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -16,7 +16,7 @@ namespace API.Entity
         public DateTime Created { get; set; } = DateTime.Now;
         public DateTime LastActive { get; set; } = DateTime.Now;
         public ICollection<AppUserRole> UserRoles { get; set; }
-        public int? AddressId { get; set; }
+        public long? AddressId { get; set; }
         public Address Address { get; set; }
     }
 }

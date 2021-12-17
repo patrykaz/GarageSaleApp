@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace API.Data.Migrations
 {
     [DbContext(typeof(GarageSaleDbContext))]
-    [Migration("20211214182817_002-Add-table-address")]
-    partial class _002Addtableaddress
+    [Migration("20211217180819_001-InitialMigration")]
+    partial class _001InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,9 +23,9 @@ namespace API.Data.Migrations
 
             modelBuilder.Entity("API.Entity.Address", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
+                        .HasColumnType("bigint")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<string>("City")
@@ -39,24 +39,24 @@ namespace API.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Address");
+                    b.ToTable("Addresses");
                 });
 
             modelBuilder.Entity("API.Entity.Announcement", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
+                        .HasColumnType("bigint")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<DateTime?>("Accepted")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<int>("AddressId")
-                        .HasColumnType("integer");
+                    b.Property<long>("AddressId")
+                        .HasColumnType("bigint");
 
-                    b.Property<int>("AppUserId")
-                        .HasColumnType("integer");
+                    b.Property<long>("AppUserId")
+                        .HasColumnType("bigint");
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("timestamp without time zone");
@@ -96,9 +96,9 @@ namespace API.Data.Migrations
 
             modelBuilder.Entity("API.Entity.AppRole", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
+                        .HasColumnType("bigint")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<string>("ConcurrencyStamp")
@@ -124,16 +124,16 @@ namespace API.Data.Migrations
 
             modelBuilder.Entity("API.Entity.AppUser", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
+                        .HasColumnType("bigint")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("integer");
 
-                    b.Property<int>("AddressId")
-                        .HasColumnType("integer");
+                    b.Property<long?>("AddressId")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -213,11 +213,11 @@ namespace API.Data.Migrations
 
             modelBuilder.Entity("API.Entity.AppUserRole", b =>
                 {
-                    b.Property<int>("UserId")
-                        .HasColumnType("integer");
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint");
 
-                    b.Property<int>("RoleId")
-                        .HasColumnType("integer");
+                    b.Property<long>("RoleId")
+                        .HasColumnType("bigint");
 
                     b.HasKey("UserId", "RoleId");
 
@@ -226,7 +226,33 @@ namespace API.Data.Migrations
                     b.ToTable("AspNetUserRoles");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
+            modelBuilder.Entity("API.Entity.Photo", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<long>("AnnouncementId")
+                        .HasColumnType("bigint");
+
+                    b.Property<bool>("IsMain")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("PublicId")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Url")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AnnouncementId");
+
+                    b.ToTable("Photos");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<long>", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -239,8 +265,8 @@ namespace API.Data.Migrations
                     b.Property<string>("ClaimValue")
                         .HasColumnType("text");
 
-                    b.Property<int>("RoleId")
-                        .HasColumnType("integer");
+                    b.Property<long>("RoleId")
+                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
@@ -249,7 +275,7 @@ namespace API.Data.Migrations
                     b.ToTable("AspNetRoleClaims");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<long>", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -262,8 +288,8 @@ namespace API.Data.Migrations
                     b.Property<string>("ClaimValue")
                         .HasColumnType("text");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("integer");
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
@@ -272,7 +298,7 @@ namespace API.Data.Migrations
                     b.ToTable("AspNetUserClaims");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<long>", b =>
                 {
                     b.Property<string>("LoginProvider")
                         .HasColumnType("text");
@@ -283,8 +309,8 @@ namespace API.Data.Migrations
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("text");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("integer");
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint");
 
                     b.HasKey("LoginProvider", "ProviderKey");
 
@@ -293,10 +319,10 @@ namespace API.Data.Migrations
                     b.ToTable("AspNetUserLogins");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<long>", b =>
                 {
-                    b.Property<int>("UserId")
-                        .HasColumnType("integer");
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("LoginProvider")
                         .HasColumnType("text");
@@ -335,9 +361,7 @@ namespace API.Data.Migrations
                 {
                     b.HasOne("API.Entity.Address", "Address")
                         .WithMany("AppUser")
-                        .HasForeignKey("AddressId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AddressId");
 
                     b.Navigation("Address");
                 });
@@ -361,7 +385,18 @@ namespace API.Data.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
+            modelBuilder.Entity("API.Entity.Photo", b =>
+                {
+                    b.HasOne("API.Entity.Announcement", "Announcement")
+                        .WithMany("Photos")
+                        .HasForeignKey("AnnouncementId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Announcement");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<long>", b =>
                 {
                     b.HasOne("API.Entity.AppRole", null)
                         .WithMany()
@@ -370,7 +405,7 @@ namespace API.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<long>", b =>
                 {
                     b.HasOne("API.Entity.AppUser", null)
                         .WithMany()
@@ -379,7 +414,7 @@ namespace API.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<long>", b =>
                 {
                     b.HasOne("API.Entity.AppUser", null)
                         .WithMany()
@@ -388,7 +423,7 @@ namespace API.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<long>", b =>
                 {
                     b.HasOne("API.Entity.AppUser", null)
                         .WithMany()
@@ -402,6 +437,11 @@ namespace API.Data.Migrations
                     b.Navigation("Announcement");
 
                     b.Navigation("AppUser");
+                });
+
+            modelBuilder.Entity("API.Entity.Announcement", b =>
+                {
+                    b.Navigation("Photos");
                 });
 
             modelBuilder.Entity("API.Entity.AppRole", b =>

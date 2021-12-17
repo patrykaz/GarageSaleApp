@@ -9,11 +9,11 @@ namespace API.Entity
     [Table("Photos")]
     public class Photo
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
         public string Url { get; set; }
         public bool IsMain { get; set; }
         public string PublicId { get; set; }
-        public int AnnouncementId { get; set; }
+        public long AnnouncementId { get; set; }
         public Announcement Announcement { get; set; }
     }
 }

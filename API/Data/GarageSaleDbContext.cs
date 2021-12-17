@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 
 namespace API.Data
 {
-    public class GarageSaleDbContext : IdentityDbContext<AppUser, AppRole, int,
-        IdentityUserClaim<int>, AppUserRole, IdentityUserLogin<int>, IdentityRoleClaim<int>, IdentityUserToken<int>>
+    public class GarageSaleDbContext : IdentityDbContext<AppUser, AppRole, long,
+        IdentityUserClaim<long>, AppUserRole, IdentityUserLogin<long>, IdentityRoleClaim<long>, IdentityUserToken<long>>
     {
         public GarageSaleDbContext(DbContextOptions options) : base(options)
         {

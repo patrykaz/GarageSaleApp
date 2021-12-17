@@ -35,7 +35,7 @@ namespace API.Services
         }
 
 
-        public async Task<Announcement> GetAnnouncementByIdAsync(int id)
+        public async Task<Announcement> GetAnnouncementByIdAsync(long id)
         {
             return await context.Announcements
                 .Include(p => p.Photos)

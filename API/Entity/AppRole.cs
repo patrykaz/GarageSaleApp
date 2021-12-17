@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace API.Entity
 {
-    public class AppRole : IdentityRole<int> // it class belongs to AspNetCore
+    public class AppRole : IdentityRole<long> // it class belongs to AspNetCore
     {
         public ICollection<AppUserRole> UserRoles { get; set; }
     }

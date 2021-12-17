@@ -7,7 +7,7 @@ namespace API.Entity
 {
     public class Announcement
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public DateTime StartDate { get; set; }
@@ -18,9 +18,9 @@ namespace API.Entity
         public DateTime? Accepted { get; set; }
         public DateTime Created { get; set; } = DateTime.Now;
         public DateTime? Deleted { get; set; }
-        public int AppUserId { get; set; }
+        public long AppUserId { get; set; }
         public AppUser AppUser { get; set; }
-        public int AddressId { get; set; }
+        public long AddressId { get; set; }
         public Address Address { get; set; }
         public ICollection<Photo> Photos { get; set; }
 

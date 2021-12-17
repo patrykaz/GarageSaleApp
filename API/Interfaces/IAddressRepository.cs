@@ -11,6 +11,6 @@ namespace API.Interfaces
         public void Update(Address address);
         public void Add(Address address);
         public Address FindAddresByProperties(string Street, string City, string PostalCode);
-        public Address GetAddressByIdAsync(int id);
+        public Address GetAddressByIdAsync(long id);
     }
 }

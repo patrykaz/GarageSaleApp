@@ -30,7 +30,7 @@ namespace API.Services
         }
 
 
-        public Address GetAddressByIdAsync(int id)
+        public Address GetAddressByIdAsync(long id)
         {
             return context.Addresses
                 .FirstOrDefault(a => a.Id == id);

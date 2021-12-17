@@ -32,7 +32,7 @@ namespace API.Controllers
 
 
         [HttpGet("{id}", Name = "Fetch")]
-        public async Task<ActionResult<AnnouncementDto>> Fetch(int id)
+        public async Task<ActionResult<AnnouncementDto>> Fetch(long id)
         {
             var entity = await unitOfWork.AnnouncementRepository.GetAnnouncementByIdAsync(id);
 
@@ -88,7 +88,7 @@ namespace API.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<AnnouncementDto>> UpdateAnnouncement(UpdateAnnouncementByUserDto updateAnnouncementByUserDto, int id)
+        public async Task<ActionResult<AnnouncementDto>> UpdateAnnouncement(UpdateAnnouncementByUserDto updateAnnouncementByUserDto, long id)
         {
             var user = await unitOfWork.UserRepository.GetUserByUsernameAsync(User.GetUsername());
 
@@ -135,7 +135,7 @@ namespace API.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult> DeleteAnnouncement(int id)
+        public async Task<ActionResult> DeleteAnnouncement(long id)
         {
             var user = await unitOfWork.UserRepository.GetUserByUsernameAsync(User.GetUsername());
 
@@ -155,7 +155,7 @@ namespace API.Controllers
         }
 
         [HttpPost("{id}/add-photo")]
-        public async Task<ActionResult<PhotoDto>> AddPhoto([FromForm(Name = "file")] IFormFile file, int id)
+        public async Task<ActionResult<PhotoDto>> AddPhoto([FromForm(Name = "file")] IFormFile file, long id)
          {
             var user = await unitOfWork.UserRepository.GetUserByUsernameAsync(User.GetUsername());
 
@@ -192,7 +192,7 @@ namespace API.Controllers
         }
 
         [HttpDelete("{id}/delete-photo/{photoId}")]
-        public async Task<ActionResult> DeletePhoto(int id, int photoId)
+        public async Task<ActionResult> DeletePhoto(long id, int photoId)
         {
             var user = await unitOfWork.UserRepository.GetUserByUsernameAsync(User.GetUsername());
 
@@ -219,7 +219,7 @@ namespace API.Controllers
         }
 
         [HttpPut("{id}/set-main-photo/{photoId}")]
-        public async Task<ActionResult> SetMainPhoto(int id, int photoId)
+        public async Task<ActionResult> SetMainPhoto(long id, int photoId)
         {
             var user = await unitOfWork.UserRepository.GetUserByUsernameAsync(User.GetUsername());
 
