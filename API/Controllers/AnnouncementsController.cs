@@ -30,7 +30,7 @@ namespace API.Controllers
             this.photoService = photoService;
         }
 
-
+        [AllowAnonymous]
         [HttpGet("{id}", Name = "Fetch")]
         public async Task<ActionResult<AnnouncementDto>> Fetch(long id)
         {

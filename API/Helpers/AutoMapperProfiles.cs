@@ -18,8 +18,11 @@ namespace API.Helpers
             CreateMap<AppUser, MemberDto>()
                 .ForMember(a => a.Address, b => b.MapFrom(c => c.Address));
 
+            CreateMap<AppUser, AnnouncementCreatorDto>();
+
             CreateMap<UpdateUserByUserDto, AppUser>()
                 .ForMember(a => a.Address, b => b.MapFrom(c => c.Address));
+
 
             // Announcement
             CreateMap<CreateAnnouncementDto, Announcement>()

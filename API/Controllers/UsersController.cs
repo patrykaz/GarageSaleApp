@@ -52,7 +52,6 @@ namespace API.Controllers
                 currentUser.Address = null;
                 currentUser.AddressId = null;
                 mapper.Map(updateUserByUserDto, currentUser);
-                unitOfWork.UserRepository.Update(currentUser);
             }
             else
             {
@@ -77,6 +76,8 @@ namespace API.Controllers
                     }
                 }
             }
+
+            unitOfWork.UserRepository.Update(currentUser);
 
             if (await unitOfWork.Complete()) 
                 return Ok(mapper.Map<MemberDto>(currentUser));
