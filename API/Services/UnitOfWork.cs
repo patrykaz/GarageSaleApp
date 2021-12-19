@@ -25,6 +25,8 @@ namespace API.Services
 
         public IAddressRepository AddressRepository => new AddressRepository(context);
 
+        public ICommentRepository CommentRepository => new CommentRepository(context, mapper);
+
         public async Task<bool> Complete()
         {
             return await context.SaveChangesAsync() > 0;

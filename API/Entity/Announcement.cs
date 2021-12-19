@@ -15,14 +15,15 @@ namespace API.Entity
         public bool IsActive { get; set; } = true;
         public bool IsDeleted { get; set; } = false;
         public bool IsAccepted { get; set; } = false;
-        public DateTime? Accepted { get; set; }
-        public DateTime Created { get; set; } = DateTime.Now;
-        public DateTime? Deleted { get; set; }
+        public DateTime? DateAccepted { get; set; }
+        public DateTime DateCreated { get; set; } = DateTime.Now;
+        public DateTime? DateDeleted { get; set; }
         public long AppUserId { get; set; }
         public AppUser AppUser { get; set; }
         public long AddressId { get; set; }
         public Address Address { get; set; }
         public ICollection<Photo> Photos { get; set; }
+        public ICollection<Comment> Comments { get; set; }
 
     }
 }

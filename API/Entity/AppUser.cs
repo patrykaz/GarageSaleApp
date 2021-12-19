@@ -13,10 +13,13 @@ namespace API.Entity
         public string LastName { get; set; }
         public DateTime? DateOfBirth { get; set; }
         public string Gender { get; set; }
-        public DateTime Created { get; set; } = DateTime.Now;
-        public DateTime LastActive { get; set; } = DateTime.Now;
-        public ICollection<AppUserRole> UserRoles { get; set; }
+        public DateTime DateCreated { get; set; } = DateTime.Now;
+        public DateTime DateLastActive { get; set; } = DateTime.Now;
         public long? AddressId { get; set; }
         public Address Address { get; set; }
+        public ICollection<AppUserRole> UserRoles { get; set; }
+        public ICollection<Announcement> Announcements { get; set; }
+        public ICollection<Comment> Comments { get; set; }
+
     }
 }

@@ -9,8 +9,8 @@ namespace API.Interfaces
     {
         IUserRepository UserRepository { get; }
         IAnnouncementRepository AnnouncementRepository { get; }
-
         IAddressRepository AddressRepository { get; }
+        ICommentRepository CommentRepository { get; }
         Task<bool> Complete();
         bool HasChanges();
     }
