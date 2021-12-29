@@ -1,0 +1,14 @@
+<h4>Wewnętrzny błąd serwera - odświeżenie strony spowoduje zniknięcie błędu!</h4>
+<ng-container *ngIf="error">
+    <h5 class="text-danger">Błąd: {{error.message}}</h5>
+    <p class="font-weight-bold">Błąd serwera</p>
+    <p>Co zrobic nastepnie?</p>
+    <ol>
+        <li>Otwórz narzędzia programistyczne Chrome</li>
+        <li>Sprawdź kartę sieciową</li>
+        <li>Sprawdź nieudane żądanie</li>
+        <li>Sprawdź adres URL żądania – upewnij się, że jest poprawny</li>
+        <li></li>
+    </ol>
+    <code class="mt-5" style="background-color: whitesmoke;">{{error.details}}</code>
+</ng-container>

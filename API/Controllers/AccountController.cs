@@ -35,7 +35,7 @@ namespace API.Controllers
         [HttpPost("register")]
         public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
         {
-            if (await UserExists(registerDto.UserName)) return BadRequest("Username is taken");
+            if (await UserExists(registerDto.UserName)) return BadRequest("Nazwa użytkownika jest już zajęta");
 
             var user = mapper.Map<AppUser>(registerDto);
 
@@ -62,7 +62,7 @@ namespace API.Controllers
             var user = await userManager.Users
                 .SingleOrDefaultAsync(x => x.UserName == loginDto.UserName.ToLower());
 
-            if (user == null) return Unauthorized("Invalid login or password");
+            if (user == null) return Unauthorized("Blędny login lub hasło");
 
             var result = await signInManager.CheckPasswordSignInAsync(user, loginDto.Password, false);
 
