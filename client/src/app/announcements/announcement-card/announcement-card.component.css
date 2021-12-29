@@ -1,0 +1,11 @@
+img{
+  width: 180px;
+  float: right;
+}
+
+.announcement-card{
+  min-height: 100px;
+  height: 200px;
+  margin: 20px 0;
+  border-bottom: 1px solid;
+}
