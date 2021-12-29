@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
-import { AnnouncementsComponent } from './announcements/announcements.component';
 import { AnnouncementsModule } from './announcements/announcements.module';
 
 @NgModule({

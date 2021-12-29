@@ -14,7 +14,6 @@ export class AnnouncementsComponent implements OnInit {
   announcements: Announcement[];
   pagination: Pagination;
   userParams: UserParams;
-  user: User;
 
   constructor(private announcementService: AnnouncementService, ) {
     this.userParams = this.announcementService.getUserParams();
