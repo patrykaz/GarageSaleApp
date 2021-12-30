@@ -8,7 +8,6 @@ import { Announcement } from 'src/app/models/announcement';
 })
 export class AnnouncementCardComponent implements OnInit {
   @Input() announcement: Announcement;
-  endDate: Date;
 
   constructor() { }
 

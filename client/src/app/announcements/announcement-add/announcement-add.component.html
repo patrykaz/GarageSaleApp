@@ -1,0 +1,37 @@
+<div class="row justify-content-center">
+  <div class="col-4">
+    <form [formGroup]="registerForm" (ngSubmit)="registerForm.valid && register()" autocomplete="off">
+      <h2 class="text-center text-primary">Dodaj nowe ogłoszenie</h2>
+      <hr>
+      <gs-text-input [formControl]='registerForm.controls["name"]' [label]='"Nazwa ogłoszenia"'></gs-text-input>
+      <gs-text-input-area [formControl]='registerForm.controls["description"]' [label]='"Opis"'></gs-text-input-area>
+      <gs-date-picker [formControl]='registerForm.controls["startDate"]' [label]='"Data i godzina wydarzenia"' [minDate]='minDate'></gs-date-picker>
+
+      <div class="form-group mb-2">
+        <label class="control-label" style="margin-right: 10px;">Płeć: </label>
+        <label class="radio-inline">
+            <input type="radio" value="male" formControlName='gender'> Mężczyzna
+        </label>
+        <label class="radio-inline">
+            <input type="radio" value="female" formControlName='gender' class="ms-3"> Kobieta
+        </label>
+      </div>
+
+      <gs-text-input [formControl]='registerForm.controls["password"]' [label]='"Hasło"' [type]='"password"'></gs-text-input>
+      <gs-text-input [formControl]='registerForm.controls["confirmPassword"]' [label]='"Powtórz hasło"'[type]='"password"'></gs-text-input>
+
+      <div class="row" *ngIf="validationErrors.length > 0">
+        <ul class="text-danger">
+          <li *ngFor="let error of validationErrors">
+            {{error}}
+          </li>
+        </ul>
+      </div>
+
+      <div class="form-group text-center">
+        <button [disabled]="!registerForm.valid" class="btn btn-success me-2" type="submit">Rejestruj</button>
+        <button class="btn btn-danger me-2" routerLink="/" routerLinkActive="router-link-active" type="button">Wyjdz</button>
+      </div>
+    </form>
+  </div>
+</div>

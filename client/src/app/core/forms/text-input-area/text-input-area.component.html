@@ -1,0 +1,18 @@
+<div class="form-group mb-2">
+  <textarea
+      [class.is-invalid]="ngControl.touched && ngControl.invalid"
+      class="form-control"
+      [formControl]="ngControl.control"
+      placeholder={{label}}>
+  </textarea>
+  <div *ngIf="ngControl.control.errors?.['required']" class="invalid-feedback"> {{label}} jest wymagane </div>
+  <div *ngIf="ngControl.control.errors?.['minlength']" class="invalid-feedback">
+      {{label}} musi mieć przynajmniej {{ngControl.control.errors.minlength['requiredLength']}}
+  </div>
+  <div *ngIf="ngControl.control.errors?.['maxlength']" class="invalid-feedback">
+      {{label}} nie może mieć więcej niż {{ngControl.control.errors.maxlength['requiredLength']}}
+  </div>
+  <div *ngIf="ngControl.control.errors?.['isMatching']" class="invalid-feedback">
+      Hasła się nie zgadzają!
+  </div>
+</div>

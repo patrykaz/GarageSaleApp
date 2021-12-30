@@ -13,7 +13,7 @@ namespace API.DTOs
         public DateTime StartDate { get; set; }
         public float Duration { get; set; }
         public string PhotoUrl { get; set; }
-        public DateTime? Created { get; set; }
+        public DateTime? DateCreated { get; set; }
         public AnnouncementCreatorDto User { get; set; }
         public AddressDto Address { get; set; }
         public ICollection<PhotoDto> Photos { get; set; }

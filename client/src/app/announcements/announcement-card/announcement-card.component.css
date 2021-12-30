@@ -1,11 +1,32 @@
-img{
-  width: 180px;
-  float: right;
+.announcement-container{
+  border-bottom: 1px solid;
+  padding: 10px;
+  margin: 10px;
+  padding-bottom: 20px;
 }
 
 .announcement-card{
-  min-height: 100px;
-  height: 200px;
-  margin: 20px 0;
-  border-bottom: 1px solid;
+  min-height: 200px;
+  height: auto;
+
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
+
+.description{
+  width: 250px;
+  padding: 5px;
+}
+
+.photo{
+  min-width: 150px;
+  max-width: 200px;
+  height: auto;
+  margin: 10px;
+}
+
+.btn-own-style{
+  margin-left: 10px;
+}
+

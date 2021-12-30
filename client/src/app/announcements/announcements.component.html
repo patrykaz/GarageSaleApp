@@ -1,3 +1,21 @@
+<div class="text-center mt-3">
+  <h2>Liczba wyników - {{pagination?.totalItems}}</h2>
+</div>
+
+<div class="container mt-3">
+  <form #form="ngForm" class="row g-3 align-items-center mb-3" (ngSubmit)="loadAnnouncements()" autocomplete="off">
+      <div class="col-auto">
+          <button class="btn btn-primary" type="submit">Szukaj</button>
+      </div>
+
+      <div class="col-auto">
+          <button (click)="resetFilters()" class="btn btn-info">Reset</button>
+      </div>
+
+  </form>
+</div>
+
+
 <div class="">
   <div class="" *ngFor="let announcement of announcements">
     <gs-announcement-card [announcement]="announcement"></gs-announcement-card>

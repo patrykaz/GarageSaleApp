@@ -1,12 +1,25 @@
-<div class="announcement-card">
-  <div class="">
-      <img src="{{announcement.photoUrl || './assets/user.png'}}" alt="{{announcement.name}}" class="card-img-top">
-  </div>
-  <div class="">
+<div class="announcement-container">
+  <div class="announcement-card">
+    <div class="description">
+        <h6 class="">
+            {{announcement.name}}
+        </h6>
+        <p>{{announcement.description}}</p>
+    </div>
+    <div class="description">
       <h6 class="">
-          {{announcement.name}}, {{announcement.startDate | date:'d/M/yy, h:mm a' }} -  {{endDate | date:'d/M/yy, h:mm a' }}
+          Informacje o wyprzedaży
       </h6>
-      <p>{{announcement.description}}</p>
-      <p>{{announcement.address.street}}, {{announcement.address.postalCode}} {{announcement.address.city}}</p>
+      <p>Organizator: {{announcement.user.firstName}} {{announcement.user.lastName}}</p>
+      <p>Start: {{announcement.startDate | date:'d/M/yy, h:mm a' }}</p>
+      <p>Czas trwania: {{announcement.duration}} godziny</p>
+      <p>Adres: {{announcement.address.street}}, {{announcement.address.postalCode}} {{announcement.address.city}}</p>
+    </div>
+    <div class="photo">
+      <img src="{{announcement.photoUrl || './assets/user.png'}}" alt="{{announcement.name}}" class="card-img-top">
+    </div>
   </div>
+  <button class="btn-blue-style btn-own-style">Szczegóły</button>
 </div>
+
+

@@ -5,7 +5,7 @@ export interface Announcement {
     startDate: Date;
     duration: number;
     photoUrl: string;
-    created: Date;
+    dateCreated: Date;
     user: AnnouncementCreator;
     address: Address;
     photos: Photo[];

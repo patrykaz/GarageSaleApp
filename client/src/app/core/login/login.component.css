@@ -85,7 +85,6 @@ input[type="submit"]{
   font-weight: 700;
   color: rgb(3, 163, 255);
   cursor: pointer;
-
 }
 
 input[type="submit"]:hover{

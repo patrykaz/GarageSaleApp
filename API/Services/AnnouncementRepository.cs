@@ -52,7 +52,7 @@ namespace API.Services
             query = announcementParams.OrderBy switch
             {
                 "startDate" => query.OrderByDescending(u => u.StartDate),
-                _ => query.OrderByDescending(u => u.Name)
+                _ => query.OrderBy(u => u.Name)
             };
 
             // AsNotTracking nie wysyła zapytania do serwera

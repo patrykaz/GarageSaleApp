@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Announcement } from '../models/announcement';
 import { Pagination } from '../models/pagination';
-import { User } from '../models/user';
 import { UserParams } from '../models/userParams';
 import { AnnouncementService } from '../services/announcement.service';
 

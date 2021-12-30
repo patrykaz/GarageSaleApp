@@ -13,6 +13,10 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { ServerErrorComponent } from './errors/server-error/server-error.component';
+import { FooterComponent } from './footer/footer.component';
+import { TextInputAreaComponent } from './forms/text-input-area/text-input-area.component';
+import { DatePickerComponent } from './forms/date-picker/date-picker.component';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 
 @NgModule({
@@ -27,7 +31,7 @@ import { ServerErrorComponent } from './errors/server-error/server-error.compone
       positionClass: 'toast-bottom-right'
     }),
     BrowserAnimationsModule,
-
+    BsDatepickerModule.forRoot(),
   ],
   declarations: [
     NavComponent,
@@ -35,7 +39,10 @@ import { ServerErrorComponent } from './errors/server-error/server-error.compone
     TextInputComponent,
     RegisterComponent,
     NotFoundComponent,
-    ServerErrorComponent
+    ServerErrorComponent,
+    FooterComponent,
+    TextInputAreaComponent,
+    DatePickerComponent,
   ],
 
   exports: [
@@ -46,7 +53,11 @@ import { ServerErrorComponent } from './errors/server-error/server-error.compone
     ToastrModule,
     BrowserAnimationsModule,
     NotFoundComponent,
-    ServerErrorComponent
+    ServerErrorComponent,
+    FooterComponent,
+    TextInputAreaComponent,
+    DatePickerComponent,
+    BsDatepickerModule,
   ]
 
 })
