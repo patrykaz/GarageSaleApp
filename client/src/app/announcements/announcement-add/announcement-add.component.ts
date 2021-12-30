@@ -1,3 +1,4 @@
+import { Time } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -11,9 +12,17 @@ import { AccountService } from 'src/app/services/account.service';
 export class AnnouncementAddComponent implements OnInit {
   registerForm: FormGroup;
   minDate: Date;
+  myDate: Date;
   validationErrors: string[] = [];
 
   constructor(private accountService: AccountService, private fb: FormBuilder, private router: Router) { }
+
+  settings = {
+    bigBanner: true,
+    timePicker: false,
+    format: 'dd-MM-yyyy',
+    defaultOpen: true
+  }
 
   ngOnInit(): void {
     this.initializeForm();

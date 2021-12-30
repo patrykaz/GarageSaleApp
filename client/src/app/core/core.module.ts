@@ -17,7 +17,7 @@ import { FooterComponent } from './footer/footer.component';
 import { TextInputAreaComponent } from './forms/text-input-area/text-input-area.component';
 import { DatePickerComponent } from './forms/date-picker/date-picker.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
-
+import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 
 @NgModule({
   imports: [
@@ -32,7 +32,9 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     }),
     BrowserAnimationsModule,
     BsDatepickerModule.forRoot(),
+    TimepickerModule.forRoot(),
   ],
+
   declarations: [
     NavComponent,
     LoginComponent,
@@ -57,7 +59,9 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     FooterComponent,
     TextInputAreaComponent,
     DatePickerComponent,
+    TimepickerModule,
     BsDatepickerModule,
+    TimepickerModule,
   ]
 
 })

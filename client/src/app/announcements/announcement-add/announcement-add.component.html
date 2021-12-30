@@ -6,6 +6,7 @@
       <gs-text-input [formControl]='registerForm.controls["name"]' [label]='"Nazwa ogłoszenia"'></gs-text-input>
       <gs-text-input-area [formControl]='registerForm.controls["description"]' [label]='"Opis"'></gs-text-input-area>
       <gs-date-picker [formControl]='registerForm.controls["startDate"]' [label]='"Data i godzina wydarzenia"' [minDate]='minDate'></gs-date-picker>
+      <timepicker [formControl]='registerForm.controls["startDate"]' [showMeridian]="true"></timepicker>
 
       <div class="form-group mb-2">
         <label class="control-label" style="margin-right: 10px;">Płeć: </label>

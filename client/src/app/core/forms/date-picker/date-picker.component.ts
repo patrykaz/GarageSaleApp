@@ -2,6 +2,7 @@ import { Component, Input, OnInit, Self } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 
+
 @Component({
   selector: 'gs-date-picker',
   templateUrl: './date-picker.component.html',
@@ -15,8 +16,8 @@ export class DatePickerComponent implements ControlValueAccessor {
   constructor(@Self() public ngControl: NgControl) {
     this.ngControl.valueAccessor = this;
     this.bsConfig = {
-      containerClass: 'theme-red',
-      dateInputFormat: 'DD MMMM YYYY'
+      containerClass: 'theme-blue',
+      dateInputFormat: 'DD.MM.YYYY'
     }
   }
 
