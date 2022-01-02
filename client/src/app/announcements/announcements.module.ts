@@ -10,10 +10,9 @@ import { RouterModule } from '@angular/router';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AnnouncementAddComponent } from './announcement-add/announcement-add.component';
-import { TextInputComponent } from '../core/forms/text-input/text-input.component';
 import { CoreModule } from '../core/core.module';
-
-
+import { AnnouncementPhotosComponent } from './announcement-photos/announcement-photos.component';
+import { FileUploadModule } from 'ng2-file-upload';
 
 @NgModule({
   imports: [
@@ -27,19 +26,23 @@ import { CoreModule } from '../core/core.module';
       positionClass: 'toast-bottom-right'
     }),
     BrowserAnimationsModule,
-    CoreModule
+    CoreModule,
+    FileUploadModule
   ],
 
   declarations: [
     AnnouncementsComponent,
     AnnouncementCardComponent,
-    AnnouncementAddComponent
+    AnnouncementAddComponent,
+    AnnouncementPhotosComponent
   ],
 
   exports: [
     AnnouncementsComponent,
     AnnouncementCardComponent,
     AnnouncementAddComponent,
+    AnnouncementPhotosComponent,
+    FileUploadModule,
   ]
 
 })

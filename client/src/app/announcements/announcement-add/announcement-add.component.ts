@@ -4,7 +4,6 @@ import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from
 import { Router } from '@angular/router';
 import { AccountService } from 'src/app/services/account.service';
 import { AnnouncementService } from 'src/app/services/announcement.service';
-import { NewAddress, NewAnnouncement } from 'src/app/models/newAnnouncement';
 
 @Component({
   selector: 'gs-announcement-add',
