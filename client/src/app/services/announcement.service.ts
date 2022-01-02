@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { map, of, take } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Announcement } from '../models/announcement';
+import { NewAnnouncement } from '../models/newAnnouncement';
 import { UserParams } from '../models/userParams';
 import { getPaginationHeaders, getPaginationResult } from './paginationHelper';
 
@@ -47,6 +48,12 @@ export class AnnouncementService {
         this.memberCache.set(Object.values(userParams).join('-'), response)
         return response;
       }))
+  }
+
+  addAnnouncement(model: NewAnnouncement){
+    console.log(model)
+    return this.http.post(this.baseUrl + 'Announcements', model)
+
   }
 }
 

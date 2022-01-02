@@ -7,6 +7,8 @@ import { CoreModule } from './core/core.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { AnnouncementsModule } from './announcements/announcements.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { JwtInterceptor } from './interceptors/jwt.interceptor';
 
 @NgModule({
   declarations: [
@@ -16,10 +18,12 @@ import { AnnouncementsModule } from './announcements/announcements.module';
     BrowserModule,
     AppRoutingModule,
     CoreModule,
-    AnnouncementsModule
+    AnnouncementsModule,
+    BrowserAnimationsModule
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
   ],
   bootstrap: [AppComponent]
 })

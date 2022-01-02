@@ -1,38 +1,43 @@
 <div class="row justify-content-center">
   <div class="col-4">
-    <form [formGroup]="registerForm" (ngSubmit)="registerForm.valid && register()" autocomplete="off">
+    <form [formGroup]="registerForm" (ngSubmit)="registerForm.valid && addAnnouncement()" autocomplete="off">
       <h2 class="text-center text-primary">Dodaj nowe ogłoszenie</h2>
       <hr>
       <gs-text-input [formControl]='registerForm.controls["name"]' [label]='"Nazwa ogłoszenia"'></gs-text-input>
       <gs-text-input-area [formControl]='registerForm.controls["description"]' [label]='"Opis"'></gs-text-input-area>
-      <gs-date-picker [formControl]='registerForm.controls["startDate"]' [label]='"Data i godzina wydarzenia"' [minDate]='minDate'></gs-date-picker>
-      <timepicker [formControl]='registerForm.controls["startDate"]' [showMeridian]="true"></timepicker>
 
+      <mat-form-field style="width: 100%;">
+        <input matInput [ngxMatDatetimePicker]="picker" [formControl]='registerForm.controls["startDate"]' placeholder="Data i godzina wydarzenia"
+          [min]="minDate" required>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <ngx-mat-datetime-picker #picker></ngx-mat-datetime-picker>
+      </mat-form-field>
+
+      <gs-text-input [formControl]='registerForm.controls["duration"]' [label]='"Czas trawania \(godziny\)"' [type]='"number"'></gs-text-input>
       <div class="form-group mb-2">
-        <label class="control-label" style="margin-right: 10px;">Płeć: </label>
+        <label class="control-label" style="margin-right: 10px;">Adres:</label>
         <label class="radio-inline">
-            <input type="radio" value="male" formControlName='gender'> Mężczyzna
+          <input type="radio" name="address" value="empty_address" (click)="setEmptyAddress()" checked> Nowy adres
         </label>
         <label class="radio-inline">
-            <input type="radio" value="female" formControlName='gender' class="ms-3"> Kobieta
+          <input type="radio" name="address" value="user_address" (click)="setUserAddress()" class="ms-3"> Adres użytkownika
         </label>
       </div>
 
-      <gs-text-input [formControl]='registerForm.controls["password"]' [label]='"Hasło"' [type]='"password"'></gs-text-input>
-      <gs-text-input [formControl]='registerForm.controls["confirmPassword"]' [label]='"Powtórz hasło"'[type]='"password"'></gs-text-input>
-
-      <div class="row" *ngIf="validationErrors.length > 0">
-        <ul class="text-danger">
-          <li *ngFor="let error of validationErrors">
-            {{error}}
-          </li>
-        </ul>
+      <div formGroupName="address">
+        <gs-text-input formControlName="street" [label]='"Ulica i nr domu/mieszkania"'></gs-text-input>
+        <gs-text-input formControlName="city" [label]='"Miejscowość"'></gs-text-input>
+        <gs-text-input formControlName="postalCode" [label]='"Kod pocztowy"'></gs-text-input>
       </div>
+
+
 
       <div class="form-group text-center">
-        <button [disabled]="!registerForm.valid" class="btn btn-success me-2" type="submit">Rejestruj</button>
-        <button class="btn btn-danger me-2" routerLink="/" routerLinkActive="router-link-active" type="button">Wyjdz</button>
+        <button [disabled]="!registerForm.valid" class="btn btn-success me-2" type="submit">Dodaj</button>
+        <button class="btn btn-danger me-2" routerLink="/" routerLinkActive="router-link-active"
+          type="button">Anuluj</button>
       </div>
     </form>
+
   </div>
 </div>

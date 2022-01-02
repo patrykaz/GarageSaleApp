@@ -19,6 +19,16 @@ import { DatePickerComponent } from './forms/date-picker/date-picker.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 
+
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+
+import {
+  NgxMatDatetimePickerModule,
+  NgxMatNativeDateModule,
+  NgxMatTimepickerModule
+} from '@angular-material-components/datetime-picker';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -33,6 +43,13 @@ import { TimepickerModule } from 'ngx-bootstrap/timepicker';
     BrowserAnimationsModule,
     BsDatepickerModule.forRoot(),
     TimepickerModule.forRoot(),
+
+    MatDatepickerModule,
+    MatInputModule,
+
+    NgxMatDatetimePickerModule,
+    NgxMatTimepickerModule,
+    NgxMatNativeDateModule
   ],
 
   declarations: [
@@ -62,6 +79,13 @@ import { TimepickerModule } from 'ngx-bootstrap/timepicker';
     TimepickerModule,
     BsDatepickerModule,
     TimepickerModule,
+
+    MatDatepickerModule,
+    MatInputModule,
+
+    NgxMatDatetimePickerModule,
+    NgxMatTimepickerModule,
+    NgxMatNativeDateModule
   ]
 
 })

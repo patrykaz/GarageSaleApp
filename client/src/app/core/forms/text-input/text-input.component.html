@@ -12,6 +12,12 @@
   <div *ngIf="ngControl.control.errors?.['maxlength']" class="invalid-feedback">
       {{label}} nie może mieć więcej niż {{ngControl.control.errors.maxlength['requiredLength']}}
   </div>
+  <div *ngIf="ngControl.control.errors?.['min']" class="invalid-feedback">
+    {{label}} musi miec przynajmniej {{ngControl.control.errors.min['min']}} godzin
+  </div>
+  <div *ngIf="ngControl.control.errors?.['max']" class="invalid-feedback">
+    {{label}} nie może mieć więcej niż {{ngControl.control.errors.max['max']}} godzin
+  </div>
   <div *ngIf="ngControl.control.errors?.['isMatching']" class="invalid-feedback">
       Hasła się nie zgadzają!
   </div>
