@@ -28,7 +28,6 @@ export class AnnouncementsComponent implements OnInit {
     this.announcementService.getAnnouncements(this.userParams).subscribe(response => {
       this.announcements = response.result;
       this.pagination = response.pagination;
-      console.log(this.announcements);
     })
   }
 

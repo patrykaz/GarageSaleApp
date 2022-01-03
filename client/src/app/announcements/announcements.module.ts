@@ -9,10 +9,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AnnouncementAddComponent } from './announcement-add/announcement-add.component';
+
 import { CoreModule } from '../core/core.module';
 import { AnnouncementPhotosComponent } from './announcement-photos/announcement-photos.component';
 import { FileUploadModule } from 'ng2-file-upload';
+import { AnnouncementAddComponent } from './announcement-add/announcement-add.component';
+import { AnnouncementFormComponent } from './announcement-form/announcement-form.component';
+import { AnnouncementEditComponent } from './announcement-edit/announcement-edit.component';
+import { UserAnnouncementsComponent } from './user-announcements/user-announcements.component';
+import { AnnouncementManageCardComponent } from './announcement-manage-card/announcement-manage-card.component';
 
 @NgModule({
   imports: [
@@ -33,15 +38,23 @@ import { FileUploadModule } from 'ng2-file-upload';
   declarations: [
     AnnouncementsComponent,
     AnnouncementCardComponent,
+    AnnouncementPhotosComponent,
+    AnnouncementFormComponent,
     AnnouncementAddComponent,
-    AnnouncementPhotosComponent
+    AnnouncementEditComponent,
+    UserAnnouncementsComponent,
+    AnnouncementManageCardComponent
   ],
 
   exports: [
     AnnouncementsComponent,
     AnnouncementCardComponent,
-    AnnouncementAddComponent,
     AnnouncementPhotosComponent,
+    AnnouncementFormComponent,
+    AnnouncementAddComponent,
+    AnnouncementEditComponent,
+    UserAnnouncementsComponent,
+    AnnouncementManageCardComponent,
     FileUploadModule,
   ]
 

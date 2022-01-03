@@ -1,10 +1,10 @@
 <nav>
   <div class="logo">Wyprzedaż garażowa</div>
   <ul class="ul-left">
-    <li><a routerLink="/" routerLinkActive="router-link-active">Home</a></li>
+    <li><a routerLink="/" routerLinkActive="router-link-active">Strona Główna</a></li>
     <ng-container *ngIf="(accountService.currentUser$ | async)">
     <li>
-      <a routerLink="/" routerLinkActive="router-link-active">Twoje ogłoszenia</a>
+      <a routerLink="/user-announcements" routerLinkActive="router-link-active">Twoje ogłoszenia</a>
       <ul>
         <li><a routerLink="/announcements-add" routerLinkActive="router-link-active">Dodaj ogłoszenie</a></li>
       </ul>

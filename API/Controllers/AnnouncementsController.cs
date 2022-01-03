@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 namespace API.Controllers
 {
     [Authorize]
-    [Route("api/announcements")]
+    [Route("api")]
     [ApiController]
     public class AnnouncementsController : ControllerBase
     {
@@ -29,7 +29,7 @@ namespace API.Controllers
         }
 
         [AllowAnonymous]
-        [HttpGet("{id}", Name = "Fetch")]
+        [HttpGet("announcements/{id}", Name = "Fetch")]
         public async Task<ActionResult<AnnouncementDto>> Fetch(long id)
         {
             var entity = await unitOfWork.AnnouncementRepository.GetAnnouncementByIdAsync(id);
@@ -41,7 +41,7 @@ namespace API.Controllers
         }
 
     
-        [HttpGet]
+        [HttpGet("announcements")]
         [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<AnnouncementDto>>> GetAnnouncements([FromQuery] AnnouncementParams announcementParams) // FromQuery jest potrzebne ponieważ musimy wskazać, skąd ma pobrać nasze parametry, czyli z ciagu zapytania
         {
@@ -51,7 +51,17 @@ namespace API.Controllers
             return Ok(announcements);
         }
 
-        [HttpPost]
+
+        [HttpGet("user-announcements")]
+        public async Task<ActionResult<IEnumerable<AnnouncementDto>>> GetUserAnnouncements()
+        {
+            var userId = User.GetUserId();
+            var announcements = await unitOfWork.AnnouncementRepository.GetUserAnnouncementsAsync(userId);
+            return Ok(announcements);
+        }
+
+
+        [HttpPost("announcements")]
         public async Task<ActionResult<AnnouncementDto>> CreateAnnouncement([FromBody] CreateAnnouncementDto createAnnouncementDto)
         {
             var announcementCreater = await unitOfWork.UserRepository.GetUserByUsernameAsync(User.GetUsername());
@@ -85,7 +95,7 @@ namespace API.Controllers
             return BadRequest("Błąd w dodawaniu nowego ogłoszenia");
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("announcements/{id}")]
         public async Task<ActionResult<AnnouncementDto>> UpdateAnnouncement(UpdateAnnouncementByUserDto updateAnnouncementByUserDto, long id)
         {
             var user = await unitOfWork.UserRepository.GetUserByUsernameAsync(User.GetUsername());
@@ -132,7 +142,7 @@ namespace API.Controllers
             return BadRequest("Błąd w aktualizacji ogłoszenia");
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("announcements/{id}")]
         public async Task<ActionResult> DeleteAnnouncement(long id)
         {
             var user = await unitOfWork.UserRepository.GetUserByUsernameAsync(User.GetUsername());

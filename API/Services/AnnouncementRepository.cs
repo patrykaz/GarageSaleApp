@@ -59,5 +59,16 @@ namespace API.Services
             return await PagedList<AnnouncementDto>.CreateAsync(query.ProjectTo<AnnouncementDto>(mapper.ConfigurationProvider).AsNoTracking(),
                 announcementParams.PageNumber, announcementParams.PageSize);
         }
+
+        public async Task<IEnumerable<AnnouncementDto>> GetUserAnnouncementsAsync(long userId)
+        {
+            var userAnnouncements = await context.Announcements
+                .Where(u => u.AppUserId == userId)
+                .OrderBy(u => u.DateCreated)
+                .ProjectTo<AnnouncementDto>(mapper.ConfigurationProvider)
+                .ToListAsync();
+
+            return userAnnouncements;
+        }
     }
 }

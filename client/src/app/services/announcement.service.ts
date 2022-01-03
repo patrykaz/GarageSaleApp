@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, of, take } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { LoginComponent } from '../core/login/login.component';
 import { Announcement } from '../models/announcement';
 import { NewAnnouncement } from '../models/newAnnouncement';
 import { UserParams } from '../models/userParams';
@@ -34,26 +35,32 @@ export class AnnouncementService {
   }
 
   getAnnouncements(userParams: UserParams){
-    var response = this.memberCache.get(Object.values(userParams).join('-'));
-    if (response) {
-      return of(response);
-    }
-    console.log(this.userParams);
     let params = getPaginationHeaders(userParams.pageNumber, userParams.pageSize);
 
     params = params.append('orderBy', userParams.orderBy)
 
     return getPaginationResult<Announcement[]>(this.baseUrl + 'Announcements', this.userParams, this.http)
-      .pipe(map( response => {
-        this.memberCache.set(Object.values(userParams).join('-'), response)
-        return response;
-      }))
   }
 
-  addAnnouncement(model: NewAnnouncement){
-    console.log(model)
-    return this.http.post(this.baseUrl + 'Announcements', model)
+  getUserAnnouncements(){
+    return this.http.get<Announcement[]>(this.baseUrl + 'User-Announcements')
+  }
 
+  getAnnouncement(id: number){
+    return this.http.get<Announcement>(this.baseUrl + 'Announcements/' + id)
+  }
+
+
+  addAnnouncement(model: NewAnnouncement){
+    return this.http.post<Announcement>(this.baseUrl + 'Announcements', model)
+  }
+
+  updateAnnouncement(id: number,  model: NewAnnouncement){
+    return this.http.put<Announcement>(this.baseUrl + 'Announcements/' + id, model)
+  }
+
+  deletePhoto(announcementId: number, photoId: number){
+    return this.http.delete(this.baseUrl + 'Announcements/' + announcementId + '/delete-photo/' + photoId);
   }
 }
 
