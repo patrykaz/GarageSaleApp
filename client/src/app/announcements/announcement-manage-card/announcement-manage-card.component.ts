@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { Announcement } from 'src/app/models/announcement';
+import { AnnouncementService } from 'src/app/services/announcement.service';
 
 @Component({
   selector: 'gs-announcement-manage-card',
@@ -8,10 +9,14 @@ import { Announcement } from 'src/app/models/announcement';
 })
 export class AnnouncementManageCardComponent implements OnInit {
   @Input() announcement: Announcement;
+  @Output("parentDeleteAnnouncement") parentDeleteAnnouncement: EventEmitter<any> = new EventEmitter();
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  deleteAnnouncement(announcement: Announcement){
+    this.parentDeleteAnnouncement.emit(announcement);
+  }
 }

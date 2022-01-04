@@ -17,5 +17,22 @@
   transition: .5s;
 }
 
+.btn-red-style{
+  height: 40px;
+  width: 200px;
+  border: 1px solid;
+  background: white;
+  border-radius: 25px;
+  font-size: 18px;
+  font-weight: 700;
+  color: rgb(253, 15, 15);
+}
+
+.btn-red-style:hover{
+  background: rgb(190, 42, 5);
+  color: white;
+  transition: .5s;
+}
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

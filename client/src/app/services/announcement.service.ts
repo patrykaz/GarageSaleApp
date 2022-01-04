@@ -59,6 +59,10 @@ export class AnnouncementService {
     return this.http.put<Announcement>(this.baseUrl + 'Announcements/' + id, model)
   }
 
+  deleteAnnouncement(id: number){
+    return this.http.delete<Announcement>(this.baseUrl + 'Announcements/' + id)
+  }
+
   deletePhoto(announcementId: number, photoId: number){
     return this.http.delete(this.baseUrl + 'Announcements/' + announcementId + '/delete-photo/' + photoId);
   }

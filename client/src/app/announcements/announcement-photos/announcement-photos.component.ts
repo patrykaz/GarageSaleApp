@@ -28,7 +28,6 @@ export class AnnouncementPhotosComponent implements OnInit {
 
   ngOnInit(): void {
     this.initalizeUploader();
-    console.log(this.announcement);
   }
 
   ngOnChanges(){

@@ -2,6 +2,7 @@ import { Time } from '@angular/common';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Announcement } from 'src/app/models/announcement';
 import { AccountService } from 'src/app/services/account.service';
 import { AnnouncementService } from 'src/app/services/announcement.service';
@@ -22,15 +23,16 @@ export class AnnouncementFormComponent implements OnInit {
 
   @ViewChild('picker') picker: any;
 
-  constructor(private accountService: AccountService, private announcementService: AnnouncementService, private fb: FormBuilder, private router: Router) { }
+  constructor(
+    private accountService: AccountService,
+    private announcementService: AnnouncementService,
+    private fb: FormBuilder,
+    private router: Router,
+    private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.initializeForm();
     this.minDate = new Date();
-  }
-
-  ngOnChanges(){
-    this.initializeForm();
   }
 
   //reaktywny formularz z walidacja
@@ -84,14 +86,15 @@ export class AnnouncementFormComponent implements OnInit {
       this.announcementService.addAnnouncement(this.registerForm.value).subscribe(response => {
         this.announcement = response;
         this.initializeForm();
-        this.btnSubmitText = "Aktualizuj"
+        this.btnSubmitText = "Aktualizuj";
+        this.toastr.success("Ogłoszenie zostało pomyślnie zapisane");
       });
     }
     else{
       this.announcementService.updateAnnouncement(this.announcement.id, this.registerForm.value).subscribe(response => {
         this.announcement = response;
         this.initializeForm();
-        this.btnSubmitText = "Aktualizuj"
+        this.toastr.success("Ogłoszenie zostało pomyślnie zaktualizowane");
       });
     }
   }

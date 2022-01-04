@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { Announcement } from 'src/app/models/announcement';
 import { AnnouncementService } from 'src/app/services/announcement.service';
 
@@ -10,7 +11,7 @@ import { AnnouncementService } from 'src/app/services/announcement.service';
 export class UserAnnouncementsComponent implements OnInit {
   announcements: Announcement[];
 
-  constructor(private announcementService: AnnouncementService, ) {}
+  constructor(private announcementService: AnnouncementService, private toastr: ToastrService ) {}
 
   ngOnInit(): void {
     this.loadAnnouncements();
@@ -20,5 +21,12 @@ export class UserAnnouncementsComponent implements OnInit {
     this.announcementService.getUserAnnouncements().subscribe(response => {
       this.announcements = response;
     })
+  }
+
+  deleteAnnouncement(announcement: Announcement){
+    this.announcementService.deleteAnnouncement(announcement.id).subscribe(() => {
+      this.toastr.success("Ogłoszenie zostało pomyślnie usunięte.")
+      this.loadAnnouncements();
+    });
   }
 }

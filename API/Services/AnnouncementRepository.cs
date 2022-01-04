@@ -48,6 +48,8 @@ namespace API.Services
         {
             var query = context.Announcements.AsQueryable();
 
+            query = query.Where(u => u.IsDeleted == false);
+
             // switch wybiera wartość, a jeśli jej nie ma wybiera domyślną _=>
             query = announcementParams.OrderBy switch
             {
@@ -63,7 +65,7 @@ namespace API.Services
         public async Task<IEnumerable<AnnouncementDto>> GetUserAnnouncementsAsync(long userId)
         {
             var userAnnouncements = await context.Announcements
-                .Where(u => u.AppUserId == userId)
+                .Where(u => u.AppUserId == userId && u.IsDeleted == false)
                 .OrderBy(u => u.DateCreated)
                 .ProjectTo<AnnouncementDto>(mapper.ConfigurationProvider)
                 .ToListAsync();
