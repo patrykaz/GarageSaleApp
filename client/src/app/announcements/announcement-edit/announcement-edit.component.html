@@ -1,2 +1,5 @@
-<h2 class="text-center text-primary mb-5">Edycja ogłoszenia</h2>
-<gs-announcement-form [announcement]="announcement"></gs-announcement-form>
+<div *ngIf="announcement">
+  <h2 class="text-center text-primary mb-5">Edycja ogłoszenia</h2>
+  <gs-announcement-form [announcement]="announcement"></gs-announcement-form>
+</div>
+
