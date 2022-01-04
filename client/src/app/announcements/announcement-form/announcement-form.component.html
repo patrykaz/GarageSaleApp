@@ -19,7 +19,7 @@
           <input type="radio" name="address" value="empty_address" (click)="setEmptyAddress()" checked> Nowy adres
         </label>
         <label class="radio-inline">
-          <input type="radio" name="address" value="user_address" (click)="setUserAddress()" class="ms-3"> Adres użytkownika
+          <input type="radio" name="address" value="user_address" (click)="setUserAddress()" [disabled]="!userOfAccount?.address" class="ms-3"> Adres użytkownika
         </label>
       </div>
 

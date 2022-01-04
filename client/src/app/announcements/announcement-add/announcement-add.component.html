@@ -1,3 +1,4 @@
-
-<h2 class="text-center text-primary mb-5">Dodaj nowe ogłoszenie</h2>
-<gs-announcement-form></gs-announcement-form>
+<div *ngIf="userOfAccount">
+  <h2 class="text-center text-primary mb-5">Dodaj nowe ogłoszenie</h2>
+  <gs-announcement-form [userOfAccount]="userOfAccount"></gs-announcement-form>
+</div>

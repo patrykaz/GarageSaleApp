@@ -1,3 +1,6 @@
+import { Address } from "./Address";
+import { Photo } from "./photo";
+
 export interface Announcement {
     id: number;
     name: string;
@@ -19,16 +22,4 @@ export interface AnnouncementCreator {
   gender: string;
   created: Date;
   lastActive: Date;
-}
-
-export interface Address {
-  street: string;
-  city: string;
-  postalCode: string;
-}
-
-export interface Photo {
-    id: number;
-    url: string;
-    isMain: boolean;
 }

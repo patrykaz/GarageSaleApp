@@ -1,8 +1,8 @@
 import { Component, Input, OnInit} from '@angular/core';
 import { FileUploader } from 'ng2-file-upload';
-import { Toast, ToastrService } from 'ngx-toastr';
+import { ToastrService } from 'ngx-toastr';
 import { take } from 'rxjs';
-import { Announcement, Photo } from 'src/app/models/announcement';
+import { Announcement, } from 'src/app/models/announcement';
 import { User } from 'src/app/models/user';
 import { AccountService } from 'src/app/services/account.service';
 import { AnnouncementService } from 'src/app/services/announcement.service';

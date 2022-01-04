@@ -3,9 +3,13 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { map, take } from 'rxjs';
 import { Announcement } from 'src/app/models/announcement';
+import { Member } from 'src/app/models/member';
+import { User } from 'src/app/models/user';
 import { AccountService } from 'src/app/services/account.service';
 import { AnnouncementService } from 'src/app/services/announcement.service';
+import { MemberService } from 'src/app/services/member.service';
 
 @Component({
   selector: 'gs-announcement-form',
@@ -14,9 +18,10 @@ import { AnnouncementService } from 'src/app/services/announcement.service';
 })
 export class AnnouncementFormComponent implements OnInit {
   @Input() announcement: Announcement;
+  @Input() userOfAccount: Member;
   registerForm: FormGroup;
   minDate: Date;
-  myDate: Date;
+
   validationErrors: string[] = [];
 
   btnSubmitText = "Zapisz";
@@ -26,20 +31,21 @@ export class AnnouncementFormComponent implements OnInit {
   constructor(
     private accountService: AccountService,
     private announcementService: AnnouncementService,
+    private memberService: MemberService,
     private fb: FormBuilder,
     private router: Router,
-    private toastr: ToastrService) { }
+    private toastr: ToastrService) {}
 
   ngOnInit(): void {
     this.initializeForm();
     this.minDate = new Date();
+
   }
 
   //reaktywny formularz z walidacja
   initializeForm(){
     if(this.announcement){
       this.btnSubmitText = "Aktualizuj";
-
       this.registerForm = this.fb.group({
         name: [this.announcement.name, [Validators.required, Validators.minLength(6), Validators.maxLength(50)]],
         description: [this.announcement.description, [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
@@ -76,9 +82,9 @@ export class AnnouncementFormComponent implements OnInit {
   }
 
   setUserAddress(){
-    this.registerForm.get(['address','street']).setValue('Dane użytkownika');
-    this.registerForm.get(['address','city']).setValue('Dane użytkownika');
-    this.registerForm.get(['address','postalCode']).setValue('Dane użytkownika');
+    this.registerForm.get(['address','street']).setValue(this.userOfAccount.address.street);
+    this.registerForm.get(['address','city']).setValue(this.userOfAccount.address.city);
+    this.registerForm.get(['address','postalCode']).setValue(this.userOfAccount.address.postalCode);
   }
 
   saveAnnouncement(){

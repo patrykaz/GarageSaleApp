@@ -1,5 +1,5 @@
-<div *ngIf="announcement">
+<div *ngIf="announcement && userOfAccount">
   <h2 class="text-center text-primary mb-5">Edycja ogłoszenia</h2>
-  <gs-announcement-form [announcement]="announcement"></gs-announcement-form>
+  <gs-announcement-form [announcement]="announcement" [userOfAccount]="userOfAccount"></gs-announcement-form>
 </div>
 

@@ -1,0 +1,26 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { take } from 'rxjs';
+import { environment } from 'src/environments/environment';
+import { Member } from '../models/member';
+import { User } from '../models/user';
+import { AccountService } from './account.service';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class MemberService {
+  baseUrl = environment.apiUrl;
+  user: User;
+  member: Member
+
+  constructor(private http: HttpClient, private accountService: AccountService) {
+    this.accountService.currentUser$.pipe(take(1)).subscribe(user =>{
+      this.user = user;
+    })
+   }
+
+  getUserOfAccount(){
+    return this.http.get<Member>(this.baseUrl + 'users/' + this.user.userName);
+  }
+}
