@@ -20,6 +20,8 @@ import { UserAnnouncementsComponent } from './user-announcements/user-announceme
 import { AnnouncementManageCardComponent } from './announcement-manage-card/announcement-manage-card.component';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { AnnouncementDetailsComponent } from './announcement-details/announcement-details.component';
+import { NgxGalleryModule } from '@kolkov/ngx-gallery';
+
 
 @NgModule({
   imports: [
@@ -35,7 +37,8 @@ import { AnnouncementDetailsComponent } from './announcement-details/announcemen
     BrowserAnimationsModule,
     CoreModule,
     FileUploadModule,
-    PaginationModule.forRoot()
+    PaginationModule.forRoot(),
+    NgxGalleryModule
   ],
 
   declarations: [
@@ -61,7 +64,8 @@ import { AnnouncementDetailsComponent } from './announcement-details/announcemen
     AnnouncementManageCardComponent,
     FileUploadModule,
     PaginationModule,
-    AnnouncementDetailsComponent
+    AnnouncementDetailsComponent,
+    NgxGalleryModule
   ]
 
 })
