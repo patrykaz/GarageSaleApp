@@ -13,7 +13,7 @@
       <p>Organizator: {{announcement.user.firstName}} {{announcement.user.lastName}}</p>
       <p>Start: {{announcement.startDate | date:'d/M/yy, h:mm a' }}</p>
       <p>Czas trwania: {{announcement.duration}} godziny</p>
-      <p>Adres: {{announcement.address.street}}, {{announcement.address.postalCode}} {{announcement.address.city}}</p>
+      <p>Adres: {{announcement.address.street}}, {{announcement.address.province}} {{announcement.address.city}}</p>
     </div>
     <div class="photo">
       <img src="{{announcement.photoUrl || './assets/user.png'}}" alt="{{announcement.name}}" class="card-img-top">

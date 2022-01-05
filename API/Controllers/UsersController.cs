@@ -55,7 +55,7 @@ namespace API.Controllers
             }
             else
             {
-                var addressExist = unitOfWork.AddressRepository.FindAddresByProperties(updateUserByUserDto.Address.Street, updateUserByUserDto.Address.City, updateUserByUserDto.Address.PostalCode);
+                var addressExist = unitOfWork.AddressRepository.FindAddresByProperties(updateUserByUserDto.Address.Street, updateUserByUserDto.Address.City, updateUserByUserDto.Address.Province);
 
                 if (addressExist is null)
                 {

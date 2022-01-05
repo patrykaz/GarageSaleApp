@@ -36,10 +36,10 @@ namespace API.Services
                 .FirstOrDefault(a => a.Id == id);
         }
 
-        public Address FindAddresByProperties(string Street, string City, string PostalCode)
+        public Address FindAddresByProperties(string Street, string City, string Province)
         {
             return  context.Addresses
-                .FirstOrDefault(u => u.Street == Street && u.City == City && u.PostalCode ==PostalCode);
+                .FirstOrDefault(u => u.Street == Street && u.City == City && u.Province == Province);
         }
     }
 }

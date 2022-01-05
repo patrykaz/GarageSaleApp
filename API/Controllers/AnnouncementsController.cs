@@ -68,7 +68,7 @@ namespace API.Controllers
 
             Announcement newAnnouncement = new();
 
-            var addressExist = unitOfWork.AddressRepository.FindAddresByProperties(createAnnouncementDto.Address.Street, createAnnouncementDto.Address.City, createAnnouncementDto.Address.PostalCode);
+            var addressExist = unitOfWork.AddressRepository.FindAddresByProperties(createAnnouncementDto.Address.Street, createAnnouncementDto.Address.City, createAnnouncementDto.Address.Province);
             if (addressExist is null)
             {
                 mapper.Map(createAnnouncementDto, newAnnouncement);
@@ -107,7 +107,7 @@ namespace API.Controllers
             if (announcement.AppUserId != user.Id)
                 return Unauthorized();
 
-            var addressExist = unitOfWork.AddressRepository.FindAddresByProperties(updateAnnouncementByUserDto.Address.Street, updateAnnouncementByUserDto.Address.City, updateAnnouncementByUserDto.Address.PostalCode);
+            var addressExist = unitOfWork.AddressRepository.FindAddresByProperties(updateAnnouncementByUserDto.Address.Street, updateAnnouncementByUserDto.Address.City, updateAnnouncementByUserDto.Address.Province);
             
             if (addressExist is null)
             {

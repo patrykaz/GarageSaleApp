@@ -46,7 +46,7 @@ export class AnnouncementFormComponent implements OnInit {
         address: this.fb.group({
           street: [this.announcement.address.street, [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
           city: [this.announcement.address.city, [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
-          postalCode: [this.announcement.address.postalCode, [Validators.required, Validators.minLength(6), Validators.maxLength(6)]]
+          province: [this.announcement.address.province, [Validators.required, Validators.minLength(3), Validators.maxLength(50)]]
         })
       })
     }
@@ -61,7 +61,7 @@ export class AnnouncementFormComponent implements OnInit {
         address: this.fb.group({
           street: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
           city: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
-          postalCode: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(6)]]
+          province: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]]
         })
       })
     }
@@ -70,13 +70,13 @@ export class AnnouncementFormComponent implements OnInit {
   setEmptyAddress(){
     this.registerForm.get(['address','street']).setValue('');
     this.registerForm.get(['address','city']).setValue('');
-    this.registerForm.get(['address','postalCode']).setValue('');
+    this.registerForm.get(['address','province']).setValue('');
   }
 
   setUserAddress(){
     this.registerForm.get(['address','street']).setValue(this.userOfAccount.address.street);
     this.registerForm.get(['address','city']).setValue(this.userOfAccount.address.city);
-    this.registerForm.get(['address','postalCode']).setValue(this.userOfAccount.address.postalCode);
+    this.registerForm.get(['address','province']).setValue(this.userOfAccount.address.province);
   }
 
   saveAnnouncement(){
