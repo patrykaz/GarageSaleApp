@@ -2,11 +2,13 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppis', sans-serif;
 }
 
 nav{
   background: rgb(3, 163, 255);
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
 
 nav:after{
@@ -28,6 +30,7 @@ nav ul li a{
   padding: 8px 15px;
   color: white;
   cursor: pointer;
+  z-index: 3;
 }
 
 nav ul ul li a:hover{
@@ -49,6 +52,7 @@ nav ul li:hover > ul{
   top: 70px;
   opacity: 1;
   visibility: visible;
+  z-index: 3;
 }
 
 nav ul ul li{

@@ -7,10 +7,10 @@
       placeholder={{label}}>
   <div *ngIf="ngControl.control.errors?.['required']" class="invalid-feedback"> {{label}} jest wymagane </div>
   <div *ngIf="ngControl.control.errors?.['minlength']" class="invalid-feedback">
-      {{label}} musi mieć przynajmniej {{ngControl.control.errors.minlength['requiredLength']}}
+      {{label}} musi mieć przynajmniej {{ngControl.control.errors.minlength['requiredLength']}} znaków
   </div>
   <div *ngIf="ngControl.control.errors?.['maxlength']" class="invalid-feedback">
-      {{label}} nie może mieć więcej niż {{ngControl.control.errors.maxlength['requiredLength']}}
+      {{label}} nie może mieć więcej niż {{ngControl.control.errors.maxlength['requiredLength']}} znaków
   </div>
   <div *ngIf="ngControl.control.errors?.['min']" class="invalid-feedback">
     {{label}} musi miec przynajmniej {{ngControl.control.errors.min['min']}} godzin

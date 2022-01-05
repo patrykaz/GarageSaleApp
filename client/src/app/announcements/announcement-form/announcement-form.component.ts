@@ -1,15 +1,10 @@
-import { Time } from '@angular/common';
+
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { map, take } from 'rxjs';
 import { Announcement } from 'src/app/models/announcement';
 import { Member } from 'src/app/models/member';
-import { User } from 'src/app/models/user';
-import { AccountService } from 'src/app/services/account.service';
 import { AnnouncementService } from 'src/app/services/announcement.service';
-import { MemberService } from 'src/app/services/member.service';
 
 @Component({
   selector: 'gs-announcement-form',
@@ -19,21 +14,17 @@ import { MemberService } from 'src/app/services/member.service';
 export class AnnouncementFormComponent implements OnInit {
   @Input() announcement: Announcement;
   @Input() userOfAccount: Member;
+  @ViewChild('picker') picker: any;
+
   registerForm: FormGroup;
   minDate: Date;
-
   validationErrors: string[] = [];
 
   btnSubmitText = "Zapisz";
 
-  @ViewChild('picker') picker: any;
-
   constructor(
-    private accountService: AccountService,
     private announcementService: AnnouncementService,
-    private memberService: MemberService,
     private fb: FormBuilder,
-    private router: Router,
     private toastr: ToastrService) {}
 
   ngOnInit(): void {
@@ -46,15 +37,16 @@ export class AnnouncementFormComponent implements OnInit {
   initializeForm(){
     if(this.announcement){
       this.btnSubmitText = "Aktualizuj";
+
       this.registerForm = this.fb.group({
         name: [this.announcement.name, [Validators.required, Validators.minLength(6), Validators.maxLength(50)]],
-        description: [this.announcement.description, [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
+        description: [this.announcement.description, [Validators.required, Validators.minLength(10), Validators.maxLength(250)]],
         startDate: [this.announcement.startDate, [Validators.required]],
         duration: [this.announcement.duration, [Validators.required, Validators.min(1), Validators.max(12)]],
         address: this.fb.group({
-          street: [this.announcement.address.street, [Validators.required, Validators.minLength(6), Validators.maxLength(50)]],
-          city: [this.announcement.address.city, [Validators.required, Validators.minLength(6), Validators.maxLength(50)]],
-          postalCode: [this.announcement.address.postalCode, [Validators.required, Validators.minLength(6), Validators.maxLength(50)]]
+          street: [this.announcement.address.street, [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
+          city: [this.announcement.address.city, [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
+          postalCode: [this.announcement.address.postalCode, [Validators.required, Validators.minLength(6), Validators.maxLength(6)]]
         })
       })
     }
@@ -63,13 +55,13 @@ export class AnnouncementFormComponent implements OnInit {
 
       this.registerForm = this.fb.group({
         name: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(50)]],
-        description: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
+        description: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(250)]],
         startDate: ['', [Validators.required]],
         duration: ['', [Validators.required, Validators.min(1), Validators.max(12)]],
         address: this.fb.group({
-          street: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(50)]],
-          city: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(50)]],
-          postalCode: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(50)]]
+          street: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
+          city: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
+          postalCode: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(6)]]
         })
       })
     }

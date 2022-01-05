@@ -18,6 +18,7 @@ import { AnnouncementFormComponent } from './announcement-form/announcement-form
 import { AnnouncementEditComponent } from './announcement-edit/announcement-edit.component';
 import { UserAnnouncementsComponent } from './user-announcements/user-announcements.component';
 import { AnnouncementManageCardComponent } from './announcement-manage-card/announcement-manage-card.component';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 
 @NgModule({
   imports: [
@@ -32,7 +33,8 @@ import { AnnouncementManageCardComponent } from './announcement-manage-card/anno
     }),
     BrowserAnimationsModule,
     CoreModule,
-    FileUploadModule
+    FileUploadModule,
+    PaginationModule.forRoot()
   ],
 
   declarations: [
@@ -56,6 +58,7 @@ import { AnnouncementManageCardComponent } from './announcement-manage-card/anno
     UserAnnouncementsComponent,
     AnnouncementManageCardComponent,
     FileUploadModule,
+    PaginationModule
   ]
 
 })

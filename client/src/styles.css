@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+/* @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap'); */
 
 .btn-blue-style{
   height: 40px;
@@ -34,5 +35,4 @@
   transition: .5s;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
