@@ -2,6 +2,9 @@
   <div class="col-4 mb-2" *ngFor="let photo of announcement?.photos">
     <img src="{{photo.url}}" alt="{{photo.url}}" class="img-thumbnail p-1">
     <div class="text-center">
+      <button [disabled]="photo.isMain" (click)="setMainPhoto(photo)" [ngClass]='photo.isMain ? "btn-success active" : "btn-outline-success"' class="btn btn-sm me-2">
+        Główne
+  </button>
       <button class="btn btn-sm btn-danger" (click)="deletePhoto(photo.id)"><i class="fa fa-trash"></i></button>
     </div>
   </div>

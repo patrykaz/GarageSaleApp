@@ -3,6 +3,8 @@
   padding: 10px;
   margin: 10px;
   padding-bottom: 20px;
+  background-color: white;
+  border-radius: 0.4cm;
 }
 
 .announcement-card{

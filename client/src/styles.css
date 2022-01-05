@@ -35,4 +35,9 @@
   transition: .5s;
 }
 
-
+.form-container{
+  background-color: white;
+  padding: 20px;
+  border-radius: 0.4cm;
+  border-bottom: solid 1px;
+}

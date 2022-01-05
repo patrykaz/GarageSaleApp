@@ -1,25 +1,45 @@
 <div class="announcement-container">
   <div class="announcement-card">
     <div class="description">
-        <h6 class="">
+        <h5 class="">
             {{announcement.name}}
-        </h6>
+        </h5>
         <p>{{announcement.description}}</p>
     </div>
     <div class="description">
-      <h6 class="">
+      <h5 class="">
           Informacje o wyprzedaży
-      </h6>
-      <p>Organizator: {{announcement.user.firstName}} {{announcement.user.lastName}}</p>
-      <p>Start: {{announcement.startDate | date:'d/M/yy, h:mm a' }}</p>
-      <p>Czas trwania: {{announcement.duration}} godziny</p>
-      <p>Adres: {{announcement.address.street}}, {{announcement.address.province}} {{announcement.address.city}}</p>
+      </h5>
+      <div class="info-row">
+        <label>Organizator:</label>
+        <a> {{announcement.user.firstName}} {{announcement.user.lastName}}</a>
+      </div>
+      <div class="info-row">
+        <label>Start:</label>
+        <a> {{announcement.startDate | date:'d/M/yy, h:mm a' }}</a>
+      </div>
+      <div class="info-row">
+        <label>Czas trwania:</label>
+        <a> {{announcement.duration}} godziny</a>
+      </div>
+      <div class="info-row">
+        <label>Adres:</label>
+        <a> {{announcement.address.street}}</a>
+      </div>
+      <div class="info-row">
+        <label>Miasto:</label>
+        <a> {{announcement.address.city}}</a>
+      </div>
+      <div class="info-row">
+        <label>Województwo:</label>
+        <a> {{announcement.address.province}}</a>
+      </div>
     </div>
     <div class="photo">
       <img src="{{announcement.photoUrl || './assets/user.png'}}" alt="{{announcement.name}}" class="card-img-top">
     </div>
   </div>
-  <button class="btn-blue-style btn-own-style">Szczegóły</button>
+  <button class="btn-blue-style btn-own-style" routerLink="{{announcement.id}}/details">Szczegóły</button>
 </div>
 
 

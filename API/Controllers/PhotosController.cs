@@ -77,8 +77,18 @@ namespace API.Controllers
                 return Unauthorized();
 
             var photo = announcement.Photos.FirstOrDefault(x => x.Id == photoId);
+
             if (photo == null) return NotFound();
-            if (photo.IsMain) return BadRequest("Nie możesz usunąć głównego zdjęcia");
+
+            if (photo.IsMain)
+            {
+                var newMainPhoto = announcement.Photos.FirstOrDefault(x => x.IsMain != true);
+                if(newMainPhoto != null)
+                {
+                    newMainPhoto.IsMain = true;
+                }
+            }
+
             if (photo.PublicId != null)
             {
                 var result = await photoService.DeletePhotoAsync(photo.PublicId);

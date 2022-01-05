@@ -4,26 +4,32 @@
     <h2>Filtry</h2>
     <form #form="ngForm" class="row g-3 align-items-center mb-3" (ngSubmit)="loadAnnouncements()" autocomplete="off">
         <div class="col-auto">
-            <label>Tytuł ogłoszenia</label>
-            <input type="text" class="form-control" style="width: 200px" name="minAge"
-                [(ngModel)]="userParams.minAge">
+            <label>Tytuł</label>
+            <input type="text" class="form-control" style="width: 200px" name="name"
+                [(ngModel)]="announcementParams.name">
         </div>
 
         <div class="col-auto">
+          <label>Opis</label>
+          <input type="text" class="form-control" style="width: 200px" name="description"
+              [(ngModel)]="announcementParams.description">
+      </div>
+
+        <div class="col-auto">
           <label>Miasto</label>
-          <input type="text" class="form-control" style="width: 200px" name="maxAge"
-              [(ngModel)]="userParams.maxAge">
+          <input type="text" class="form-control" style="width: 200px" name="city"
+              [(ngModel)]="announcementParams.city">
         </div>
 
         <div class="col-auto">
           <label>Województwo</label>
-          <input type="text" class="form-control" style="width: 200px" name="maxAge"
-              [(ngModel)]="userParams.maxAge">
+          <input type="text" class="form-control" style="width: 200px" name="province"
+              [(ngModel)]="announcementParams.province">
         </div>
 
         <div class="col-auto">
           <label>Sortuj: </label>
-          <select [(ngModel)]="userParams.gender" name="gender" style="width: 130px" class="form-control ms-1">
+          <select [(ngModel)]="announcementParams.orderBy" name="orderBy" style="width: 130px" class="form-control ms-1">
               <option *ngFor="let sort of sortList" [value]="sort.value">
                   {{sort.display}}
               </option>
@@ -31,8 +37,8 @@
         </div>
 
         <div>
-            <button class="btn btn-primary me-2" type="submit">Filtruj</button>
-            <button (click)="resetFilters()" class="btn btn-info">Resetuj</button>
+            <button class="btn btn-primary me-2" type="submit" onclick="this.blur()">Filtruj</button>
+            <button (click)="resetFilters()" class="btn btn-info" onclick="this.blur()">Resetuj</button>
         </div>
       </form>
   </div>

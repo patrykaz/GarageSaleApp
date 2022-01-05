@@ -1,11 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, of, take } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { LoginComponent } from '../core/login/login.component';
 import { Announcement } from '../models/announcement';
 import { NewAnnouncement } from '../models/newAnnouncement';
-import { UserParams } from '../models/userParams';
+import { AnnouncementParams } from '../models/userParams';
 import { getPaginationHeaders, getPaginationResult } from './paginationHelper';
 
 @Injectable({
@@ -15,31 +13,31 @@ export class AnnouncementService {
   baseUrl = environment.apiUrl;
   announcements: Announcement[] = [];
   memberCache = new Map();
-  userParams: UserParams;
+  announcementParams: AnnouncementParams;
 
   constructor(private http: HttpClient) {
-    this.userParams = new UserParams();
+    this.announcementParams = new AnnouncementParams();
   }
 
   getUserParams() {
-    return this.userParams;
+    return this.announcementParams;
   }
 
-  setUserParams(params: UserParams) {
-    this.userParams = params;
+  setUserParams(params: AnnouncementParams) {
+    this.announcementParams = params;
   }
 
   resetUserParams(){
-    this.userParams = new UserParams();
-    return this.userParams;
+    this.announcementParams = new AnnouncementParams();
+    return this.announcementParams;
   }
 
-  getAnnouncements(userParams: UserParams){
-    let params = getPaginationHeaders(userParams.pageNumber, userParams.pageSize);
+  getAnnouncements(announcementParams: AnnouncementParams){
+    let params = getPaginationHeaders(announcementParams.pageNumber, announcementParams.pageSize);
 
-    params = params.append('orderBy', userParams.orderBy)
+    params = params.append('orderBy', announcementParams.orderBy)
 
-    return getPaginationResult<Announcement[]>(this.baseUrl + 'Announcements', this.userParams, this.http)
+    return getPaginationResult<Announcement[]>(this.baseUrl + 'Announcements', this.announcementParams, this.http)
   }
 
   getUserAnnouncements(){
@@ -61,6 +59,10 @@ export class AnnouncementService {
 
   deleteAnnouncement(id: number){
     return this.http.delete<Announcement>(this.baseUrl + 'Announcements/' + id)
+  }
+
+  setMainPhoto(announcementId: number, photoId: number) {
+    return this.http.put(this.baseUrl + "Announcements/" + announcementId + "/set-main-photo/" + photoId, {});
   }
 
   deletePhoto(announcementId: number, photoId: number){

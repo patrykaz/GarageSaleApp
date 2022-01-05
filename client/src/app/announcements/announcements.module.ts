@@ -19,6 +19,7 @@ import { AnnouncementEditComponent } from './announcement-edit/announcement-edit
 import { UserAnnouncementsComponent } from './user-announcements/user-announcements.component';
 import { AnnouncementManageCardComponent } from './announcement-manage-card/announcement-manage-card.component';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { AnnouncementDetailsComponent } from './announcement-details/announcement-details.component';
 
 @NgModule({
   imports: [
@@ -45,7 +46,8 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
     AnnouncementAddComponent,
     AnnouncementEditComponent,
     UserAnnouncementsComponent,
-    AnnouncementManageCardComponent
+    AnnouncementManageCardComponent,
+    AnnouncementDetailsComponent
   ],
 
   exports: [
@@ -58,7 +60,8 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
     UserAnnouncementsComponent,
     AnnouncementManageCardComponent,
     FileUploadModule,
-    PaginationModule
+    PaginationModule,
+    AnnouncementDetailsComponent
   ]
 
 })

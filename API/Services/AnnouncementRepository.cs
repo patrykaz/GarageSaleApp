@@ -50,11 +50,33 @@ namespace API.Services
 
             query = query.Where(u => u.IsDeleted == false);
 
+            if (announcementParams.Name != null)
+            {
+                query = query.Where(u => u.Name.Contains(announcementParams.Name));
+            }
+
+            if (announcementParams.Description != null)
+            {
+                query = query.Where(u => u.Description.Contains(announcementParams.Description));
+            }
+
+            if (announcementParams.City != null)
+            {
+                query = query.Where(u => u.Address.City.Contains(announcementParams.City));
+            }
+
+            if (announcementParams.Province != null)
+            {
+                query = query.Where(u => u.Address.Province.Contains(announcementParams.Province));
+            }
+
             // switch wybiera wartość, a jeśli jej nie ma wybiera domyślną _=>
             query = announcementParams.OrderBy switch
             {
+                "dateCreatedOld" => query.OrderBy(u => u.DateCreated),
+                "dateCreatedNew" => query.OrderByDescending(u => u.DateCreated),
                 "startDate" => query.OrderByDescending(u => u.StartDate),
-                _ => query.OrderBy(u => u.Name)
+                _ => query.OrderBy(u => u.DateCreated)
             };
 
             // AsNotTracking nie wysyła zapytania do serwera

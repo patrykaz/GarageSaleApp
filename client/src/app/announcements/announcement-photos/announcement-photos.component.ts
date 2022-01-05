@@ -3,6 +3,7 @@ import { FileUploader } from 'ng2-file-upload';
 import { ToastrService } from 'ngx-toastr';
 import { take } from 'rxjs';
 import { Announcement, } from 'src/app/models/announcement';
+import { Photo } from 'src/app/models/photo';
 import { User } from 'src/app/models/user';
 import { AccountService } from 'src/app/services/account.service';
 import { AnnouncementService } from 'src/app/services/announcement.service';
@@ -35,21 +36,22 @@ export class AnnouncementPhotosComponent implements OnInit {
     this.initalizeUploader();
   }
 
-  // setMainPhoto(photo: Photo){
-  //   this.announcement.setMainPhoto(photo.id).subscribe(() => {
-  //     this.user.photoUrl = photo.url;
-  //     this.accountService.setCurrentUser(this.user);
-  //     this.member.photoUrl = photo.url;
-  //     this.member.photos.forEach(p => {
-  //       if (p.isMain) p.isMain = false;
-  //       if (p.id === photo.id) p.isMain = true;
-  //     })
-  //   });
-  // }
+  setMainPhoto(photo: Photo){
+    this.announcementService.setMainPhoto(this.announcement.id, photo.id).subscribe(() => {
+      this.announcement.photoUrl = photo.url;
+      this.announcement.photos.forEach(p => {
+        if (p.isMain) p.isMain = false;
+        if (p.id === photo.id) p.isMain = true;
+      })
+    });
+  }
 
   deletePhoto(photoId: number){
     this.announcementService.deletePhoto(this.announcement.id, photoId).subscribe(() => {
-      this.announcement.photos = this.announcement.photos.filter(x => x.id !== photoId);
+      let refreshedAnnouncement = this.announcementService.getAnnouncement(this.announcement.id)
+      refreshedAnnouncement.subscribe(response => {
+        this.announcement.photos = response.photos
+      })
     })
   }
 

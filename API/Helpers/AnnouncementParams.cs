@@ -7,6 +7,10 @@ namespace API.Helpers
 {
     public class AnnouncementParams : PaginationParams
     {
-        public string OrderBy { get; set; } = "name";
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public string City { get; set; }
+        public string Province { get; set; }
+        public string OrderBy { get; set; } = "DateCreate";
     }
 }

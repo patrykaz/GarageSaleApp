@@ -1,6 +1,9 @@
-export class UserParams {
-    gender: string;
-    pageNumber = 1;
-    pageSize = 5;
-    orderBy = 'name';
+export class AnnouncementParams {
+  pageNumber = 1;
+  pageSize = 5;
+  name: string;
+  description: string;
+  city: string;
+  province: string
+  orderBy: string
 }
