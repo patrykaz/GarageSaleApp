@@ -13,6 +13,7 @@ export class AnnouncementsComponent implements OnInit {
   announcements: Announcement[];
   pagination: Pagination;
   userParams: UserParams;
+  sortList = [{value: 'latest', display: "Najnowsze"}, {value: "oldest", display: "Najstarsze"}]
 
   constructor(private announcementService: AnnouncementService, ) {
     this.userParams = this.announcementService.getUserParams();

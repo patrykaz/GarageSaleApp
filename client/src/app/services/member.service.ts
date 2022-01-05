@@ -9,18 +9,17 @@ import { AccountService } from './account.service';
 @Injectable({
   providedIn: 'root'
 })
-export class MemberService {
+export class MemberService{
   baseUrl = environment.apiUrl;
   user: User;
   member: Member
 
-  constructor(private http: HttpClient, private accountService: AccountService) {
+  constructor(private http: HttpClient, private accountService: AccountService) {}
+
+  getUserOfAccount(){
     this.accountService.currentUser$.pipe(take(1)).subscribe(user =>{
       this.user = user;
     })
-   }
-
-  getUserOfAccount(){
     return this.http.get<Member>(this.baseUrl + 'users/' + this.user.userName);
   }
 }

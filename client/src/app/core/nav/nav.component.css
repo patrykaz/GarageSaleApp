@@ -9,6 +9,7 @@ nav{
   position: fixed;
   top: 0;
   width: 100%;
+  z-index: 4;
 }
 
 nav:after{
@@ -30,7 +31,7 @@ nav ul li a{
   padding: 8px 15px;
   color: white;
   cursor: pointer;
-  z-index: 3;
+  z-index: 5;
 }
 
 nav ul ul li a:hover{

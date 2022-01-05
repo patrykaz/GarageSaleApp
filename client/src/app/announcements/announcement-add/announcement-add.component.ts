@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Member } from 'src/app/models/member';
 import { MemberService } from 'src/app/services/member.service';
 
@@ -12,6 +12,7 @@ export class AnnouncementAddComponent implements OnInit {
 
   constructor(private memberService: MemberService) { }
 
+
   ngOnInit(): void {
     this.loadUserOfAccount();
   }
@@ -21,5 +22,4 @@ export class AnnouncementAddComponent implements OnInit {
       this.userOfAccount = userOfAccount;
     })
   }
-
 }
