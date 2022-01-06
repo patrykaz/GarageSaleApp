@@ -22,6 +22,7 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { AnnouncementDetailsComponent } from './announcement-details/announcement-details.component';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { AnnouncementCommentsComponent } from './announcement-comments/announcement-comments.component';
+import { TimeagoModule } from 'ngx-timeago';
 
 @NgModule({
   imports: [
@@ -38,7 +39,8 @@ import { AnnouncementCommentsComponent } from './announcement-comments/announcem
     CoreModule,
     FileUploadModule,
     PaginationModule.forRoot(),
-    NgxGalleryModule
+    NgxGalleryModule,
+    TimeagoModule.forRoot()
   ],
 
   declarations: [
@@ -67,7 +69,8 @@ import { AnnouncementCommentsComponent } from './announcement-comments/announcem
     PaginationModule,
     AnnouncementDetailsComponent,
     AnnouncementCommentsComponent,
-    NgxGalleryModule
+    NgxGalleryModule,
+    TimeagoModule
   ]
 
 })

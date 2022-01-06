@@ -7,18 +7,25 @@
           Brak komentarzy
       </div>
 
-      <ul
-        *ngIf="(comments?.length > 0)" class="chat">
-          <li *ngFor="let comment of comments">
-              <div>
-                  <!-- <span class="float-end">
-                      <img class="rounded-circle" src="{{message.senderPhotoUrl || './assets/user.png'}}" alt="{{message.senderUsername}}">
-                  </span> -->
-                  <div class="chat-body">
-                      <p>{{comment?.content}}</p>
-                  </div>
+      <ul *ngIf="(comments?.length > 0)" class="chat">
+        <li *ngFor="let comment of comments">
+          <div class="row-message">
+            <div class="chat-body me-4">
+              <div class="header">
+                <small class="text-muted">
+                  <span class="senderName"> {{comment.senderUsername}} napisał/a: </span>
+                </small>
+                <small class="text-muted">
+                  <span class="fa fa-clock-o"> {{comment.dateSend | timeago}}</span>
+                </small>
               </div>
-          </li>
+              <p>{{comment.content}}</p>
+            </div>
+            <div>
+              <img class="rounded-circle" src="{{'./assets/user.png'}}" alt="foto">
+            </div>
+          </div>
+        </li>
       </ul>
   </div>
 
@@ -27,8 +34,8 @@
           <div class="input-group">
               <input
                   type="text"
-                  class="form-control input-sm"
-                  placeholder="Send a private message"
+                  class="form-control input-sm me-2"
+                  placeholder="Dodaj komentarz"
                   name="messageContent"
                   required
                   [(ngModel)]="model.content">
