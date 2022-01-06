@@ -38,9 +38,10 @@ namespace API.Controllers
         }
 
         [HttpPost("{id}/add-comment")]
-        public async Task<ActionResult<CommentDto>> CreateComment(long id, CreateCommentDto createCommentDto)
+        public async Task<ActionResult<CommentDto>> CreateComment(long id, [FromBody] CreateCommentDto createCommentDto)
         {
-
+            if (createCommentDto.Content is null)
+                return BadRequest("Komentarz nie może być pusty");
             var sender = await unitOfWork.UserRepository.GetUserByUsernameAsync(User.GetUsername());
             var announcement = await unitOfWork.AnnouncementRepository.GetAnnouncementByIdAsync(id);
 

@@ -1,4 +1,58 @@
-<div class="container">
-  <ngx-gallery [options]="galleryOptions" [images]="galleryImages" class="ngx-gallery"></ngx-gallery>
-</div>
+<ng-container *ngIf="announcement">
+  <div class="row justify-content-center">
+    <div class="col-4 announcement-details">
+      <h2 class="title">
+        {{announcement?.name}}
+      </h2>
+
+      <h5>
+          Informacje o wyprzedaży
+      </h5>
+      <div class="info-row">
+        <label>Organizator:</label>
+        <a> {{announcement.user.firstName}} {{announcement.user.lastName}}</a>
+      </div>
+      <div class="info-row">
+        <label>Start:</label>
+        <a> {{announcement.startDate | date:'d/M/yy, h:mm a' }}</a>
+      </div>
+      <div class="info-row">
+        <label>Czas trwania:</label>
+        <a> {{announcement.duration}} godziny</a>
+      </div>
+      <div class="info-row">
+        <label>Adres:</label>
+        <a> {{announcement.address.street}}</a>
+      </div>
+      <div class="info-row">
+        <label>Miasto:</label>
+        <a> {{announcement.address.city}}</a>
+      </div>
+      <div class="info-row">
+        <label>Województwo:</label>
+        <a> {{announcement.address.province}}</a>
+      </div>
+    </div>
+
+    <div class="col-4 gallery-container">
+      <div *ngIf="announcement.photos.length <= 0">
+        <h1 class="no-photos">Brak zdjęć</h1>
+      </div>
+      <ng-container *ngIf="announcement.photos.length > 0">
+        <ngx-gallery [options]="galleryOptions" [images]="galleryImages" class="ngx-gallery"></ngx-gallery>
+      </ng-container>
+    </div>
+
+    <div class="description">
+      <h5>
+        Opis
+      </h5>
+      <a>{{announcement.description}}</a>
+    </div>
+    <div class="col-4">
+      <gs-announcement-comments [announcement]="announcement"></gs-announcement-comments>
+    </div>
+  </div>
+</ng-container>
+
 

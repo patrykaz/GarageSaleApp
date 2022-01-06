@@ -1,0 +1,43 @@
+<div class="card">
+  <div class="card-body"
+      #scrollMe
+      style="overflow: scroll; height: 535px;"
+      [scrollTop]="scrollMe.scrollHeight">
+      <div *ngIf="(comments?.length == 0)">
+          Brak komentarzy
+      </div>
+
+      <ul
+        *ngIf="(comments?.length > 0)" class="chat">
+          <li *ngFor="let comment of comments">
+              <div>
+                  <!-- <span class="float-end">
+                      <img class="rounded-circle" src="{{message.senderPhotoUrl || './assets/user.png'}}" alt="{{message.senderUsername}}">
+                  </span> -->
+                  <div class="chat-body">
+                      <p>{{comment?.content}}</p>
+                  </div>
+              </div>
+          </li>
+      </ul>
+  </div>
+
+  <div class="card-footer">
+      <form #commentForm="ngForm" (submit)="sendComment()" autocomplete="off">
+          <div class="input-group">
+              <input
+                  type="text"
+                  class="form-control input-sm"
+                  placeholder="Send a private message"
+                  name="messageContent"
+                  required
+                  [(ngModel)]="model.content">
+              <div class="input-group-append">
+                  <button [disabled]="!commentForm.valid || loading"  class="btn btn-primary" type="submit">Wyślij
+                    <i *ngIf="loading" class="fa fa-spinner fa-spin"></i>
+                  </button>
+              </div>
+          </div>
+      </form>
+  </div>
+</div>

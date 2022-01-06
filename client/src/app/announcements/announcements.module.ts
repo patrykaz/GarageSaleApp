@@ -21,7 +21,7 @@ import { AnnouncementManageCardComponent } from './announcement-manage-card/anno
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { AnnouncementDetailsComponent } from './announcement-details/announcement-details.component';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
-
+import { AnnouncementCommentsComponent } from './announcement-comments/announcement-comments.component';
 
 @NgModule({
   imports: [
@@ -50,7 +50,8 @@ import { NgxGalleryModule } from '@kolkov/ngx-gallery';
     AnnouncementEditComponent,
     UserAnnouncementsComponent,
     AnnouncementManageCardComponent,
-    AnnouncementDetailsComponent
+    AnnouncementDetailsComponent,
+    AnnouncementCommentsComponent,
   ],
 
   exports: [
@@ -65,6 +66,7 @@ import { NgxGalleryModule } from '@kolkov/ngx-gallery';
     FileUploadModule,
     PaginationModule,
     AnnouncementDetailsComponent,
+    AnnouncementCommentsComponent,
     NgxGalleryModule
   ]
 
