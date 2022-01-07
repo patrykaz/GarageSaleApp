@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy, Component, Input, OnInit, ViewChild } from '@a
 import { NgForm } from '@angular/forms';
 import { Announcement } from 'src/app/models/announcement';
 import { CreateComment } from 'src/app/models/createComment';
+import { AccountService } from 'src/app/services/account.service';
 import { CommentService } from 'src/app/services/comment.service';
 
 @Component({
@@ -16,8 +17,9 @@ export class AnnouncementCommentsComponent implements OnInit {
   comments: Comment[];
   model: any = {};
   loading = false;
+  InputText = EnumInputText;
 
-  constructor(private commentService: CommentService) { }
+  constructor(private commentService: CommentService, public accountService: AccountService) { }
 
   ngOnInit(): void {
     this.getComments();
@@ -40,3 +42,9 @@ export class AnnouncementCommentsComponent implements OnInit {
 
 
 }
+
+export enum EnumInputText {
+  add_comment = "Dodaj komentarz",
+  log_in_first = "Zaloguj się, aby móc dodać komentarz"
+}
+

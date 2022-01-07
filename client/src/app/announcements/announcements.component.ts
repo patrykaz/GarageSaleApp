@@ -15,8 +15,8 @@ export class AnnouncementsComponent implements OnInit {
   announcementParams: AnnouncementParams;
   sortList = [
     {value: null, display: ""},
-    {value: 'createdDateNew', display: "Najnowsze"},
-    {value: "createdDateOld", display: "Najstarsze"},
+    {value: 'dateCreatedNew', display: "Najnowsze"},
+    {value: "dateCreatedOld", display: "Najstarsze"},
     {value: "startDate", display: "Nadchodzące"},
   ]
 

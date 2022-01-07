@@ -12,6 +12,9 @@
           <div class="row-message">
             <div class="chat-body me-4">
               <div class="header">
+                <small class="text-muted" *ngIf="announcement.user.id === comment.senderId">
+                  <span class="organizer"> Orgaznizator wydarzenia </span>
+                </small>
                 <small class="text-muted">
                   <span class="senderName"> {{comment.senderUsername}} napisał/a: </span>
                 </small>
@@ -29,13 +32,14 @@
       </ul>
   </div>
 
-  <div class="card-footer">
+  <div class="card-footer own-footer">
       <form #commentForm="ngForm" (submit)="sendComment()" autocomplete="off">
           <div class="input-group">
               <input
+                  [disabled]="!(accountService.currentUser$ | async)"
                   type="text"
                   class="form-control input-sm me-2"
-                  placeholder="Dodaj komentarz"
+                  [placeholder]="(accountService.currentUser$ | async) ? InputText.add_comment : InputText.log_in_first"
                   name="messageContent"
                   required
                   [(ngModel)]="model.content">

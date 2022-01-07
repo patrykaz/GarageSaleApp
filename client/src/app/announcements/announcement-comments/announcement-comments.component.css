@@ -27,3 +27,12 @@
   display: flex;
   justify-content: space-between;
 }
+
+.own-footer{
+  border-bottom: 1px solid;
+  background-color: white;
+}
+
+.organizer{
+  color: rgb(253, 136, 1);
+}

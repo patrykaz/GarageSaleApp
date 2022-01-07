@@ -75,8 +75,8 @@ namespace API.Services
             {
                 "dateCreatedOld" => query.OrderBy(u => u.DateCreated),
                 "dateCreatedNew" => query.OrderByDescending(u => u.DateCreated),
-                "startDate" => query.OrderByDescending(u => u.StartDate),
-                _ => query.OrderBy(u => u.DateCreated)
+                "startDate" => query.OrderBy(u => u.StartDate),
+                _ => query.OrderByDescending(u => u.DateCreated)
             };
 
             // AsNotTracking nie wysyła zapytania do serwera
