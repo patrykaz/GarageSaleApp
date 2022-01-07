@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { take } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Member } from '../models/member';
+import { UpdateUser } from '../models/updateUser';
 import { User } from '../models/user';
 import { AccountService } from './account.service';
 
@@ -21,5 +22,9 @@ export class MemberService{
       this.user = user;
     })
     return this.http.get<Member>(this.baseUrl + 'users/' + this.user.userName);
+  }
+
+  updateUserAccount(user: UpdateUser){
+    return this.http.put<Member>(this.baseUrl + 'users', user);
   }
 }

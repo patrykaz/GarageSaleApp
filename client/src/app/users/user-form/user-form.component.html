@@ -1,0 +1,45 @@
+<div class="row justify-content-center">
+  <div class="user-form">
+    <form [formGroup]="userForm" (ngSubmit)="userForm.valid && update()" autocomplete="off">
+      <gs-text-input [formControl]='userForm.controls["firstName"]' [label]='"Imię"'></gs-text-input>
+      <gs-text-input [formControl]='userForm.controls["lastName"]' [label]='"Nazwisko"'></gs-text-input>
+
+      <div class="form-group mb-2">
+        <label class="control-label" style="margin-right: 10px;">Płeć: </label>
+        <label class="radio-inline">
+            <input type="radio" value="male" formControlName='gender'> Mężczyzna
+        </label>
+        <label class="radio-inline">
+            <input type="radio" value="female" formControlName='gender' class="ms-3"> Kobieta
+        </label>
+      </div>
+
+      <mat-form-field style="width: 100%;">
+        <input matInput [matDatepicker]="picker" [formControl]='userForm.controls["dateOfBirth"]' placeholder="Data urodzenia" [max]="maxDate">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <div class="form-group mb-2">
+        <label class="control-label" style="margin-right: 10px;">Adres:</label>
+        <label class="radio-inline">
+          <input type="radio" name="address" value="unsetAddress" checked (click)="unsetAddress()"> Brak
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="address" value="set_address" [checked]="radioButton" (click)="setAddress()" class="ms-3"> Dodaj
+        </label>
+      </div>
+
+      <div formGroupName="address" *ngIf="setUserAddress">
+        <gs-text-input formControlName="street" [label]='"Ulica i nr domu/mieszkania"'></gs-text-input>
+        <gs-text-input formControlName="city" [label]='"Miejscowość"'></gs-text-input>
+        <gs-text-input formControlName="province" [label]='"Województwo"'></gs-text-input>
+      </div>
+
+      <div class="form-group text-center mt-4">
+        <button [disabled]="!userForm.valid" class="btn btn-success me-2" type="submit">Aktualizuj</button>
+        <button class="btn btn-danger me-2" routerLink="/" routerLinkActive="router-link-active" type="button">Wyjdz</button>
+      </div>
+    </form>
+  </div>
+</div>

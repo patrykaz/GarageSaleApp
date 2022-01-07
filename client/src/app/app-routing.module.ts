@@ -9,12 +9,14 @@ import { NotFoundComponent } from './core/errors/not-found/not-found.component';
 import { ServerErrorComponent } from './core/errors/server-error/server-error.component';
 import { LoginComponent } from './core/login/login.component';
 import { RegisterComponent } from './core/register/register.component';
+import { UserEditComponent } from './users/user-edit/user-edit.component';
 
 const routes: Routes = [
   // { path: '', redirectTo: '/home', pathMatch: 'full'},
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: '', redirectTo: 'announcements', pathMatch: 'full' },
+  { path: 'user-edit', component: UserEditComponent },
   { path: 'announcements', component: AnnouncementsComponent },
   { path: 'announcements-add', component: AnnouncementAddComponent },
   { path: 'user-announcements', component: UserAnnouncementsComponent },

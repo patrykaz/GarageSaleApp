@@ -1,10 +1,10 @@
 <div *ngIf="announcements">
   <div *ngIf="announcements?.length <=0">
-    <h2>Nie masz jeszcze żadnych ogłoszeń.</h2>
+    <h2 class="text-center text-primary mb-5">Nie masz jeszcze żadnych ogłoszeń.</h2>
   </div>
 
   <div *ngIf="announcements?.length > 0">
-    <h2>Twoje ogłoszenia</h2>
+    <h2 class="text-center text-primary mb-5">Twoje ogłoszenia</h2>
     <div class="" *ngFor="let announcement of announcements">
       <gs-announcement-manage-card [announcement]="announcement" (parentDeleteAnnouncement)="deleteAnnouncement(announcement)"></gs-announcement-manage-card>
     </div>

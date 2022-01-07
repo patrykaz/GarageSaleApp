@@ -23,24 +23,12 @@ import { AnnouncementDetailsComponent } from './announcement-details/announcemen
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { AnnouncementCommentsComponent } from './announcement-comments/announcement-comments.component';
 import { TimeagoModule } from 'ngx-timeago';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
-    CommonModule,
-    BrowserModule,
-    FormsModule,
-    HttpClientModule,
-    RouterModule,
-    ReactiveFormsModule,
-    ToastrModule.forRoot({
-      positionClass: 'toast-bottom-right'
-    }),
-    BrowserAnimationsModule,
+    SharedModule,
     CoreModule,
-    FileUploadModule,
-    PaginationModule.forRoot(),
-    NgxGalleryModule,
-    TimeagoModule.forRoot()
   ],
 
   declarations: [
@@ -65,12 +53,8 @@ import { TimeagoModule } from 'ngx-timeago';
     AnnouncementEditComponent,
     UserAnnouncementsComponent,
     AnnouncementManageCardComponent,
-    FileUploadModule,
-    PaginationModule,
     AnnouncementDetailsComponent,
     AnnouncementCommentsComponent,
-    NgxGalleryModule,
-    TimeagoModule
   ]
 
 })

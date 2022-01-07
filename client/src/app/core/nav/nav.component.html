@@ -15,10 +15,7 @@
     <ng-container *ngIf="(accountService.currentUser$ | async) as user">
       <div class="welcome">Witaj, {{user.firstName || user.userName | titlecase}}</div>
       <li>
-        <a routerLink="/" routerLinkActive="router-link-active">Profil</a>
-        <ul>
-          <li><a routerLink="/" routerLinkActive="router-link-active">Edytuj profil</a></li>
-        </ul>
+        <a routerLink="/user-edit" routerLinkActive="router-link-active">Profil</a>
       </li>
       <li><a (click)="logout()">Wyloguj</a></li>
     </ng-container>

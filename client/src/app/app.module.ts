@@ -11,6 +11,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { LoadingInterceptor } from './interceptors/loading.interceptor';
+import { SharedModule } from './shared/shared.module';
+import { UsersModule } from './users/users.module';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,8 @@ import { LoadingInterceptor } from './interceptors/loading.interceptor';
     BrowserModule,
     AppRoutingModule,
     CoreModule,
+    SharedModule,
+    UsersModule,
     AnnouncementsModule,
     BrowserAnimationsModule,
     NgxSpinnerModule,
