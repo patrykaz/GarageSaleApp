@@ -41,7 +41,6 @@ export class AnnouncementCommentsComponent implements OnInit {
   getComments(){
     this.commentService.getComments(this.announcement.id).subscribe(response =>{
       this.comments = response;
-      console.log(this.comments)
     })
   }
 
