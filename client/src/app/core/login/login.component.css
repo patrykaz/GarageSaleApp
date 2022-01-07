@@ -26,56 +26,10 @@ form {
   box-sizing: border-box;
 }
 .txt-field{
-  position: relative;
-  border-bottom: 2px solid white;
   margin-bottom: 30px;
 }
 
-input{
-  width: 100%;
-  padding: 0 5px;
-  height: 40px;
-  font-size: 16px;
-  border: none;
-  background: none;
-  outline: none;
-  color: white;
-}
-
-label{
-  position: absolute;
-  top: 50%;
-  left: 5px;
-  color: white;
-  transform: translateY(-50%);
-  font-size: 16px;
-  pointer-events: none;
-  transition: .5s;
-}
-
-span::before{
-  content: '';
-  position: absolute;
-  top: 40px;
-  left: 0;
-  width: 0%;
-  height: 2px;
-  background: cyan;
-  transition: .5s;
-}
-
-input:focus ~ label,
-input:valid ~ label{
-  top: -5px;
-  color: cyan;
-}
-
-input:focus ~ span::before,
-input:valid ~ span::before{
-  width: 100%;
-}
-
-input[type="submit"]{
+button{
   width: 100%;
   height: 50px;
   border: 1px solid;
@@ -87,7 +41,7 @@ input[type="submit"]{
   cursor: pointer;
 }
 
-input[type="submit"]:hover{
+button:hover{
   border-color: white;
   transition: .5s;
 }
@@ -97,13 +51,21 @@ input[type="submit"]:hover{
   text-align: center;
   font-size: 16px;
   color: white;
+  cursor: pointer;
 }
 
-a{
+.signup-link a{
   color: cyan;
   text-decoration: none;
 }
 
-a:hover{
+.signup-link a:hover{
   text-decoration: underline;
+}
+
+button[disabled]{
+  border: 1px solid #999999;
+  background-color: #dadada;
+  color: #666666;
+  cursor: default;
 }

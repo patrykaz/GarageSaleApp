@@ -9,7 +9,6 @@ import { AccountService } from 'src/app/services/account.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  @Output() cancelRegister = new EventEmitter();
   registerForm: FormGroup;
   validationErrors: string[] = [];
 

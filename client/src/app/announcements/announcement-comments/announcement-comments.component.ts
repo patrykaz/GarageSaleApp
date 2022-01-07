@@ -1,8 +1,7 @@
-import { HttpClient } from '@angular/common/http';
-import { ChangeDetectionStrategy, Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Announcement } from 'src/app/models/announcement';
-import { CreateComment } from 'src/app/models/createComment';
+import { CommentOfAnnouncement } from 'src/app/models/commentOfAnnouncement';
 import { AccountService } from 'src/app/services/account.service';
 import { CommentService } from 'src/app/services/comment.service';
 
@@ -14,7 +13,7 @@ import { CommentService } from 'src/app/services/comment.service';
 export class AnnouncementCommentsComponent implements OnInit {
   @ViewChild('commentForm') commentForm: NgForm;
   @Input() announcement: Announcement;
-  comments: Comment[];
+  comments: CommentOfAnnouncement[];
   model: any = {};
   loading = false;
   InputText = EnumInputText;
@@ -40,6 +39,11 @@ export class AnnouncementCommentsComponent implements OnInit {
     })
   }
 
+  deleteComment(comment: CommentOfAnnouncement){
+    this.commentService.deleteComment(comment.id).subscribe(() =>{
+      this.comments = this.comments.filter(item => item.id !== comment.id);
+    })
+  }
 
 }
 

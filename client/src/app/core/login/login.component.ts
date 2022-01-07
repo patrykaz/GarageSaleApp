@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AccountService } from '../../services/account.service';
 
@@ -8,15 +9,24 @@ import { AccountService } from '../../services/account.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  model: any = {}
+  loginForm: FormGroup;
+  validationErrors: string[] = [];
 
-  constructor(public accountService: AccountService, private router: Router) { }
+  constructor(public accountService: AccountService, private router: Router, private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    this.initializeForm();
+  }
+
+  initializeForm(){
+    this.loginForm = this.fb.group({
+      userName: ['', Validators.required],
+      password: ['', Validators.required]
+    })
   }
 
   login(){
-    this,this.accountService.login(this.model).subscribe(response =>{
+    this,this.accountService.login(this.loginForm.value).subscribe(() =>{
       this.router.navigateByUrl('/');
     });
   }

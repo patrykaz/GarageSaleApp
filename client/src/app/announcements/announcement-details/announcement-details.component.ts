@@ -33,9 +33,9 @@ export class AnnouncementDetailsComponent implements OnInit {
   }
 
   ngAfterViewChecked(){
-
     this.cdr.detectChanges();
  }
+
 
   getImages(): NgxGalleryImage[] {
     const imageUrls = [];

@@ -8,12 +8,16 @@
   margin: 10px;
 }
 
+.comments{
+  width: 544px;
+}
+
 .ngx-gallery {
   display: inline-block;
   margin: 20px 10px;
 }
 
-.announcement-details, .description{
+.announcement-details, .description, .comments{
   background-color: white;
   border-radius: 6px;
   border-bottom: 1px solid;
