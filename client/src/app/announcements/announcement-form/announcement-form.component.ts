@@ -15,7 +15,7 @@ export class AnnouncementFormComponent implements OnInit {
   @Input() announcement: Announcement;
   @Input() userOfAccount: Member;
   @ViewChild('picker') picker: any;
-
+ 
   registerForm: FormGroup;
   minDate: Date;
   validationErrors: string[] = [];

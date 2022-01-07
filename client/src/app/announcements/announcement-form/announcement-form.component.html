@@ -13,6 +13,7 @@
       </mat-form-field>
 
       <gs-text-input [formControl]='registerForm.controls["duration"]' [label]='"Czas trwania \(godziny\)"' [type]='"number"'></gs-text-input>
+
       <div class="form-group mb-2">
         <label class="control-label" style="margin-right: 10px;">Adres:</label>
         <label class="radio-inline">
@@ -28,7 +29,6 @@
         <gs-text-input formControlName="city" [label]='"Miejscowość"'></gs-text-input>
         <gs-text-input formControlName="province" [label]='"Województwo"'></gs-text-input>
       </div>
-
 
       <div class="form-group text-center">
         <button [disabled]="!registerForm.valid" id="btn-submit" class="btn btn-success me-2" type="submit" onclick="this.blur()">{{btnSubmitText}}</button>

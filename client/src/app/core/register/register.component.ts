@@ -10,8 +10,10 @@ import { AccountService } from 'src/app/services/account.service';
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
+  address: FormGroup;
   validationErrors: string[] = [];
   maxDate: Date;
+  setUserAddress = false;
 
   constructor(private accountService: AccountService, private fb: FormBuilder, private router: Router) { }
 
@@ -27,13 +29,20 @@ export class RegisterComponent implements OnInit {
       firstName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
       lastName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
       gender: ['male'],
-      dateOfBirth: [''],
+      dateOfBirth: [null],
       password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(50)]],
       confirmPassword: ['', [Validators.required, this.matchValues('password')]]
     })
     // sprawdzenie czy hasło zostało zmienione, i aktualizuje pole powtórz hasło
     this.registerForm.controls['password'].valueChanges.subscribe(() => {
       this.registerForm.controls['confirmPassword'].updateValueAndValidity();
+    })
+
+
+    this.address = this.fb.group({
+      street: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
+      city: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
+      province: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]]
     })
   }
 
@@ -52,5 +61,17 @@ export class RegisterComponent implements OnInit {
   setMaxDate(){
     this.maxDate = new Date();
     this.maxDate.setFullYear(this.maxDate.getFullYear() - 18)
+  }
+
+  setAddress(){
+    this.setUserAddress = true;
+    this.registerForm.addControl('address', this.address);
+    this.registerForm.updateValueAndValidity();
+  }
+
+  unsetAddress(){
+    this.setUserAddress = false;
+    this.registerForm.removeControl('address')
+    this.registerForm.updateValueAndValidity();
   }
 }
