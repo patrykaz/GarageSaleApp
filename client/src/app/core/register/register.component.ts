@@ -11,10 +11,12 @@ import { AccountService } from 'src/app/services/account.service';
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   validationErrors: string[] = [];
+  maxDate: Date;
 
   constructor(private accountService: AccountService, private fb: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
+    this.setMaxDate();
     this.initializeForm();
   }
 
@@ -25,6 +27,7 @@ export class RegisterComponent implements OnInit {
       firstName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
       lastName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
       gender: ['male'],
+      dateOfBirth: [''],
       password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(50)]],
       confirmPassword: ['', [Validators.required, this.matchValues('password')]]
     })
@@ -44,5 +47,10 @@ export class RegisterComponent implements OnInit {
     this.accountService.register(this.registerForm.value).subscribe(() => {
       this.router.navigateByUrl('');
     });
+  }
+
+  setMaxDate(){
+    this.maxDate = new Date();
+    this.maxDate.setFullYear(this.maxDate.getFullYear() - 18)
   }
 }

@@ -26,7 +26,7 @@
             </div>
             <div>
               <img class="rounded-circle mb-1 centre-object" src="{{'./assets/user.png'}}" alt="foto">
-              <button class="btn btn-sm btn-danger centre-object" (click)="deleteComment(comment)"><i class="fa fa-trash"></i></button>
+              <button *ngIf="user.id === announcement.user.id || user.id === comment.senderId" class="btn btn-sm btn-danger centre-object" (click)="deleteComment(comment)"><i class="fa fa-trash"></i></button>
             </div>
           </div>
         </li>

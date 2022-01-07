@@ -17,6 +17,7 @@ export class AnnouncementManageCardComponent implements OnInit {
   }
 
   deleteAnnouncement(announcement: Announcement){
-    this.parentDeleteAnnouncement.emit(announcement);
+    if(confirm("Czy na pewno chcesz usunąć to gołoszenie?"))
+        this.parentDeleteAnnouncement.emit(announcement);
   }
 }

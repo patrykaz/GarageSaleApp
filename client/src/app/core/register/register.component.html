@@ -17,6 +17,13 @@
         </label>
       </div>
 
+      <mat-form-field style="width: 100%;">
+        <input matInput [matDatepicker]="picker" [formControl]='registerForm.controls["dateOfBirth"]' placeholder="Data urodzenia" [max]="maxDate">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+
       <gs-text-input [formControl]='registerForm.controls["password"]' [label]='"Hasło"' [type]='"password"'></gs-text-input>
       <gs-text-input [formControl]='registerForm.controls["confirmPassword"]' [label]='"Powtórz hasło"'[type]='"password"'></gs-text-input>
 

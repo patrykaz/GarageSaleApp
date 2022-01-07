@@ -77,7 +77,7 @@ namespace API.Controllers
                 return BadRequest("Problem z usunięciem komentarza");
             }
              
-            return Unauthorized();
+            return Unauthorized("Nie możesz usunąć tego komentarza");
         }
     }
 }

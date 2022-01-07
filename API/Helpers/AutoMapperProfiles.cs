@@ -46,6 +46,7 @@ namespace API.Helpers
             // Comment
             CreateMap<Comment, CommentDto>()
                 .ForMember(a => a.SenderUsername, b => b.MapFrom(c => c.Sender.UserName));
+         
         }
     }
 }

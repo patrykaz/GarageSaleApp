@@ -71,6 +71,7 @@ namespace API.Controllers
 
             return new UserDto
             {
+                Id = user.Id,
                 UserName = user.UserName,
                 FirstName = user.FirstName,
                 Gender = user.Gender,

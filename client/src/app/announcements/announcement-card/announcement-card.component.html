@@ -1,26 +1,22 @@
 <div class="announcement-container">
   <div class="announcement-card">
     <div class="description">
-        <h5 class="">
+        <h3 class="">
             {{announcement.name}}
-        </h5>
-        <p>{{announcement.description}}</p>
+        </h3>
+        <div class="info-row">
+          <label>Start:</label>
+          <a> {{announcement.startDate | date:'d/M/yy, h:mm a' }}</a>
+        </div>
+        <div class="info-row">
+          <label>Czas trwania:</label>
+          <a> {{announcement.duration}} godziny</a>
+        </div>
     </div>
     <div class="description">
-      <h5 class="">
-          Informacje o wyprzedaży
-      </h5>
       <div class="info-row">
         <label>Organizator:</label>
         <a> {{announcement.user.firstName}} {{announcement.user.lastName}}</a>
-      </div>
-      <div class="info-row">
-        <label>Start:</label>
-        <a> {{announcement.startDate | date:'d/M/yy, h:mm a' }}</a>
-      </div>
-      <div class="info-row">
-        <label>Czas trwania:</label>
-        <a> {{announcement.duration}} godziny</a>
       </div>
       <div class="info-row">
         <label>Adres:</label>

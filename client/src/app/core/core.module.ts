@@ -18,16 +18,10 @@ import { TextInputAreaComponent } from './forms/text-input-area/text-input-area.
 import { DatePickerComponent } from './forms/date-picker/date-picker.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
-
-
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
-
-import {
-  NgxMatDatetimePickerModule,
-  NgxMatNativeDateModule,
-  NgxMatTimepickerModule
-} from '@angular-material-components/datetime-picker';
+import { NgxMatDatetimePickerModule, NgxMatNativeDateModule, NgxMatTimepickerModule } from '@angular-material-components/datetime-picker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   imports: [
@@ -43,13 +37,12 @@ import {
     BrowserAnimationsModule,
     BsDatepickerModule.forRoot(),
     TimepickerModule.forRoot(),
-
     MatDatepickerModule,
     MatInputModule,
-
     NgxMatDatetimePickerModule,
     NgxMatTimepickerModule,
-    NgxMatNativeDateModule
+    NgxMatNativeDateModule,
+    MatNativeDateModule
   ],
 
   declarations: [
@@ -78,14 +71,12 @@ import {
     DatePickerComponent,
     TimepickerModule,
     BsDatepickerModule,
-    TimepickerModule,
-
-    MatDatepickerModule,
     MatInputModule,
-
     NgxMatDatetimePickerModule,
     NgxMatTimepickerModule,
-    NgxMatNativeDateModule
+    NgxMatNativeDateModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ]
 
 })

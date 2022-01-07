@@ -47,12 +47,14 @@ export class AnnouncementPhotosComponent implements OnInit {
   }
 
   deletePhoto(photoId: number){
-    this.announcementService.deletePhoto(this.announcement.id, photoId).subscribe(() => {
-      let refreshedAnnouncement = this.announcementService.getAnnouncement(this.announcement.id)
-      refreshedAnnouncement.subscribe(response => {
-        this.announcement.photos = response.photos
+    if(confirm("Czy na pewno chcesz usunąć to zdjęcie?")){
+      this.announcementService.deletePhoto(this.announcement.id, photoId).subscribe(() => {
+        let refreshedAnnouncement = this.announcementService.getAnnouncement(this.announcement.id)
+        refreshedAnnouncement.subscribe(response => {
+          this.announcement.photos = response.photos
+        })
       })
-    })
+    }
   }
 
   initalizeUploader() {

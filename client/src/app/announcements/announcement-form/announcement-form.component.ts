@@ -30,7 +30,6 @@ export class AnnouncementFormComponent implements OnInit {
   ngOnInit(): void {
     this.initializeForm();
     this.minDate = new Date();
-
   }
 
   //reaktywny formularz z walidacja
