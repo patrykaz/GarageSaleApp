@@ -53,10 +53,11 @@ namespace API.Controllers
 
 
         [HttpGet("user-announcements")]
-        public async Task<ActionResult<IEnumerable<AnnouncementDto>>> GetUserAnnouncements()
+        public async Task<ActionResult<IEnumerable<AnnouncementDto>>> GetUserAnnouncements([FromQuery] UserAnnouncementParams userAnnouncementParams)
         {
             var userId = User.GetUserId();
-            var announcements = await unitOfWork.AnnouncementRepository.GetUserAnnouncementsAsync(userId);
+            var announcements = await unitOfWork.AnnouncementRepository.GetUserAnnouncementsAsync(userAnnouncementParams, userId);
+            Response.AddPaginationHeader(announcements.CurrentPage, announcements.PagesSize, announcements.TotalCount, announcements.TotalPages);
             return Ok(announcements);
         }
 

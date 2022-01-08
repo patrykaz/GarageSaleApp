@@ -21,7 +21,7 @@ export class AnnouncementsComponent implements OnInit {
   ]
 
   constructor(private announcementService: AnnouncementService, ) {
-    this.announcementParams = this.announcementService.getUserParams();
+    this.announcementParams = this.announcementService.getAnnouncementParams();
    }
 
   ngOnInit(): void {
@@ -29,7 +29,7 @@ export class AnnouncementsComponent implements OnInit {
   }
 
   loadAnnouncements(){
-    this.announcementService.setUserParams(this.announcementParams);
+    this.announcementService.setAnnouncementParams(this.announcementParams);
     // zastosowanie parametrów użytkownika
     this.announcementService.getAnnouncements(this.announcementParams).subscribe(response => {
       this.announcements = response.result;
@@ -38,13 +38,13 @@ export class AnnouncementsComponent implements OnInit {
   }
 
   resetFilters() {
-    this.announcementParams = this.announcementService.resetUserParams();
+    this.announcementParams = this.announcementService.resetAnnouncementParams();
     this.loadAnnouncements();
   }
 
   pageChanged(event: any){
     this.announcementParams.pageNumber = event.page;
-    this.announcementService.setUserParams(this.announcementParams);
+    this.announcementService.setAnnouncementParams(this.announcementParams);
     this.loadAnnouncements();
   }
 }

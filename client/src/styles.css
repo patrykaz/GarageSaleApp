@@ -10,12 +10,18 @@
   font-size: 18px;
   font-weight: 700;
   color: rgb(3, 163, 255);
+  margin: 0 10px 10px 0;
 }
 
 .btn-blue-style:hover{
   background: rgb(3, 163, 255);
   color: white;
   transition: .5s;
+}
+
+.btn-blue-style-clicked{
+  background: rgb(3, 163, 255);
+  color: white;
 }
 
 .btn-red-style{
@@ -27,6 +33,7 @@
   font-size: 18px;
   font-weight: 700;
   color: rgb(253, 15, 15);
+  margin: 0 10px 10px 0;
 }
 
 .btn-red-style:hover{

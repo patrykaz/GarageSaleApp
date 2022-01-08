@@ -84,15 +84,31 @@ namespace API.Services
                 announcementParams.PageNumber, announcementParams.PageSize);
         }
 
-        public async Task<IEnumerable<AnnouncementDto>> GetUserAnnouncementsAsync(long userId)
+        public async Task<PagedList<AnnouncementDto>> GetUserAnnouncementsAsync(UserAnnouncementParams userAnnouncementParams, long userId)
         {
-            var userAnnouncements = await context.Announcements
-                .Where(u => u.AppUserId == userId && u.IsDeleted == false)
-                .OrderBy(u => u.DateCreated)
-                .ProjectTo<AnnouncementDto>(mapper.ConfigurationProvider)
-                .ToListAsync();
+            var query = context.Announcements.AsQueryable();
 
-            return userAnnouncements;
+            query = query.Where(u => u.IsDeleted == false);
+            query = query.Where(u => u.AppUserId == userId);
+
+            if (userAnnouncementParams.IsActive == true)
+            {
+                query = query.Where(u => u.IsActive == (userAnnouncementParams.IsActive));
+            }
+
+            if (userAnnouncementParams.IsActive == false)
+            {
+                query = query.Where(u => u.IsActive == (userAnnouncementParams.IsActive));
+            }
+
+            // switch wybiera wartość, a jeśli jej nie ma wybiera domyślną _=>
+            query = userAnnouncementParams.OrderBy switch
+            {
+                _ => query.OrderByDescending(u => u.DateCreated)
+            };
+
+            return await PagedList<AnnouncementDto>.CreateAsync(query.ProjectTo<AnnouncementDto>(mapper.ConfigurationProvider).AsNoTracking(),
+             userAnnouncementParams.PageNumber, userAnnouncementParams.PageSize);
         }
     }
 }

@@ -5,6 +5,10 @@
 
   <div *ngIf="announcements?.length > 0">
     <h2 class="text-center text-primary mb-5">Twoje ogłoszenia</h2>
+    <div class="form-group text-center mt-4">
+      <button class="btn-blue-style" [ngClass]="btnActive ? 'btn-blue-style-clicked' : 'btn-blue-style'" (click)="loadActiveAnnouncements()">Aktywne</button>
+      <button class="btn-blue-style" [ngClass]="!btnActive ? 'btn-blue-style-clicked' : 'btn-blue-style'" (click)="loadUnactiveAnnouncements()">Nieaktywne</button>
+    </div>
     <div class="" *ngFor="let announcement of announcements">
       <gs-announcement-manage-card [announcement]="announcement" (parentDeleteAnnouncement)="deleteAnnouncement(announcement)"></gs-announcement-manage-card>
     </div>

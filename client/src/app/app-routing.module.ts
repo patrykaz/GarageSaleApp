@@ -21,6 +21,7 @@ const routes: Routes = [
   { path: 'announcements-add', component: AnnouncementAddComponent },
   { path: 'user-announcements', component: UserAnnouncementsComponent },
   { path: 'user-announcements/:id/edit', component: AnnouncementEditComponent },
+  { path: 'user-announcements/:id/details', component: AnnouncementDetailsComponent },
   { path: 'announcements/:id/details', component: AnnouncementDetailsComponent },
   { path: 'not-found', component: NotFoundComponent},
   { path: 'server-error', component: ServerErrorComponent},

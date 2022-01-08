@@ -1,10 +1,12 @@
 <div class="form-group mb-2">
+  <div>
+    <label [ngStyle]="{'color': (ngControl.touched && ngControl.invalid) ? '#DC3545' : 'black'}">{{label}}:</label>
+  </div>
   <input
       [class.is-invalid]="ngControl.touched && ngControl.invalid"
       type={{type}}
       class="form-control"
-      [formControl]="ngControl.control"
-      placeholder={{label}}>
+      [formControl]="ngControl.control">
   <div *ngIf="ngControl.control.errors?.['required']" class="invalid-feedback"> {{label}} jest wymagane </div>
   <div *ngIf="ngControl.control.errors?.['minlength']" class="invalid-feedback">
       {{label}} musi mieć przynajmniej {{ngControl.control.errors.minlength['requiredLength']}} znaków

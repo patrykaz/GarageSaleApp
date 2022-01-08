@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Announcement } from '../models/announcement';
 import { NewAnnouncement } from '../models/newAnnouncement';
-import { AnnouncementParams } from '../models/userParams';
+import { AnnouncementParams, UserAnnouncementParams } from '../models/userParams';
 import { getPaginationHeaders, getPaginationResult } from './paginationHelper';
 
 @Injectable({
@@ -14,23 +14,39 @@ export class AnnouncementService {
   announcements: Announcement[] = [];
   memberCache = new Map();
   announcementParams: AnnouncementParams;
+  userAnnouncementParams: UserAnnouncementParams;
 
   constructor(private http: HttpClient) {
     this.announcementParams = new AnnouncementParams();
+    this.userAnnouncementParams = new UserAnnouncementParams();
   }
 
-  getUserParams() {
+  getAnnouncementParams() {
     return this.announcementParams;
   }
 
-  setUserParams(params: AnnouncementParams) {
+  setAnnouncementParams(params: AnnouncementParams) {
     this.announcementParams = params;
   }
 
-  resetUserParams(){
+  resetAnnouncementParams(){
     this.announcementParams = new AnnouncementParams();
     return this.announcementParams;
   }
+
+  getUserAnnouncementParams() {
+    return this.userAnnouncementParams;
+  }
+
+  setUserAnnouncementParams(params: UserAnnouncementParams) {
+    this.userAnnouncementParams = params;
+  }
+
+  resetUserAnnouncementParams(){
+    this.userAnnouncementParams = new UserAnnouncementParams();
+    return this.announcementParams;
+  }
+
 
   getAnnouncements(announcementParams: AnnouncementParams){
     let params = getPaginationHeaders(announcementParams.pageNumber, announcementParams.pageSize);
@@ -40,8 +56,12 @@ export class AnnouncementService {
     return getPaginationResult<Announcement[]>(this.baseUrl + 'Announcements', this.announcementParams, this.http)
   }
 
-  getUserAnnouncements(){
-    return this.http.get<Announcement[]>(this.baseUrl + 'User-Announcements')
+  getUserAnnouncements(userAnnouncementParams: UserAnnouncementParams){
+    let params = getPaginationHeaders(userAnnouncementParams.pageNumber, userAnnouncementParams.pageSize);
+
+    params = params.append('orderBy', userAnnouncementParams.orderBy)
+
+    return getPaginationResult<Announcement[]>(this.baseUrl + 'User-Announcements', this.userAnnouncementParams, this.http)
   }
 
   getAnnouncement(id: number){

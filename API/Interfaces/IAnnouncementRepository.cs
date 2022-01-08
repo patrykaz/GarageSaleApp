@@ -14,6 +14,6 @@ namespace API.Interfaces
         void AddAnnouncement(Announcement announcement);
         Task<Announcement> GetAnnouncementByIdAsync(long id);
         Task<PagedList<AnnouncementDto>> GetAnnouncementsAsync(AnnouncementParams announcementParams);
-        Task<IEnumerable<AnnouncementDto>> GetUserAnnouncementsAsync(long userId);
+        Task<PagedList<AnnouncementDto>> GetUserAnnouncementsAsync(UserAnnouncementParams userAnnouncementParams, long userId);
     }
 }
