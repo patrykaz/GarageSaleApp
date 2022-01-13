@@ -5,7 +5,10 @@
     <button class="btn-blue-style" [ngClass]="!btnActive ? 'btn-blue-style-clicked' : 'btn-blue-style'" (click)="loadUnactiveAnnouncements()">Nieaktywne</button>
   </div>
   <div *ngIf="announcements?.length <=0">
-    <h2 class="text-center text-primary mt-5">Brak ogłoszeń</h2>
+    <h2 class="text-center text-primary mt-5 mb-5">Brak ogłoszeń</h2>
+  </div>
+  <div *ngIf="announcements?.length > 0">
+    <h2 class="text-center text-primary mt-5 mb-5">Liczba wyników - {{pagination?.totalItems}}</h2>
   </div>
   <div class="" *ngFor="let announcement of announcements">
     <gs-announcement-manage-card

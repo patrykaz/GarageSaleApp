@@ -42,8 +42,11 @@
       </form>
   </div>
 
-  <div class="text-center mb-5">
-    <h2 class="text-center text-primary mb-5">Liczba wyników - {{pagination?.totalItems}}</h2>
+  <div *ngIf="announcements?.length <=0">
+    <h2 class="text-center text-primary mt-5 mb-5">Brak ogłoszeń</h2>
+  </div>
+  <div *ngIf="announcements?.length > 0">
+    <h2 class="text-center text-primary mt-5 mb-5">Liczba wyników - {{pagination?.totalItems}}</h2>
   </div>
 
   <div class="">
