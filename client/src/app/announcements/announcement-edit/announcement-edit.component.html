@@ -1,5 +1,8 @@
 <div *ngIf="announcement && userOfAccount" ngClass="form-container">
   <h2 class="text-center text-primary mb-5">Edycja ogłoszenia</h2>
   <gs-announcement-form [announcement]="announcement" [userOfAccount]="userOfAccount"></gs-announcement-form>
+  <div class="form-group text-center mt-4">
+    <button class="btn btn-danger me-2" routerLink="/user-announcements" type="button">Wyjdz</button>
+  </div>
 </div>
 

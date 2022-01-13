@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Announcement } from 'src/app/models/announcement';
+import { ToastrService } from 'ngx-toastr';
+import { AnnouncementDetails } from 'src/app/models/announcementDetails';
 import { CommentOfAnnouncement } from 'src/app/models/commentOfAnnouncement';
 import { User } from 'src/app/models/user';
 import { AccountService } from 'src/app/services/account.service';
@@ -13,14 +14,14 @@ import { CommentService } from 'src/app/services/comment.service';
 })
 export class AnnouncementCommentsComponent implements OnInit {
   @ViewChild('commentForm') commentForm: NgForm;
-  @Input() announcement: Announcement;
+  @Input() announcement: AnnouncementDetails;
   comments: CommentOfAnnouncement[];
   model: any = {};
   loading = false;
   InputText = EnumInputText;
   user: User;
 
-  constructor(private commentService: CommentService, public accountService: AccountService) { }
+  constructor(private commentService: CommentService, public accountService: AccountService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.getComments();
@@ -48,6 +49,7 @@ export class AnnouncementCommentsComponent implements OnInit {
     if(confirm("Czy na pewno chcesz usunąć ten komentarz?")){
       this.commentService.deleteComment(comment.id).subscribe(() =>{
         this.comments = this.comments.filter(item => item.id !== comment.id);
+        this.toastr.success("Komentarz został usunięty pomyślnie")
       })
     }
   }

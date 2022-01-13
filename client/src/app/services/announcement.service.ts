@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { Announcement } from '../models/announcement';
+import { AnnouncementCard } from '../models/announcementCard';
+import { AnnouncementDetails } from '../models/announcementDetails';
+import { AnnouncementEditCard } from '../models/announcementEditCard';
 import { NewAnnouncement } from '../models/newAnnouncement';
 import { AnnouncementParams, UserAnnouncementParams } from '../models/userParams';
 import { getPaginationHeaders, getPaginationResult } from './paginationHelper';
@@ -11,7 +13,7 @@ import { getPaginationHeaders, getPaginationResult } from './paginationHelper';
 })
 export class AnnouncementService {
   baseUrl = environment.apiUrl;
-  announcements: Announcement[] = [];
+  announcements: AnnouncementCard[] = [];
   memberCache = new Map();
   announcementParams: AnnouncementParams;
   userAnnouncementParams: UserAnnouncementParams;
@@ -53,7 +55,7 @@ export class AnnouncementService {
 
     params = params.append('orderBy', announcementParams.orderBy)
 
-    return getPaginationResult<Announcement[]>(this.baseUrl + 'Announcements', this.announcementParams, this.http)
+    return getPaginationResult<AnnouncementCard[]>(this.baseUrl + 'Announcements', this.announcementParams, this.http)
   }
 
   getUserAnnouncements(userAnnouncementParams: UserAnnouncementParams){
@@ -61,24 +63,28 @@ export class AnnouncementService {
 
     params = params.append('orderBy', userAnnouncementParams.orderBy)
 
-    return getPaginationResult<Announcement[]>(this.baseUrl + 'User-Announcements', this.userAnnouncementParams, this.http)
+    return getPaginationResult<AnnouncementEditCard[]>(this.baseUrl + 'User-Announcements', this.userAnnouncementParams, this.http)
   }
 
   getAnnouncement(id: number){
-    return this.http.get<Announcement>(this.baseUrl + 'Announcements/' + id)
+    return this.http.get<AnnouncementDetails>(this.baseUrl + 'Announcements/' + id)
   }
 
 
   addAnnouncement(model: NewAnnouncement){
-    return this.http.post<Announcement>(this.baseUrl + 'Announcements', model)
+    return this.http.post<AnnouncementDetails>(this.baseUrl + 'Announcements', model)
   }
 
   updateAnnouncement(id: number,  model: NewAnnouncement){
-    return this.http.put<Announcement>(this.baseUrl + 'Announcements/' + id, model)
+    return this.http.put<AnnouncementDetails>(this.baseUrl + 'Announcements/' + id, model)
   }
 
   deleteAnnouncement(id: number){
-    return this.http.delete<Announcement>(this.baseUrl + 'Announcements/' + id)
+    return this.http.delete<AnnouncementDetails>(this.baseUrl + 'Announcements/' + id)
+  }
+
+  changeStatusActiveOfAnnouncement(id: number){
+    return this.http.put<AnnouncementDetails>(this.baseUrl + 'Announcements/' + id + '/change-status-active', {})
   }
 
   setMainPhoto(announcementId: number, photoId: number) {

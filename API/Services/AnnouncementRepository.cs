@@ -44,7 +44,7 @@ namespace API.Services
                 .SingleOrDefaultAsync(p => p.Id == id);
         }
 
-        public async Task<PagedList<AnnouncementDto>> GetAnnouncementsAsync(AnnouncementParams announcementParams)
+        public async Task<PagedList<AnnouncementCardDto>> GetAnnouncementsAsync(AnnouncementParams announcementParams)
         {
             var query = context.Announcements.AsQueryable();
 
@@ -80,11 +80,11 @@ namespace API.Services
             };
 
             // AsNotTracking nie wysyła zapytania do serwera
-            return await PagedList<AnnouncementDto>.CreateAsync(query.ProjectTo<AnnouncementDto>(mapper.ConfigurationProvider).AsNoTracking(),
+            return await PagedList<AnnouncementCardDto>.CreateAsync(query.ProjectTo<AnnouncementCardDto>(mapper.ConfigurationProvider).AsNoTracking(),
                 announcementParams.PageNumber, announcementParams.PageSize);
         }
 
-        public async Task<PagedList<AnnouncementDto>> GetUserAnnouncementsAsync(UserAnnouncementParams userAnnouncementParams, long userId)
+        public async Task<PagedList<AnnouncementEditCardDto>> GetUserAnnouncementsAsync(UserAnnouncementParams userAnnouncementParams, long userId)
         {
             var query = context.Announcements.AsQueryable();
 
@@ -107,7 +107,7 @@ namespace API.Services
                 _ => query.OrderByDescending(u => u.DateCreated)
             };
 
-            return await PagedList<AnnouncementDto>.CreateAsync(query.ProjectTo<AnnouncementDto>(mapper.ConfigurationProvider).AsNoTracking(),
+            return await PagedList<AnnouncementEditCardDto>.CreateAsync(query.ProjectTo<AnnouncementEditCardDto>(mapper.ConfigurationProvider).AsNoTracking(),
              userAnnouncementParams.PageNumber, userAnnouncementParams.PageSize);
         }
     }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Announcement } from '../models/announcement';
+import { AnnouncementCard } from '../models/announcementCard';
 import { Pagination } from '../models/pagination';
 import { AnnouncementParams } from '../models/userParams';
 import { AnnouncementService } from '../services/announcement.service';
@@ -10,7 +10,7 @@ import { AnnouncementService } from '../services/announcement.service';
   styleUrls: ['./announcements.component.css']
 })
 export class AnnouncementsComponent implements OnInit {
-  announcements: Announcement[];
+  announcements: AnnouncementCard[];
   pagination: Pagination;
   announcementParams: AnnouncementParams;
   sortList = [

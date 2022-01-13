@@ -1,21 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace API.DTOs
 {
-    public class AnnouncementDto
+    public class AnnouncementFormDto
     {
-        public long Id { get; set; }
+        [Required]
         public string Name { get; set; }
+        [Required]
         public string Description { get; set; }
+        [Required]
         public DateTime StartDate { get; set; }
+        [Required]
         public float Duration { get; set; }
-        public string PhotoUrl { get; set; }
-        public DateTime? DateCreated { get; set; }
-        public AnnouncementCreatorDto User { get; set; }
+        [Required]
         public AddressDto Address { get; set; }
-        public ICollection<PhotoDto> Photos { get; set; }
     }
 }

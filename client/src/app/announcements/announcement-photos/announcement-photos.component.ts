@@ -2,7 +2,7 @@ import { Component, Input, OnInit} from '@angular/core';
 import { FileUploader } from 'ng2-file-upload';
 import { ToastrService } from 'ngx-toastr';
 import { take } from 'rxjs';
-import { Announcement, } from 'src/app/models/announcement';
+import { AnnouncementDetails } from 'src/app/models/announcementDetails';
 import { Photo } from 'src/app/models/photo';
 import { User } from 'src/app/models/user';
 import { AccountService } from 'src/app/services/account.service';
@@ -15,13 +15,13 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./announcement-photos.component.css']
 })
 export class AnnouncementPhotosComponent implements OnInit {
-  @Input() announcement: Announcement;
+  @Input() announcement: AnnouncementDetails;
 
   uploader: FileUploader;
   baseUrl = environment.apiUrl;
   user: User;
   fileInput = false;
-
+  maxPhotos = 6;
 
   constructor(private accountService: AccountService, private announcementService: AnnouncementService, private toastr: ToastrService) {
     this.accountService.currentUser$.pipe(take(1)).subscribe( user => this.user = user)
@@ -89,7 +89,14 @@ export class AnnouncementPhotosComponent implements OnInit {
   }
 
   firstSaveForm(){
-    if(this.fileInput == true){
+    if(this.maxPhotos == this.uploader?.queue?.length + this.announcement?.photos?.length){
+      this.fileInput = true;
+      this.toastr.error("Maksymalnie można dodać 6 zdjęć");
+    }
+    else if(this.maxPhotos > this.uploader?.queue?.length + this.announcement?.photos?.length){
+      this.fileInput = false;
+    }
+    else if(this.fileInput == true){
       this.toastr.error("Zapisz formularz, jeśli chcesz dodać zdjęcia");
     }
   }

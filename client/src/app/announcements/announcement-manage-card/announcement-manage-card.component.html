@@ -33,7 +33,11 @@
   </div>
   <button routerLink="/user-announcements/{{announcement.id}}/details" class="btn-blue-style">Szczegóły</button>
   <button routerLink="/user-announcements/{{announcement.id}}/edit" class="btn-blue-style">Edytuj</button>
-  <button routerLink="/user-announcements/{{announcement}}/edit" class="btn-blue-style">{{statusButton}}</button>
+  <button
+    (click)="changeStatusActiveOfAnnouncement(announcement)"
+    class="btn-blue-style" [ngClass]="announcement.isActive ? 'btn-red-style' : 'btn-green-style'">
+    {{announcement.isActive ? "Dezaktywuj" : "Aktywuj"}}
+  </button>
   <button (click)="deleteAnnouncement(announcement)" class="btn-red-style">Usuń</button>
 </div>
 

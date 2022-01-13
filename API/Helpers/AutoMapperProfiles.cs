@@ -25,16 +25,22 @@ namespace API.Helpers
 
 
             // Announcement
-            CreateMap<CreateAnnouncementDto, Announcement>()
+            CreateMap<AnnouncementFormDto, Announcement>()
                 .ForMember(a => a.Address, b => b.MapFrom(c => c.Address));
 
-            CreateMap<UpdateAnnouncementByUserDto, Announcement>()
-                .ForMember(a => a.Address, b => b.MapFrom(c => c.Address));
+            CreateMap<Announcement, AnnouncementDetailsDto>()
+              .ForMember(a => a.Address, b => b.MapFrom(c => c.Address))
+              .ForMember(a => a.User, b => b.MapFrom(c => c.AppUser));
 
-            CreateMap<Announcement, AnnouncementDto>()
-                .ForMember(a => a.Address, b => b.MapFrom(c => c.Address))
-                .ForMember(a => a.User, b => b.MapFrom(c => c.AppUser))
-                .ForMember(a => a.PhotoUrl, b => b.MapFrom(c => c.Photos.FirstOrDefault(x => x.IsMain).Url));
+            CreateMap<Announcement, AnnouncementCardDto>()
+               .ForMember(a => a.Address, b => b.MapFrom(c => c.Address))
+               .ForMember(a => a.User, b => b.MapFrom(c => c.AppUser))
+               .ForMember(a => a.PhotoUrl, b => b.MapFrom(c => c.Photos.FirstOrDefault(x => x.IsMain).Url));
+
+            CreateMap<Announcement, AnnouncementEditCardDto>()
+              .ForMember(a => a.Address, b => b.MapFrom(c => c.Address))
+              .ForMember(a => a.PhotoUrl, b => b.MapFrom(c => c.Photos.FirstOrDefault(x => x.IsMain).Url));
+
 
             // Address
             CreateMap<AddressDto, Address>()

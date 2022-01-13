@@ -1,7 +1,8 @@
 import { Address } from "./Address";
+import { AnnouncementCreator } from "./AnnouncementCreator";
 import { Photo } from "./photo";
 
-export interface Announcement {
+export interface AnnouncementDetails {
     id: number;
     name: string;
     description: string;
@@ -14,12 +15,3 @@ export interface Announcement {
     photos: Photo[];
 }
 
-export interface AnnouncementCreator {
-  id: number;
-  userName: string;
-  firstName: string;
-  lastName: string;
-  gender: string;
-  created: Date;
-  lastActive: Date;
-}

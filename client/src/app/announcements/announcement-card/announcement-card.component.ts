@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Announcement } from 'src/app/models/announcement';
+import { AnnouncementCard } from 'src/app/models/announcementCard';
+
 
 @Component({
   selector: 'gs-announcement-card',
@@ -7,9 +8,9 @@ import { Announcement } from 'src/app/models/announcement';
   styleUrls: ['./announcement-card.component.css']
 })
 export class AnnouncementCardComponent implements OnInit {
-  @Input() announcement: Announcement;
+  @Input() announcement: AnnouncementCard;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
   }

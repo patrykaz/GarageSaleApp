@@ -1,6 +1,5 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { Announcement } from 'src/app/models/announcement';
-import { AnnouncementService } from 'src/app/services/announcement.service';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AnnouncementEditCard } from 'src/app/models/announcementEditCard';
 
 @Component({
   selector: 'gs-announcement-manage-card',
@@ -8,23 +7,24 @@ import { AnnouncementService } from 'src/app/services/announcement.service';
   styleUrls: ['./announcement-manage-card.component.css']
 })
 export class AnnouncementManageCardComponent implements OnInit {
-  @Input() announcement: Announcement;
+  @Input() announcement: AnnouncementEditCard;
   @Output("parentDeleteAnnouncement") parentDeleteAnnouncement: EventEmitter<any> = new EventEmitter();
-  isActive: boolean;
-  statusButton: string;
+  @Output("parentChangeStatusActiveOfAnnouncement") parentChangeStatusActiveOfAnnouncement: EventEmitter<any> = new EventEmitter();
 
   constructor() { }
 
   ngOnInit(): void {
-  
+
   }
 
-  deleteAnnouncement(announcement: Announcement){
+  deleteAnnouncement(announcement: AnnouncementEditCard){
     if(confirm("Czy na pewno chcesz usunąć to gołoszenie?"))
         this.parentDeleteAnnouncement.emit(announcement);
   }
 
-  statusChange(){
-    this.announcement
+  changeStatusActiveOfAnnouncement(announcement: AnnouncementEditCard){
+    if(confirm("Czy na pewno chcesz zmienić status ogłoszenia?")){
+        this.parentChangeStatusActiveOfAnnouncement.emit(announcement);
+    }
   }
 }

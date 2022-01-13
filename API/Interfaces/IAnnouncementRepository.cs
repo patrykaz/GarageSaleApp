@@ -13,7 +13,7 @@ namespace API.Interfaces
         void Update(Announcement announcement);
         void AddAnnouncement(Announcement announcement);
         Task<Announcement> GetAnnouncementByIdAsync(long id);
-        Task<PagedList<AnnouncementDto>> GetAnnouncementsAsync(AnnouncementParams announcementParams);
-        Task<PagedList<AnnouncementDto>> GetUserAnnouncementsAsync(UserAnnouncementParams userAnnouncementParams, long userId);
+        Task<PagedList<AnnouncementCardDto>> GetAnnouncementsAsync(AnnouncementParams announcementParams);
+        Task<PagedList<AnnouncementEditCardDto>> GetUserAnnouncementsAsync(UserAnnouncementParams userAnnouncementParams, long userId);
     }
 }

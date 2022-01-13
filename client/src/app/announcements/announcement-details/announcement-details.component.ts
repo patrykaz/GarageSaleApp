@@ -1,10 +1,10 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Announcement } from 'src/app/models/announcement';
 import { AnnouncementService } from 'src/app/services/announcement.service';
 import { NgxGalleryOptions } from '@kolkov/ngx-gallery';
 import { NgxGalleryImage } from '@kolkov/ngx-gallery';
 import { NgxGalleryAnimation } from '@kolkov/ngx-gallery';
+import { AnnouncementDetails } from 'src/app/models/announcementDetails';
 
 @Component({
   selector: 'gs-announcement-details',
@@ -12,7 +12,7 @@ import { NgxGalleryAnimation } from '@kolkov/ngx-gallery';
   styleUrls: ['./announcement-details.component.css']
 })
 export class AnnouncementDetailsComponent implements OnInit {
-  announcement: Announcement;
+  announcement: AnnouncementDetails;
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
 

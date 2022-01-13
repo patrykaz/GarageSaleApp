@@ -2,7 +2,7 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { Announcement } from 'src/app/models/announcement';
+import { AnnouncementDetails } from 'src/app/models/announcementDetails';
 import { Member } from 'src/app/models/member';
 import { AnnouncementService } from 'src/app/services/announcement.service';
 
@@ -12,7 +12,7 @@ import { AnnouncementService } from 'src/app/services/announcement.service';
   styleUrls: ['./announcement-form.component.css']
 })
 export class AnnouncementFormComponent implements OnInit {
-  @Input() announcement: Announcement;
+  @Input() announcement: AnnouncementDetails;
   @Input() userOfAccount: Member;
   @ViewChild('picker') picker: any;
 

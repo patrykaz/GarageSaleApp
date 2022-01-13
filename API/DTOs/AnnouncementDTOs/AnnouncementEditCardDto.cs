@@ -1,23 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace API.DTOs
 {
-    public class CreateAnnouncementDto
+    public class AnnouncementEditCardDto
     {
-        [Required]
+        public long Id { get; set; }
         public string Name { get; set; }
-        [Required]
-        public string Description { get; set; }
-        [Required]
         public DateTime StartDate { get; set; }
-        [Required]
         public float Duration { get; set; }
-        [Required]
+        public string PhotoUrl { get; set; }
+        public DateTime? DateCreated { get; set; }
+        public bool IsActive { get; set; }
+        public bool IsAccepted { get; set; }
         public AddressDto Address { get; set; }
     }
 }
