@@ -10,14 +10,21 @@ import { AnnouncementService } from 'src/app/services/announcement.service';
 export class AnnouncementManageCardComponent implements OnInit {
   @Input() announcement: Announcement;
   @Output("parentDeleteAnnouncement") parentDeleteAnnouncement: EventEmitter<any> = new EventEmitter();
+  isActive: boolean;
+  statusButton: string;
 
   constructor() { }
 
   ngOnInit(): void {
+  
   }
 
   deleteAnnouncement(announcement: Announcement){
     if(confirm("Czy na pewno chcesz usunąć to gołoszenie?"))
         this.parentDeleteAnnouncement.emit(announcement);
+  }
+
+  statusChange(){
+    this.announcement
   }
 }

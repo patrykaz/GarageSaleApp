@@ -58,7 +58,6 @@ export class AnnouncementPhotosComponent implements OnInit {
   }
 
   initalizeUploader() {
-    //this.changeInputFile();
     this.uploader = new FileUploader({
       url: this.baseUrl + 'Announcements/' + this.announcement?.id + '/add-photo',
       authToken: 'Bearer ' + this.user.token,
@@ -93,6 +92,10 @@ export class AnnouncementPhotosComponent implements OnInit {
     if(this.fileInput == true){
       this.toastr.error("Zapisz formularz, jeśli chcesz dodać zdjęcia");
     }
+  }
+
+  showPhoto(photoUrl: string){
+    window.open(photoUrl);
   }
 
 }

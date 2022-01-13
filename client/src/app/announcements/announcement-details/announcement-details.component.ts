@@ -26,7 +26,6 @@ export class AnnouncementDetailsComponent implements OnInit {
       width: '500px',
       height: '500px',
       imagePercent: 100,
-      thumbnailsColumns: 5,
       imageAnimation: NgxGalleryAnimation.Slide,
       preview: true
     }]

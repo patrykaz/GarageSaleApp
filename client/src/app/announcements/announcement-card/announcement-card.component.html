@@ -31,8 +31,8 @@
         <a> {{announcement.address.province}}</a>
       </div>
     </div>
-    <div class="photo">
-      <img src="{{announcement.photoUrl || './assets/no_photo.jpg'}}" alt="{{announcement.name}}" class="card-img-top">
+    <div class="photo-container">
+      <img  class="photo" src="{{announcement.photoUrl || './assets/no_photo.jpg'}}" alt="{{announcement.name}}">
     </div>
   </div>
   <button class="btn-blue-style btn-own-style" routerLink="{{announcement.id}}/details">Szczegóły</button>

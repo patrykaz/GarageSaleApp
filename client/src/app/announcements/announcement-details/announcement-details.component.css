@@ -17,6 +17,10 @@
   margin: 20px 10px;
 }
 
+.gallery-container{
+  min-width: 540px;
+}
+
 .announcement-details, .description, .comments{
   background-color: white;
   border-radius: 6px;

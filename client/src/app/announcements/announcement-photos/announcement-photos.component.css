@@ -1,6 +1,7 @@
 img.img-thumbnail {
-  min-width: 150px !important;
+  min-width: 100px;
   margin-bottom: 2px;
+  cursor: pointer;
 }
 
 input[type="file"] {
@@ -32,3 +33,4 @@ input[type="file"] {
   margin-right: auto;
   width: 50%;
 }
+
