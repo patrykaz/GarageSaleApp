@@ -9,19 +9,20 @@ import { NotFoundComponent } from './core/errors/not-found/not-found.component';
 import { ServerErrorComponent } from './core/errors/server-error/server-error.component';
 import { LoginComponent } from './core/login/login.component';
 import { RegisterComponent } from './core/register/register.component';
+import { AuthorizeGuard } from './guards/authorize.guard';
+import { LoggedInGuard } from './guards/logged-in.guard';
 import { UserEditComponent } from './users/user-edit/user-edit.component';
 
 const routes: Routes = [
-  // { path: '', redirectTo: '/home', pathMatch: 'full'},
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
+  { path: 'login', component: LoginComponent, canActivate: [LoggedInGuard]},
+  { path: 'register', component: RegisterComponent, canActivate: [LoggedInGuard] },
   { path: '', redirectTo: 'announcements', pathMatch: 'full' },
-  { path: 'user-edit', component: UserEditComponent },
+  { path: 'user-edit', component: UserEditComponent, canActivate: [AuthorizeGuard]},
   { path: 'announcements', component: AnnouncementsComponent },
-  { path: 'announcements-add', component: AnnouncementAddComponent },
-  { path: 'user-announcements', component: UserAnnouncementsComponent },
-  { path: 'user-announcements/:id/edit', component: AnnouncementEditComponent },
-  { path: 'user-announcements/:id/details', component: AnnouncementDetailsComponent },
+  { path: 'announcements-add', component: AnnouncementAddComponent , canActivate: [AuthorizeGuard]},
+  { path: 'user-announcements', component: UserAnnouncementsComponent , canActivate: [AuthorizeGuard]},
+  { path: 'user-announcements/:id/edit', component: AnnouncementEditComponent , canActivate: [AuthorizeGuard]},
+  { path: 'user-announcements/:id/details', component: AnnouncementDetailsComponent , canActivate: [AuthorizeGuard]},
   { path: 'announcements/:id/details', component: AnnouncementDetailsComponent },
   { path: 'not-found', component: NotFoundComponent},
   { path: 'server-error', component: ServerErrorComponent},
