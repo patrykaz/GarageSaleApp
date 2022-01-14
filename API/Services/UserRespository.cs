@@ -1,6 +1,7 @@
 ﻿using API.Data;
 using API.DTOs;
 using API.Entity;
+using API.Helpers;
 using API.Interfaces;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
@@ -31,11 +32,48 @@ namespace API.Services
                    .SingleOrDefaultAsync();
         }
 
-        public async Task<IEnumerable<MemberDto>> GetMembersAsync()
+        public async Task<PagedList<MemberDto>> GetMembersAsync(UserParams userParams)
         {
-            return await context.Users
-                .ProjectTo<MemberDto>(mapper.ConfigurationProvider)
-                .ToListAsync();
+            var query = context.Users.AsQueryable();
+
+            query = query.Where(u => u.UserName != "Admin");
+
+            if (userParams.userName != null)
+            {
+                query = query.Where(u => u.UserName.Contains(userParams.userName));
+            }
+
+            if (userParams.firstName != null)
+            {
+                query = query.Where(u => u.FirstName.Contains(userParams.firstName));
+            }
+
+            if (userParams.gender != null)
+            {
+                query = query.Where(u => u.Gender == userParams.gender);
+            }
+
+            if (userParams.Role != null)
+            {
+                if (userParams.Role.Equals("Member"))
+                    query = query.Where(u => u.UserRoles!.Any(r => r.Role!.Equals("Moderator")));
+
+                if (userParams.Role.Equals("Moderator"))
+                    query = query.Where(u => u.UserRoles.Any(r => r.Role.Equals(userParams.Role)));
+            }
+
+            // switch wybiera wartość, a jeśli jej nie ma wybiera domyślną _=>
+            query = userParams.OrderBy switch
+            {
+                "dateCreatedOld" => query.OrderBy(u => u.DateCreated),
+                "dateCreatedNew" => query.OrderByDescending(u => u.DateCreated),
+                "dateLastActive" => query.OrderByDescending(u => u.DateLastActive),
+                _ => query.OrderByDescending(u => u.DateCreated)
+            };
+
+            // AsNotTracking nie wysyła zapytania do serwera
+            return await PagedList<MemberDto>.CreateAsync(query.ProjectTo<MemberDto>(mapper.ConfigurationProvider).AsNoTracking(),
+                userParams.PageNumber, userParams.PageSize);
         }
 
         public async Task<AppUser> GetUserByIdAsync(int id)

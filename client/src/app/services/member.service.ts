@@ -28,5 +28,8 @@ export class MemberService{
     return this.http.put<Member>(this.baseUrl + 'users', user);
   }
 
-  
+  getUsers(){
+    
+  }
+
 }

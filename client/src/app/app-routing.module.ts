@@ -12,12 +12,14 @@ import { RegisterComponent } from './core/register/register.component';
 import { AuthorizeGuard } from './guards/authorize.guard';
 import { LoggedInGuard } from './guards/logged-in.guard';
 import { UserEditComponent } from './users/user-edit/user-edit.component';
+import { UsersListComponent } from './users/users-list/users-list.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [LoggedInGuard]},
   { path: 'register', component: RegisterComponent, canActivate: [LoggedInGuard] },
   { path: '', redirectTo: 'announcements', pathMatch: 'full' },
   { path: 'user-edit', component: UserEditComponent, canActivate: [AuthorizeGuard]},
+  { path: 'users', component: UsersListComponent, canActivate: [AuthorizeGuard]},
   { path: 'announcements', component: AnnouncementsComponent },
   { path: 'announcements-add', component: AnnouncementAddComponent , canActivate: [AuthorizeGuard]},
   { path: 'user-announcements', component: UserAnnouncementsComponent , canActivate: [AuthorizeGuard]},

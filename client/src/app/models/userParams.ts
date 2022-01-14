@@ -15,3 +15,15 @@ export class UserAnnouncementParams {
   isActive = true;
   orderBy: string;
 }
+
+export class UserParams {
+  pageNumber = 1;
+  pageSize = 5;
+  userName: string;
+  firstName: string;
+  lastName: string;
+  gender: string;
+  role: string;
+  orderBy: string;
+}
+
