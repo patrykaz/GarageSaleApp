@@ -1,6 +1,7 @@
 ﻿using API.DTOs;
 using API.Entity;
 using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,8 @@ namespace API.Helpers
             CreateMap<RegisterDto, AppUser>();
 
             CreateMap<AppUser, MemberDto>()
-                .ForMember(a => a.Address, b => b.MapFrom(c => c.Address));
+                .ForMember(a => a.Address, b => b.MapFrom(c => c.Address))
+                .ForMember(a => a.Roles, b => b.MapFrom(c => c.UserRoles.Select(d => d.Role.Name).ToList()));
 
             CreateMap<AppUser, AnnouncementCreatorDto>();
 

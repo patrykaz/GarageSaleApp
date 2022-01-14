@@ -1,5 +1,6 @@
 import { Address } from "./Address";
-import { AnnouncementCreator } from "./AnnouncementCreator";
+import { AnnouncementCreator } from "./announcementCreator";
+
 
 export interface AnnouncementCard {
     id: number;

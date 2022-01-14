@@ -1,5 +1,6 @@
 import { Address } from "./Address";
-import { AnnouncementCreator } from "./AnnouncementCreator";
+import { AnnouncementCreator } from "./announcementCreator";
+
 import { Photo } from "./photo";
 
 export interface AnnouncementDetails {

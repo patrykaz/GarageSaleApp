@@ -16,7 +16,7 @@ export class UserAnnouncementParams {
   orderBy: string;
 }
 
-export class UserParams {
+export class MemberParams {
   pageNumber = 1;
   pageSize = 5;
   userName: string;

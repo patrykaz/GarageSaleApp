@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace API.Helpers
 {
-    public class UserParams : PaginationParams
+    public class MemberParams : PaginationParams
     {
         public string userName { get; set; }
         public string firstName { get; set; }

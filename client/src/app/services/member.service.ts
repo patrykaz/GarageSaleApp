@@ -13,9 +13,11 @@ import { AccountService } from './account.service';
 export class MemberService{
   baseUrl = environment.apiUrl;
   user: User;
-  member: Member
+  member: Member;
+
 
   constructor(private http: HttpClient, private accountService: AccountService) {}
+
 
   getUserOfAccount(){
     this.accountService.currentUser$.pipe(take(1)).subscribe(user =>{
@@ -27,9 +29,4 @@ export class MemberService{
   updateUserAccount(user: UpdateUser){
     return this.http.put<Member>(this.baseUrl + 'users', user);
   }
-
-  getUsers(){
-    
-  }
-
 }

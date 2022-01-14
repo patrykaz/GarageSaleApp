@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Member } from 'src/app/models/member';
 
 @Component({
   selector: 'gs-user-card',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-card.component.css']
 })
 export class UserCardComponent implements OnInit {
-
+  @Input() member: Member;
   constructor() { }
 
   ngOnInit(): void {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using API.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json.Serialization;
@@ -14,8 +15,9 @@ namespace API.DTOs
         public string LastName { get; set; }
         public DateTime? DateOfBirth { get; set; }
         public string Gender { get; set; }
-        public DateTime Created { get; set; }
+        public DateTime DateCreated { get; set; }
         public DateTime LastActive { get; set; }
         public AddressDto Address { get; set; }
+        public List<string> Roles { get; set; }   
     }
 }

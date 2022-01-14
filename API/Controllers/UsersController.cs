@@ -26,13 +26,6 @@ namespace API.Controllers
             this.unitOfWork = unitOfWork;
         }
 
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers([FromBody] UserParams userParams)
-        {
-            var users = await unitOfWork.UserRepository.GetMembersAsync(userParams);
-            Response.AddPaginationHeader(users.CurrentPage, users.PagesSize, users.TotalCount, users.TotalPages);
-            return Ok(users);
-        }
 
         [HttpGet("{username}")]
         public async Task<ActionResult<MemberDto>> GetUser(string username)

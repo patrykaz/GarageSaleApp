@@ -4,6 +4,6 @@ export interface AnnouncementCreator {
   firstName: string;
   lastName: string;
   gender: string;
-  created: Date;
+  dateCreated: Date;
   lastActive: Date;
 }
