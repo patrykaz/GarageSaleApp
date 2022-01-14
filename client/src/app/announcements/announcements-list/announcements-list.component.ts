@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { AnnouncementCard } from '../models/announcementCard';
-import { Pagination } from '../models/pagination';
-import { AnnouncementParams } from '../models/userParams';
-import { AnnouncementService } from '../services/announcement.service';
+import { AnnouncementCard } from 'src/app/models/announcementCard';
+import { Pagination } from 'src/app/models/pagination';
+import { AnnouncementParams } from 'src/app/models/userParams';
+import { AnnouncementService } from 'src/app/services/announcement.service';
+
 
 @Component({
-  selector: 'gs-announcements',
-  templateUrl: './announcements.component.html',
-  styleUrls: ['./announcements.component.css']
+  selector: 'gs-announcements-list',
+  templateUrl: './announcements-list.component.html',
+  styleUrls: ['./announcements-list.component.css']
 })
-export class AnnouncementsComponent implements OnInit {
+export class AnnouncementsListComponent implements OnInit {
   announcements: AnnouncementCard[];
   pagination: Pagination;
   announcementParams: AnnouncementParams;

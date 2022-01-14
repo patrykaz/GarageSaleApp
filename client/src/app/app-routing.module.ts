@@ -3,8 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { AnnouncementAddComponent } from './announcements/announcement-add/announcement-add.component';
 import { AnnouncementDetailsComponent } from './announcements/announcement-details/announcement-details.component';
 import { AnnouncementEditComponent } from './announcements/announcement-edit/announcement-edit.component';
-import { AnnouncementsComponent } from './announcements/announcements.component';
-import { UserAnnouncementsComponent } from './announcements/user-announcements/user-announcements.component';
+import { AnnouncementsListComponent } from './announcements/announcements-list/announcements-list.component';
+
+
+import { UserAnnouncementsListComponent } from './announcements/user-announcements-list/user-announcements-list.component';
 import { NotFoundComponent } from './core/errors/not-found/not-found.component';
 import { ServerErrorComponent } from './core/errors/server-error/server-error.component';
 import { LoginComponent } from './core/login/login.component';
@@ -20,9 +22,9 @@ const routes: Routes = [
   { path: '', redirectTo: 'announcements', pathMatch: 'full' },
   { path: 'user-edit', component: UserEditComponent, canActivate: [AuthorizeGuard]},
   { path: 'users', component: UsersListComponent, canActivate: [AuthorizeGuard]},
-  { path: 'announcements', component: AnnouncementsComponent },
+  { path: 'announcements', component: AnnouncementsListComponent },
   { path: 'announcements-add', component: AnnouncementAddComponent , canActivate: [AuthorizeGuard]},
-  { path: 'user-announcements', component: UserAnnouncementsComponent , canActivate: [AuthorizeGuard]},
+  { path: 'user-announcements', component: UserAnnouncementsListComponent , canActivate: [AuthorizeGuard]},
   { path: 'user-announcements/:id/edit', component: AnnouncementEditComponent , canActivate: [AuthorizeGuard]},
   { path: 'user-announcements/:id/details', component: AnnouncementDetailsComponent , canActivate: [AuthorizeGuard]},
   { path: 'announcements/:id/details', component: AnnouncementDetailsComponent },

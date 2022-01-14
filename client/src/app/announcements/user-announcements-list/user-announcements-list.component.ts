@@ -2,15 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { AnnouncementEditCard } from 'src/app/models/announcementEditCard';
 import { Pagination } from 'src/app/models/pagination';
-import { AnnouncementParams, UserAnnouncementParams } from 'src/app/models/userParams';
+import { UserAnnouncementParams } from 'src/app/models/userParams';
 import { AnnouncementService } from 'src/app/services/announcement.service';
 
 @Component({
-  selector: 'gs-user-announcements',
-  templateUrl: './user-announcements.component.html',
-  styleUrls: ['./user-announcements.component.css']
+  selector: 'gs-user-announcements-list',
+  templateUrl: './user-announcements-list.component.html',
+  styleUrls: ['./user-announcements-list.component.css']
 })
-export class UserAnnouncementsComponent implements OnInit {
+export class UserAnnouncementsListComponent implements OnInit {
   announcements: AnnouncementEditCard[];
   pagination: Pagination;
   userAnnouncementParams: UserAnnouncementParams;
