@@ -1,12 +1,21 @@
 <nav>
   <div class="logo">Wyprzedaż garażowa</div>
   <ul class="ul-left">
-    <li><a routerLink="/" routerLinkActive="router-link-active">Strona Główna</a></li>
+    <li><a routerLink="/">Strona Główna</a></li>
     <ng-container *ngIf="(accountService.currentUser$ | async)">
     <li>
-      <a routerLink="/user-announcements" routerLinkActive="router-link-active">Twoje ogłoszenia</a>
+      <a routerLink="/user-announcements">Twoje ogłoszenia</a>
       <ul>
-        <li><a routerLink="/announcements-add" routerLinkActive="router-link-active">Dodaj ogłoszenie</a></li>
+        <li><a routerLink="/announcements-add" >Dodaj ogłoszenie</a></li>
+      </ul>
+    </li>
+    <li *gsHasRole='["Admin", "Moderator"]'>
+      <a routerLink="/user-announcements">Panel administracyjny</a>
+      <ul>
+        <li><a routerLink="/announcements-add">Akceptacja ogłoszeń</a></li>
+        <li *gsHasRole='["Admin"]'>
+          <a routerLink="/announcements-add">Użytkownicy</a>
+        </li>
       </ul>
     </li>
   </ng-container>
@@ -15,13 +24,13 @@
     <ng-container *ngIf="(accountService.currentUser$ | async) as user">
       <div class="welcome">Witaj, {{user.firstName || user.userName | titlecase}}</div>
       <li>
-        <a routerLink="/user-edit" routerLinkActive="router-link-active">Profil</a>
+        <a routerLink="/user-edit">Profil</a>
       </li>
       <li><a (click)="logout()">Wyloguj</a></li>
     </ng-container>
     <ng-container *ngIf="(accountService.currentUser$ | async) === null">
-      <li><a routerLink="/login" routerLinkActive="router-link-active" >Logowanie</a></li>
-      <li><a routerLink="/register" routerLinkActive="router-link-active">Rejestracja</a></li>
+      <li><a routerLink="/login">Logowanie</a></li>
+      <li><a routerLink="/register">Rejestracja</a></li>
     </ng-container>
   </ul>
 </nav>

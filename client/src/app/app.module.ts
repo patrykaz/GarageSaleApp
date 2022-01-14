@@ -13,6 +13,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
 import { LoadingInterceptor } from './interceptors/loading.interceptor';
 import { SharedModule } from './shared/shared.module';
 import { UsersModule } from './users/users.module';
+import { HasRoleDirective } from './core/directives/hasRole.directive';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,9 @@ import { UsersModule } from './users/users.module';
     AnnouncementsModule,
     BrowserAnimationsModule,
     NgxSpinnerModule,
+  ],
+  exports:[
+    HasRoleDirective
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},

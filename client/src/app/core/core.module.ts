@@ -9,6 +9,7 @@ import { FooterComponent } from './footer/footer.component';
 import { TextInputAreaComponent } from './forms/text-input-area/text-input-area.component';
 import { DatePickerComponent } from './forms/date-picker/date-picker.component';
 import { SharedModule } from '../shared/shared.module';
+import { HasRoleDirective } from './directives/hasRole.directive';
 
 @NgModule({
   imports: [
@@ -25,6 +26,7 @@ import { SharedModule } from '../shared/shared.module';
     FooterComponent,
     TextInputAreaComponent,
     DatePickerComponent,
+    HasRoleDirective
   ],
 
   exports: [
@@ -37,6 +39,7 @@ import { SharedModule } from '../shared/shared.module';
     FooterComponent,
     TextInputAreaComponent,
     DatePickerComponent,
+    HasRoleDirective
   ]
 
 })
