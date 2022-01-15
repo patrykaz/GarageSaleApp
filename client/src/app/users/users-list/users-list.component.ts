@@ -47,36 +47,20 @@ export class UsersListComponent implements OnInit {
     this.adminService.getMembers(this.memberParams).subscribe(response => {
       this.members = response.result;
       this.pagination = response.pagination;
-      console.log(this.members)
-      console.log(this.pagination)
     })
   }
 
-  // deleteAnnouncement(announcement: AnnouncementEditCard){
-  //   this.announcementService.deleteAnnouncement(announcement.id).subscribe(() => {
-  //     this.toastr.success("Ogłoszenie zostało pomyślnie usunięte.")
-  //     this.loadAnnouncements();
-  //   });
-  // }
+  roleModerator(member: Member){
+    this.adminService.roleModerator(member.userName).subscribe(() => {
+      this.toastr.success("Zmiana roli została pomyślnie wykonana")
+      this.loadMembers();
+    });
+  }
 
-  // changeStatusActiveOfAnnouncement(announcement: AnnouncementEditCard){
-  //   this.announcementService.changeStatusActiveOfAnnouncement(announcement.id).subscribe(() => {
-  //     this.toastr.success("Status ogłoszenia został zmieniony")
-  //     this.loadAnnouncements();
-  //   });
-  // }
-
-  // loadActiveAnnouncements(){
-  //   this.btnActive = !this.btnActive;
-  //   this.userAnnouncementParams.isActive = true;
-  //   this.loadAnnouncements();
-  // }
-
-  // loadUnactiveAnnouncements(){
-  //   this.btnActive = !this.btnActive;
-  //   this.userAnnouncementParams.isActive = false;
-  //   this.loadAnnouncements();
-  // }
+  resetFilters() {
+    this.memberParams = this.adminService.resetMemberParams();
+    this.loadMembers();
+  }
 
   pageChanged(event: any){
     this.memberParams.pageNumber = event.page;

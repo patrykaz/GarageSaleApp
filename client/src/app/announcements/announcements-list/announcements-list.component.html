@@ -1,4 +1,5 @@
 <div *ngIf="announcements">
+  <h2 class="text-center text-primary mb-5">Ogłoszenia</h2>
   <div class="container filter-panel">
     <h2>Filtry</h2>
     <form #form="ngForm" class="row g-3 align-items-center mb-3" (ngSubmit)="loadAnnouncements()" autocomplete="off">

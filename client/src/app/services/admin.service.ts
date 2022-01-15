@@ -39,4 +39,8 @@ export class AdminService {
     return getPaginationResult<Member[]>(this.baseUrl + 'Admin/users', this.memberParams, this.http)
   }
 
+  roleModerator(userName: string){
+    return this.http.put<Member>(this.baseUrl + 'Admin/users/' + userName + '/edit-roles', {})
+  }
+
 }

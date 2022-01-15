@@ -1,1 +1,65 @@
-<p>user-card works!</p>
+<div class="member-container">
+  <div class="member-card">
+    <div class="description">
+        <h3 class="">
+            {{member.userName}}
+        </h3>
+        <div class="info-row">
+          <label>Imię:</label>
+          <a> {{member.firstName}}</a>
+        </div>
+        <div class="info-row">
+          <label>Nazwisko:</label>
+          <a> {{member.lastName}}</a>
+        </div>
+        <div class="info-row">
+          <label>Data urodzenia:</label>
+          <a> {{(member.dateOfBirth | date:'d/M/yy') || "brak" }}</a>
+        </div>
+        <div class="info-row">
+          <label>Płeć:</label>
+          <a> {{member.gender === "male" ? "Mężczyzna" : "Kobieta"}}</a>
+        </div>
+    </div>
+    <div class="description">
+      <div class="info-row">
+        <label>Adres:</label>
+        <a> {{member.address?.street || "brak"}}</a>
+      </div>
+      <div class="info-row">
+        <label>Miasto:</label>
+        <a> {{member.address?.city || "brak"}}</a>
+      </div>
+      <div class="info-row mb-2 pb-2" style="border-bottom: 1px solid;">
+        <label>Województwo:</label>
+        <a> {{member.address?.province || "brak"}}</a>
+      </div>
+      <div class="info-row">
+        <label>Data utworzenia konta:</label>
+        <a> {{member.dateCreated| date:'d/M/yy, h:mm a'}}</a>
+      </div>
+      <div class="info-row">
+        <label>Ostatnio aktywny:</label>
+        <a> {{member.dateLastActive| date:'d/M/yy, h:mm a'}}</a>
+      </div>
+      <div class="info-row">
+        <label>Role:</label>
+        <span *ngFor="let role of member.roles">
+          <a> {{role}},</a>
+        </span>
+      </div>
+    </div>
+    <div class="photo-container">
+      <img  class="photo" src="{{'./assets/user.png'}}" alt="{{'./assets/user.png'}}">
+    </div>
+  </div>
+  <button routerLink="/user-announcements/{{member.id}}/details" class="btn-blue-style">Ogłoszenia</button>
+  <button (click)="roleModerator(member)" class="btn-blue-style" [ngClass]="isModerator === true ? 'btn-blue-style-clicked' : 'btn-blue-style'">Moderator</button>
+  <!-- <button
+    (click)="changeStatusActiveOfAnnouncement(member)"
+    class="btn-blue-style" [ngClass]="member.isActive ? 'btn-red-style' : 'btn-green-style'">
+    {{member.isActive ? "Dezaktywuj" : "Aktywuj"}}
+  </button>
+  <button (click)="deleteAnnouncement(member)" class="btn-red-style">Usuń</button> -->
+</div>
+

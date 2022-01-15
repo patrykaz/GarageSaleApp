@@ -16,7 +16,7 @@ namespace API.DTOs
         public DateTime? DateOfBirth { get; set; }
         public string Gender { get; set; }
         public DateTime DateCreated { get; set; }
-        public DateTime LastActive { get; set; }
+        public DateTime DateLastActive { get; set; }
         public AddressDto Address { get; set; }
         public List<string> Roles { get; set; }   
     }

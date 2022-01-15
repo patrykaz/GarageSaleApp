@@ -59,7 +59,7 @@ namespace API.Services
             if (memberParams.Role != null)
             {
                 if (memberParams.Role.Equals("Member"))
-                    query = query.Where(u => u.UserRoles.Any(r => r.Role.Name != "Moderator"));
+                    query = query.Where(u => u.UserRoles.Count == 1);
 
                 if (memberParams.Role.Equals("Moderator"))
                     query = query.Where(u => u.UserRoles.Any(r => r.Role.Name == memberParams.Role));
@@ -71,7 +71,7 @@ namespace API.Services
             {
                 "dateCreatedNew" => query.OrderByDescending(u => u.DateCreated),
                 "dateLastActive" => query.OrderByDescending(u => u.DateLastActive),
-                _ => query.OrderByDescending(u => u.DateCreated)
+                _ => query.OrderBy(u => u.UserName)
             };
 
             query.Select(u => new
@@ -92,5 +92,6 @@ namespace API.Services
             return await PagedList<MemberDto>.CreateAsync(query.ProjectTo<MemberDto>(mapper.ConfigurationProvider).AsNoTracking(),
              memberParams.PageNumber, memberParams.PageSize);
         }
+
     }
 }

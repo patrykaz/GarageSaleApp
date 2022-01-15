@@ -1,0 +1,9 @@
+.filter-panel{
+  background-color: white;
+  padding: 20px 20px 10px 20px;
+  margin-bottom: 20px;
+  border-radius:0.4cm;
+  border-bottom: 1px solid;
+  min-width: 250px;
+  height: auto;
+}

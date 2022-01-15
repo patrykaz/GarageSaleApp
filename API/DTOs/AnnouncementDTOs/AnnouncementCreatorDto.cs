@@ -13,6 +13,6 @@ namespace API.DTOs
         public string LastName { get; set; }
         public string Gender { get; set; }
         public DateTime DateCreated { get; set; }
-        public DateTime LastActive { get; set; }
+        public DateTime DateLastActive { get; set; }
     }
 }

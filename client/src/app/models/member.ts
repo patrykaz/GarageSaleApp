@@ -8,7 +8,7 @@ export interface Member {
   dateOfBirth: string;
   gender: string;
   dateCreated: string;
-  LastActive: string;
+  dateLastActive: string;
   address: Address;
   roles: string[];
 }
