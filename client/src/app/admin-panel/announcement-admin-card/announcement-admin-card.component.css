@@ -1,0 +1,43 @@
+.announcement-container{
+  border-bottom: 1px solid;
+  padding: 10px;
+  margin: 20px;
+  padding-bottom: 20px;
+  background-color: white;
+  border-radius: 0.4cm;
+  min-width: 400px;
+  height: auto;
+}
+
+.announcement-card{
+  min-height: 200px;
+  height: auto;
+
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.description{
+  min-width: 400px;
+  padding: 5px;
+}
+
+.photo-container{
+  margin: 10px;
+}
+
+.photo{
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}
+
+
+label{
+  font-weight: bold;
+}
+
+.info-row{
+  padding: 2px;
+}

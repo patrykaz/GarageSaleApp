@@ -4,7 +4,6 @@ import { Member } from 'src/app/models/member';
 import { Pagination } from 'src/app/models/pagination';
 import { MemberParams } from 'src/app/models/userParams';
 import { AdminService } from 'src/app/services/admin.service';
-import { MemberService } from 'src/app/services/member.service';
 
 @Component({
   selector: 'gs-users-list',

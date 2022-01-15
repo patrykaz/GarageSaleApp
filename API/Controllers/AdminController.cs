@@ -6,6 +6,7 @@ using API.Interfaces;
 using API.Services;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -16,7 +17,8 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace API.Controllers
-{
+{   
+    [Authorize]
     [Route("api/Admin")]
     [ApiController]
     public class AdminController : ControllerBase
@@ -24,12 +26,14 @@ namespace API.Controllers
         private readonly IAdminRespository adminRespository;
         private readonly UserManager<AppUser> userManager;
         private readonly IMapper mapper;
+        private readonly IUnitOfWork unitOfWork;
 
-        public AdminController(IAdminRespository adminRespository, UserManager<AppUser> userManager, IMapper mapper)
+        public AdminController(IAdminRespository adminRespository, UserManager<AppUser> userManager, IMapper mapper, IUnitOfWork unitOfWork)
         {
             this.adminRespository = adminRespository;
             this.userManager = userManager;
             this.mapper = mapper;
+            this.unitOfWork = unitOfWork;
         }
 
 
@@ -65,5 +69,35 @@ namespace API.Controllers
 
             return Ok(await userManager.GetRolesAsync(user));
         }
+
+        [HttpGet("announcements-for-approval")]
+        public async Task<ActionResult<IEnumerable<AnnouncementEditCardDto>>> GetAnnouncements([FromQuery] AdminAnnouncementParams adminAnnouncementParams) // FromQuery jest potrzebne ponieważ musimy wskazać, skąd ma pobrać nasze parametry, czyli z ciagu zapytania
+        {
+            var announcements = await unitOfWork.AnnouncementRepository.GetAnnouncementsForApprovalAsync(adminAnnouncementParams);
+            // dodajemy do odpowiedzi paginacje uzytkownika, którą wysłał z rządaniem get
+            Response.AddPaginationHeader(announcements.CurrentPage, announcements.PagesSize, announcements.TotalCount, announcements.TotalPages);
+            return Ok(announcements);
+        }
+
+
+        [HttpPut("announcements/{id}/change-status-accepted")]
+        public async Task<ActionResult> ChangeStatusActiveOfAnnouncement(long id)
+        {
+            var user = await unitOfWork.UserRepository.GetUserByUsernameAsync(User.GetUsername());
+
+            var announcement = await unitOfWork.AnnouncementRepository.GetAnnouncementByIdAsync(id);
+            if (announcement == null)
+                return NotFound();
+
+            if(!(User.IsInRole("Moderator") || User.IsInRole("Admin")))
+                return Unauthorized();
+  
+            announcement.IsAccepted = !announcement.IsAccepted;
+
+            if (await unitOfWork.Complete()) return Ok();
+
+            return BadRequest("Wystąpił problem z akceptacją ogłoszenia");
+        }
+
     }
 }

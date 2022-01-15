@@ -110,5 +110,22 @@ namespace API.Services
             return await PagedList<AnnouncementEditCardDto>.CreateAsync(query.ProjectTo<AnnouncementEditCardDto>(mapper.ConfigurationProvider).AsNoTracking(),
              userAnnouncementParams.PageNumber, userAnnouncementParams.PageSize);
         }
+
+        public async Task<PagedList<AnnouncementEditCardDto>> GetAnnouncementsForApprovalAsync(AdminAnnouncementParams adminAnnouncementParams)
+        {
+            var query = context.Announcements.AsQueryable();
+
+            query = query.Where(u => u.IsDeleted == false && u.IsAccepted == false && u.IsActive == true);
+                       
+            // switch wybiera wartość, a jeśli jej nie ma wybiera domyślną _=>
+            query = adminAnnouncementParams.OrderBy switch
+            {
+                _ => query.OrderBy(u => u.DateCreated)
+            };
+
+            return await PagedList<AnnouncementEditCardDto>.CreateAsync(query.ProjectTo<AnnouncementEditCardDto>(mapper.ConfigurationProvider).AsNoTracking(),
+             adminAnnouncementParams.PageNumber, adminAnnouncementParams.PageSize);
+
+        }
     }
 }

@@ -15,5 +15,6 @@ namespace API.Interfaces
         Task<Announcement> GetAnnouncementByIdAsync(long id);
         Task<PagedList<AnnouncementCardDto>> GetAnnouncementsAsync(AnnouncementParams announcementParams);
         Task<PagedList<AnnouncementEditCardDto>> GetUserAnnouncementsAsync(UserAnnouncementParams userAnnouncementParams, long userId);
+        Task<PagedList<AnnouncementEditCardDto>> GetAnnouncementsForApprovalAsync(AdminAnnouncementParams adminAnnouncementParams);
     }
 }

@@ -27,3 +27,8 @@ export class MemberParams {
   orderBy: string;
 }
 
+export class AdminAnnouncementParams {
+  pageNumber = 1;
+  pageSize = 5;
+}
+

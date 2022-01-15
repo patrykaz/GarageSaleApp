@@ -1,0 +1,47 @@
+<div class="announcement-container">
+  <div class="announcement-card">
+    <div class="description">
+        <h3 class="">
+            {{announcement.name}}
+        </h3>
+        <div class="info-row">
+          <label>Start:</label>
+          <a> {{announcement.startDate | date:'d/M/yy, h:mm a' }}</a>
+        </div>
+        <div class="info-row">
+          <label>Czas trwania:</label>
+          <a> {{announcement.duration}} godziny</a>
+        </div>
+        <div class="info-row">
+          <label>Data utworzenia:</label>
+          <a> {{announcement.dateCreated | date:'d/M/yy, h:mm a' }}</a>
+        </div>
+    </div>
+    <div class="description">
+      <div class="info-row">
+        <label>Adres:</label>
+        <a> {{announcement.address.street}}</a>
+      </div>
+      <div class="info-row">
+        <label>Miasto:</label>
+        <a> {{announcement.address.city}}</a>
+      </div>
+      <div class="info-row">
+        <label>Województwo:</label>
+        <a> {{announcement.address.province}}</a>
+      </div>
+    </div>
+    <div class="photo-container">
+      <img  class="photo" src="{{announcement.photoUrl || './assets/no_photo.jpg'}}" alt="{{announcement.name}}">
+    </div>
+  </div>
+  <button routerLink="/user-announcements/{{announcement.id}}/details" class="btn-blue-style">Szczegóły</button>
+  <button (click)="changeStatusAcceptedOfAnnouncement(announcement)" class="btn-green-style">Akceptuj</button>
+  <button
+    (click)="changeStatusActiveOfAnnouncement(announcement)"
+    class="btn-blue-style" [ngClass]="announcement.isActive ? 'btn-red-style' : 'btn-green-style'">
+    {{announcement.isActive ? "Dezaktywuj" : "Aktywuj"}}
+  </button>
+  <button (click)="deleteAnnouncement(announcement)" class="btn-red-style">Usuń</button>
+</div>
+
