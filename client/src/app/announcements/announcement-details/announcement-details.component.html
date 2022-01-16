@@ -53,6 +53,11 @@
       <gs-announcement-comments [announcement]="announcement"></gs-announcement-comments>
     </div>
   </div>
+  <div class="col-md-12 text-center mt-4" *gsHasRole='["Admin", "Moderator"]'>
+    <button *ngIf="announcement.isActive && !announcement.isAccepted" (click)="changeStatusAcceptedOfAnnouncement(announcement)" class="btn-green-style">Akceptuj</button>
+    <button *ngIf="announcement.isActive" (click)="changeStatusActiveOfAnnouncement(announcement)" class="btn-red-style"> Dezaktywuj </button>
+    <button *gsHasRole='"Admin"' (click)="deleteAnnouncement(announcement)" class="btn-red-style">Usuń</button>
+  </div>
 </ng-container>
 
 

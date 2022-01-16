@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+
+import { Component, HostListener } from '@angular/core';
 import { User } from './models/user';
 import { AccountService } from './services/account.service';
 
@@ -9,15 +10,14 @@ import { AccountService } from './services/account.service';
 })
 export class AppComponent {
   title = 'Wyprzedaże garażowe';
-
+  public innerWidth: any;
   users: any
 
-  constructor(private accountService: AccountService){
-
-  }
+  constructor(private accountService: AccountService) {}
 
   ngOnInit() {
     this.setCurrentUser();
+
   }
 
   setCurrentUser(){

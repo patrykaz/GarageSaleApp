@@ -22,7 +22,8 @@
   </ul>
   <ul class="ul-right">
     <ng-container *ngIf="(accountService.currentUser$ | async) as user">
-      <div class="welcome">Witaj, {{user.firstName || user.userName | titlecase}}</div>
+      <div class="welcome">Witaj, {{user.firstName || user.userName | titlecase }}</div>
+      <img src="./assets/user.png" alt="avatar">
       <li>
         <a routerLink="/user-edit">Profil</a>
       </li>

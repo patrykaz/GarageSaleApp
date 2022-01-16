@@ -5,6 +5,8 @@ import { NgxGalleryOptions } from '@kolkov/ngx-gallery';
 import { NgxGalleryImage } from '@kolkov/ngx-gallery';
 import { NgxGalleryAnimation } from '@kolkov/ngx-gallery';
 import { AnnouncementDetails } from 'src/app/models/announcementDetails';
+import { AdminService } from 'src/app/services/admin.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'gs-announcement-details',
@@ -17,7 +19,11 @@ export class AnnouncementDetailsComponent implements OnInit {
   galleryImages: NgxGalleryImage[];
 
 
-  constructor(private announcementService: AnnouncementService, private activatedroute: ActivatedRoute, private cdr: ChangeDetectorRef) { }
+  constructor(private announcementService: AnnouncementService,
+      private activatedroute: ActivatedRoute,
+      private cdr: ChangeDetectorRef,
+      private adminService: AdminService,
+      private toastr: ToastrService) {}
 
   ngOnInit(): void {
     this.loadAnnouncement();
@@ -48,12 +54,38 @@ export class AnnouncementDetailsComponent implements OnInit {
     return imageUrls;
   }
 
-
   loadAnnouncement(){
     const announcementId = this.activatedroute.snapshot.params['id'];
     this.announcementService.getAnnouncement(announcementId).subscribe(response => {
       this.announcement = response;
       this.galleryImages = this.getImages();
     })
+  }
+
+  changeStatusAcceptedOfAnnouncement(announcement: AnnouncementDetails){
+    if(confirm("Czy na pewno chcesz zaakceptować ogłoszenie?")){
+      this.adminService.changeStatusAcceptedOfAnnouncement(announcement.id).subscribe(() => {
+        this.toastr.success("Ogłoszenie zostało zaakceptowane")
+        this.loadAnnouncement();
+      });
+    }
+  }
+
+  changeStatusActiveOfAnnouncement(announcement: AnnouncementDetails){
+    if(confirm("Czy na pewno chcesz zmienić status ogłoszenia?")){
+      this.announcementService.changeStatusActiveOfAnnouncement(announcement.id).subscribe(() => {
+        this.toastr.success("Status ogłoszenia został zmieniony")
+        this.loadAnnouncement();
+      });
+    }
+  }
+
+  deleteAnnouncement(announcement: AnnouncementDetails){
+    if(confirm("Czy na pewno chcesz usunąć ogłoszenie?")){
+      this.announcementService.deleteAnnouncement(announcement.id).subscribe(() => {
+        this.toastr.success("Ogłoszenie zostało pomyślnie usunięte.")
+        this.loadAnnouncement();
+      });
+    }
   }
 }

@@ -14,6 +14,8 @@ namespace API.DTOs
         public float Duration { get; set; }
         public string PhotoUrl { get; set; }
         public DateTime? DateCreated { get; set; }
+        public bool isAccepted { get; set; }
+        public bool isActive { get; set; }
         public AnnouncementCreatorDto User { get; set; }
         public AddressDto Address { get; set; }
         public ICollection<PhotoDto> Photos { get; set; }

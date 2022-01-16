@@ -38,7 +38,7 @@
       </div>
 
       <div class="form-group text-center mt-4">
-        <button [disabled]="!userForm.valid" class="btn btn-success me-2" type="submit">Aktualizuj</button>
+        <button onclick="this.blur()" [disabled]="!userForm.valid" class="btn btn-success me-2" type="submit">Aktualizuj</button>
         <button class="btn btn-danger me-2" routerLink="/" type="button">Wyjdz</button>
       </div>
     </form>

@@ -2,7 +2,9 @@ import { Component, Input, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { take } from 'rxjs';
 import { Member } from 'src/app/models/member';
+import { User } from 'src/app/models/user';
 import { AccountService } from 'src/app/services/account.service';
 import { MemberService } from 'src/app/services/member.service';
 
@@ -13,6 +15,7 @@ import { MemberService } from 'src/app/services/member.service';
 })
 export class UserFormComponent implements OnInit {
   @Input() member: Member
+  user: User;
   userForm: FormGroup;
   address: FormGroup;
   validationErrors: string[] = [];
@@ -20,7 +23,9 @@ export class UserFormComponent implements OnInit {
   setUserAddress = false;
   radioButton = false;
 
-  constructor(private memberService: MemberService, private fb: FormBuilder, private toastr: ToastrService) { }
+  constructor(private memberService: MemberService, private fb: FormBuilder, private toastr: ToastrService, private accountService: AccountService) {
+    this.accountService.currentUser$.pipe(take(1)).subscribe( user => this.user = user)
+  }
 
   ngOnInit(): void {
     this.setMaxDate();
@@ -50,6 +55,7 @@ export class UserFormComponent implements OnInit {
   update(){
     this.memberService.updateUserAccount(this.userForm.value).subscribe(user => {
       this.member = user;
+      this.user.firstName = this.member.firstName;
       this.toastr.success("Profil został pomyślnie zaktualizowany")
     });
   }

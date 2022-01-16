@@ -35,9 +35,10 @@ export class AnnouncementsListForApprovalComponent implements OnInit {
     })
   }
 
-  deleteAnnouncement(announcement: AnnouncementEditCard){
-    this.announcementService.deleteAnnouncement(announcement.id).subscribe(() => {
-      this.toastr.success("Ogłoszenie zostało pomyślnie usunięte.")
+
+  changeStatusAcceptedOfAnnouncement(announcement: AnnouncementEditCard){
+    this.adminService.changeStatusAcceptedOfAnnouncement(announcement.id).subscribe(() => {
+      this.toastr.success("Status ogłoszenia został zmieniony")
       this.loadAnnouncements();
     });
   }
@@ -49,24 +50,12 @@ export class AnnouncementsListForApprovalComponent implements OnInit {
     });
   }
 
-  changeStatusAcceptedOfAnnouncement(announcement: AnnouncementEditCard){
-    this.adminService.changeStatusAcceptedOfAnnouncement(announcement.id).subscribe(() => {
-      this.toastr.success("Status ogłoszenia został zmieniony")
+  deleteAnnouncement(announcement: AnnouncementEditCard){
+    this.announcementService.deleteAnnouncement(announcement.id).subscribe(() => {
+      this.toastr.success("Ogłoszenie zostało pomyślnie usunięte.")
       this.loadAnnouncements();
     });
   }
-
-  // loadActiveAnnouncements(){
-  //   this.btnActive = !this.btnActive;
-  //   this.userAnnouncementParams.isActive = true;
-  //   this.loadAnnouncements();
-  // }
-
-  // loadUnactiveAnnouncements(){
-  //   this.btnActive = !this.btnActive;
-  //   this.userAnnouncementParams.isActive = false;
-  //   this.loadAnnouncements();
-  // }
 
   pageChanged(event: any){
     this.adminAnnouncementParams.pageNumber = event.page;
