@@ -1,8 +1,9 @@
 <div *ngIf="announcements">
   <h2 class="text-center text-primary mb-5">Twoje ogłoszenia</h2>
   <div class="form-group text-center mt-4">
-    <button class="btn-blue-style" [ngClass]="btnActive ? 'btn-blue-style-clicked' : 'btn-blue-style'" (click)="loadActiveAnnouncements()">Aktywne</button>
-    <button class="btn-blue-style" [ngClass]="!btnActive ? 'btn-blue-style-clicked' : 'btn-blue-style'" (click)="loadUnactiveAnnouncements()">Nieaktywne</button>
+    <button class="btn-blue-style" [ngClass]="btn1 ? 'btn-blue-style-clicked' : 'btn-blue-style'" (click)="loadActiveAnnouncements()">Aktywne</button>
+    <button class="btn-blue-style" [ngClass]="btn2 ? 'btn-blue-style-clicked' : 'btn-blue-style'" (click)="loadAnnouncementsToAccept()">Do akceptacji</button>
+    <button class="btn-blue-style" [ngClass]="btn3 ? 'btn-blue-style-clicked' : 'btn-blue-style'" (click)="loadUnactiveAnnouncements()">Nieaktywne</button>
   </div>
   <div *ngIf="announcements?.length <=0">
     <h2 class="text-center text-primary mt-5 mb-5">Brak ogłoszeń</h2>

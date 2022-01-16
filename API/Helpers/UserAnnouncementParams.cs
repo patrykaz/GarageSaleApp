@@ -8,6 +8,7 @@ namespace API.Helpers
     public class UserAnnouncementParams : PaginationParams
     {
         public bool IsActive { get; set; } = true;
+        public bool IsAccepted { get; set; } = true;
         public string OrderBy { get; set; } = "DateCreate";
     }
 }

@@ -37,6 +37,13 @@ namespace API.Controllers
             if (entity == null)
                 return NotFound();
 
+            if (!entity.IsAccepted)
+            {
+                var userId = User.GetUserId();
+                if (!(User.IsInRole("Moderator") || User.IsInRole("Admin") || userId == entity.AppUserId ))
+                    return NotFound();
+            }
+
             return mapper.Map<AnnouncementDetailsDto>(entity);
         }
 
@@ -179,7 +186,8 @@ namespace API.Controllers
 
 
             announcement.IsActive = !announcement.IsActive;
-           
+            announcement.IsAccepted = false;
+
 
             if (await unitOfWork.Complete()) return Ok();
 

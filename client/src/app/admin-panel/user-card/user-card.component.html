@@ -53,13 +53,6 @@
       <img  class="photo" src="{{'./assets/user.png'}}" alt="{{'./assets/user.png'}}">
     </div>
   </div>
-  <button routerLink="/user-announcements/{{member.id}}/details" class="btn-blue-style">Ogłoszenia</button>
   <button (click)="roleModerator(member)" class="btn-blue-style" [ngClass]="isModerator === true ? 'btn-blue-style-clicked' : 'btn-blue-style'">Moderator</button>
-  <!-- <button
-    (click)="changeStatusActiveOfAnnouncement(member)"
-    class="btn-blue-style" [ngClass]="member.isActive ? 'btn-red-style' : 'btn-green-style'">
-    {{member.isActive ? "Dezaktywuj" : "Aktywuj"}}
-  </button>
-  <button (click)="deleteAnnouncement(member)" class="btn-red-style">Usuń</button> -->
 </div>
 

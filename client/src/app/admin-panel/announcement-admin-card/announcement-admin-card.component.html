@@ -35,7 +35,7 @@
       <img  class="photo" src="{{announcement.photoUrl || './assets/no_photo.jpg'}}" alt="{{announcement.name}}">
     </div>
   </div>
-  <button routerLink="/user-announcements/{{announcement.id}}/details" class="btn-blue-style">Szczegóły</button>
+  <button routerLink="/announcements-for-approval/{{announcement.id}}/details" class="btn-blue-style">Szczegóły</button>
   <button (click)="changeStatusAcceptedOfAnnouncement(announcement)" class="btn-green-style">Akceptuj</button>
   <button
     (click)="changeStatusActiveOfAnnouncement(announcement)"
@@ -44,4 +44,3 @@
   </button>
   <button (click)="deleteAnnouncement(announcement)" class="btn-red-style">Usuń</button>
 </div>
-

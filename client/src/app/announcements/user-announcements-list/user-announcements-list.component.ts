@@ -14,7 +14,9 @@ export class UserAnnouncementsListComponent implements OnInit {
   announcements: AnnouncementEditCard[];
   pagination: Pagination;
   userAnnouncementParams: UserAnnouncementParams;
-  btnActive = true;
+  btn1 = true;
+  btn2 = false;
+  btn3 = false;
 
   constructor(private announcementService: AnnouncementService, private toastr: ToastrService ) {
     this.userAnnouncementParams = this.announcementService.getUserAnnouncementParams();
@@ -48,14 +50,23 @@ export class UserAnnouncementsListComponent implements OnInit {
   }
 
   loadActiveAnnouncements(){
-    this.btnActive = !this.btnActive;
+    this.btnService(1);
     this.userAnnouncementParams.isActive = true;
+    this.userAnnouncementParams.isAccepted = true;
+    this.loadAnnouncements();
+  }
+
+  loadAnnouncementsToAccept(){
+    this.btnService(2);
+    this.userAnnouncementParams.isActive = true;
+    this.userAnnouncementParams.isAccepted = false;
     this.loadAnnouncements();
   }
 
   loadUnactiveAnnouncements(){
-    this.btnActive = !this.btnActive;
+    this.btnService(3);
     this.userAnnouncementParams.isActive = false;
+    this.userAnnouncementParams.isAccepted = false;
     this.loadAnnouncements();
   }
 
@@ -63,5 +74,25 @@ export class UserAnnouncementsListComponent implements OnInit {
     this.userAnnouncementParams.pageNumber = event.page;
     this.announcementService.setUserAnnouncementParams(this.userAnnouncementParams);
     this.loadAnnouncements();
+  }
+
+  btnService(nr: number){
+    switch (nr){
+      case 1:
+        this.btn1 = true
+        this.btn2 = false
+        this.btn3 = false
+        break;
+      case 2:
+        this.btn1 = false
+        this.btn2 = true
+        this.btn3 = false
+        break;
+      case 3:
+        this.btn1 = false
+        this.btn2 = false
+        this.btn3 = true
+        break;
+    }
   }
 }

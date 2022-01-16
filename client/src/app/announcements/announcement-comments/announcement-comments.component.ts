@@ -28,7 +28,7 @@ export class AnnouncementCommentsComponent implements OnInit {
     this.getComments();
     this.accountService.currentUser$.subscribe(user => {
       this.user = user;
-      this.canDeleteComments = this.user.roles.find(x => x === "Moderator" || "Admin") != null;
+      this.canDeleteComments = this.user?.roles.find(x => x === "Moderator" || x === "Admin") != null;
     })
   }
 

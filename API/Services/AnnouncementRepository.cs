@@ -95,16 +95,10 @@ namespace API.Services
             query = query.Where(u => u.IsDeleted == false);
             query = query.Where(u => u.AppUserId == userId);
 
-            if (userAnnouncementParams.IsActive == true)
-            {
-                query = query.Where(u => u.IsActive == (userAnnouncementParams.IsActive));
-            }
-
-            if (userAnnouncementParams.IsActive == false)
-            {
-                query = query.Where(u => u.IsActive == (userAnnouncementParams.IsActive));
-            }
-
+        
+            query = query.Where(u => u.IsActive == (userAnnouncementParams.IsActive));
+            query = query.Where(u => u.IsAccepted == (userAnnouncementParams.IsAccepted));
+         
             // switch wybiera wartość, a jeśli jej nie ma wybiera domyślną _=>
             query = userAnnouncementParams.OrderBy switch
             {

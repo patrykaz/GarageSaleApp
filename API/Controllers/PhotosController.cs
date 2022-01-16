@@ -54,6 +54,7 @@ namespace API.Controllers
             }
 
             announcement.Photos.Add(photo);
+            announcement.IsAccepted = false;
 
             if (await unitOfWork.Complete())
             {

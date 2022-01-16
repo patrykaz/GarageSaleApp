@@ -12,6 +12,7 @@ export class AnnouncementParams {
 export class UserAnnouncementParams {
   pageNumber = 1;
   pageSize = 5;
+  isAccepted = true;
   isActive = true;
   orderBy: string;
 }
