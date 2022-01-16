@@ -152,8 +152,9 @@ namespace API.Controllers
             if (announcement == null)
                 return NotFound();
 
-            if (announcement.AppUserId != user.Id)
-                return Unauthorized();
+            if (!(User.IsInRole("Moderator") || User.IsInRole("Admin")))
+                if (announcement.AppUserId != user.Id)
+                    return Unauthorized();
 
             announcement.IsActive = false;
             announcement.IsDeleted = true;
@@ -172,8 +173,10 @@ namespace API.Controllers
             if (announcement == null)
                 return NotFound();
 
-            if (announcement.AppUserId != user.Id)
-                return Unauthorized();
+            if (!(User.IsInRole("Moderator") || User.IsInRole("Admin")))
+                if (announcement.AppUserId != user.Id)
+                    return Unauthorized();
+
 
             announcement.IsActive = !announcement.IsActive;
            

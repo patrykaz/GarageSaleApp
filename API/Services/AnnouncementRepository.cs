@@ -26,6 +26,7 @@ namespace API.Services
 
         public void Update(Announcement announcement)
         {
+            announcement.IsAccepted = false;
             context.Entry(announcement).State = EntityState.Modified;
         }
 
@@ -49,25 +50,28 @@ namespace API.Services
             var query = context.Announcements.AsQueryable();
 
             query = query.Where(u => u.IsDeleted == false);
+            query = query.Where(u => u.IsAccepted == true);
+            query = query.Where(u => u.IsActive == true);
+
 
             if (announcementParams.Name != null)
             {
-                query = query.Where(u => u.Name.Contains(announcementParams.Name));
+                query = query.Where(u => u.Name.ToLower().Contains(announcementParams.Name.ToLower()));
             }
 
             if (announcementParams.Description != null)
             {
-                query = query.Where(u => u.Description.Contains(announcementParams.Description));
+                query = query.Where(u => u.Description.ToLower().Contains(announcementParams.Description.ToLower()));
             }
 
             if (announcementParams.City != null)
             {
-                query = query.Where(u => u.Address.City.Contains(announcementParams.City));
+                query = query.Where(u => u.Address.City.ToLower().Contains(announcementParams.City.ToLower()));
             }
 
             if (announcementParams.Province != null)
             {
-                query = query.Where(u => u.Address.Province.Contains(announcementParams.Province));
+                query = query.Where(u => u.Address.Province.ToLower().Contains(announcementParams.Province.ToLower()));
             }
 
             // switch wybiera wartość, a jeśli jej nie ma wybiera domyślną _=>

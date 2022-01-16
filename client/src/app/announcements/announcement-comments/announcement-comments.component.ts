@@ -20,6 +20,7 @@ export class AnnouncementCommentsComponent implements OnInit {
   loading = false;
   InputText = EnumInputText;
   user: User;
+  canDeleteComments: boolean;
 
   constructor(private commentService: CommentService, public accountService: AccountService, private toastr: ToastrService) { }
 
@@ -27,6 +28,7 @@ export class AnnouncementCommentsComponent implements OnInit {
     this.getComments();
     this.accountService.currentUser$.subscribe(user => {
       this.user = user;
+      this.canDeleteComments = this.user.roles.find(x => x === "Moderator" || "Admin") != null;
     })
   }
 

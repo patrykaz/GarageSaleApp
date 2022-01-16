@@ -29,26 +29,21 @@ namespace API.Services
         {
             var query = userManager.Users.AsQueryable();
 
-            query = query.Where(u => u.UserName != "admin");
+            query = query.Where(u => u.UserName.ToLower() != "admin");
 
             if (memberParams.userName != null)
             {
-                query = query.Where(u => u.UserName.Contains(memberParams.userName));
+                query = query.Where(u => u.UserName.ToLower().Contains(memberParams.userName.ToLower()));
             }
 
             if (memberParams.firstName != null)
             {
-                query = query.Where(u => u.FirstName.Contains(memberParams.firstName));
+                query = query.Where(u => u.FirstName.ToLower().Contains(memberParams.firstName.ToLower()));
             }
 
             if (memberParams.lastName != null)
             {
-                query = query.Where(u => u.LastName.Contains(memberParams.lastName));
-            }
-
-            if (memberParams.gender != null)
-            {
-                query = query.Where(u => u.Gender.Contains(memberParams.gender));
+                query = query.Where(u => u.LastName.ToLower().Contains(memberParams.lastName.ToLower()));
             }
 
             if (memberParams.gender != null)

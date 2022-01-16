@@ -32,7 +32,6 @@ export class AnnouncementsListForApprovalComponent implements OnInit {
     this.adminService.getAdminAnnouncementsForApproval(this.adminAnnouncementParams).subscribe(response => {
       this.announcements = response.result;
       this.pagination = response.pagination;
-      console.log(this.announcements)
     })
   }
 

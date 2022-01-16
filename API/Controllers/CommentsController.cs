@@ -68,7 +68,7 @@ namespace API.Controllers
             var userId = User.GetUserId();
             var comment = await unitOfWork.CommentRepository.GetComment(id);
 
-            if (comment.SenderId == userId || comment.Announcement.AppUserId == userId)
+            if (comment.SenderId == userId || comment.Announcement.AppUserId == userId || User.IsInRole("Moderator") || User.IsInRole("Admin"))
             {
                 comment.IsDeleted = true;
 
