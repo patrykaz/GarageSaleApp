@@ -16,21 +16,23 @@ import { LoggedInGuard } from './guards/logged-in.guard';
 import { UserEditComponent } from './users/user-edit/user-edit.component';
 import { UsersListComponent } from './admin-panel/users-list/users-list.component';
 import { AnnouncementsListForApprovalComponent } from './admin-panel/announcements-list-for-approval/announcements-list-for-approval.component';
+import { ModeratorGuard } from './guards/moderator.guard';
+import { AdminGuard } from './guards/admin.guard';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [LoggedInGuard]},
   { path: 'register', component: RegisterComponent, canActivate: [LoggedInGuard] },
   { path: '', redirectTo: 'announcements', pathMatch: 'full' },
   { path: 'user-edit', component: UserEditComponent, canActivate: [AuthorizeGuard]},
-  { path: 'users', component: UsersListComponent, canActivate: [AuthorizeGuard]},
+  { path: 'users', component: UsersListComponent, canActivate: [AdminGuard]},
   { path: 'announcements', component: AnnouncementsListComponent },
-  { path: 'announcements-add', component: AnnouncementAddComponent , canActivate: [AuthorizeGuard]},
   { path: 'announcements/:id/details', component: AnnouncementDetailsComponent },
+  { path: 'announcements-add', component: AnnouncementAddComponent , canActivate: [AuthorizeGuard]},
   { path: 'user-announcements', component: UserAnnouncementsListComponent , canActivate: [AuthorizeGuard]},
   { path: 'user-announcements/:id/edit', component: AnnouncementEditComponent , canActivate: [AuthorizeGuard]},
   { path: 'user-announcements/:id/details', component: AnnouncementDetailsComponent , canActivate: [AuthorizeGuard]},
-  { path: 'announcements-for-approval', component: AnnouncementsListForApprovalComponent, canActivate: [AuthorizeGuard]},
-  { path: 'announcements-for-approval/:id/details', component: AnnouncementDetailsComponent, canActivate: [AuthorizeGuard]},
+  { path: 'announcements-for-approval', component: AnnouncementsListForApprovalComponent, canActivate: [ModeratorGuard]},
+  { path: 'announcements-for-approval/:id/details', component: AnnouncementDetailsComponent, canActivate: [ModeratorGuard]},
   { path: 'not-found', component: NotFoundComponent},
   { path: 'server-error', component: ServerErrorComponent},
   { path: '**', component: NotFoundComponent, pathMatch: 'full'}

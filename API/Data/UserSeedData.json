@@ -2,22 +2,22 @@
   {
     "UserName": "patryk",
     "FirstName": "Patryk",
-    "LastName": "Staron",
+    "LastName": "Staroń",
     "Gender": "male",
-    "DateOfBirth": "1997-10-16"
+    "DateOfBirth": "1996-09-12"
   },
   {
     "UserName": "pawel",
     "FirstName": "Pawel",
     "LastName": "Gawel",
     "Gender": "male",
-    "DateOfBirth": "1997-10-16"
+    "DateOfBirth": "1995-10-16"
   },
   {
-    "UserName": "bartosz",
-    "FirstName": "Bartosz",
+    "UserName": "izabela",
+    "FirstName": "Izabela",
     "LastName": "Nowak",
-    "Gender": "male",
-    "DateOfBirth": "1997-10-16"
+    "Gender": "female",
+    "DateOfBirth": "1999-07-07"
   }
 ]

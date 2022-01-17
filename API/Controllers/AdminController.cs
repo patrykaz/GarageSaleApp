@@ -36,7 +36,7 @@ namespace API.Controllers
             this.unitOfWork = unitOfWork;
         }
 
-
+        [Authorize(Policy = "RequireAdminRole")]
         [HttpGet("users")]
         public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers([FromQuery] MemberParams memberParams) // FromQuery jest potrzebne ponieważ musimy wskazać, skąd ma pobrać nasze parametry, czyli z ciagu zapytania
         {
@@ -46,6 +46,7 @@ namespace API.Controllers
             return Ok(users);
         }
 
+        [Authorize(Policy = "RequireAdminRole")]
         [HttpPut("users/{username}/edit-roles")]
         public async Task<ActionResult> EditRoles(string username)
         {
@@ -70,7 +71,7 @@ namespace API.Controllers
             return Ok(await userManager.GetRolesAsync(user));
         }
 
-
+        [Authorize(Policy = "RequireAdminRole")]
         [HttpPut("users/{username}/set-user-account-block")]
         public async Task<ActionResult> SetUserAccountBlock(string username)
         {
@@ -88,7 +89,7 @@ namespace API.Controllers
             return BadRequest("Wystąpił problem z zmianą statusu blokady konta");
         }
 
-
+        [Authorize(Policy = "RequireModeratorRole")]
         [HttpGet("announcements-for-approval")]
         public async Task<ActionResult<IEnumerable<AnnouncementEditCardDto>>> GetAnnouncements([FromQuery] AdminAnnouncementParams adminAnnouncementParams) // FromQuery jest potrzebne ponieważ musimy wskazać, skąd ma pobrać nasze parametry, czyli z ciagu zapytania
         {
@@ -98,7 +99,7 @@ namespace API.Controllers
             return Ok(announcements);
         }
 
-
+        [Authorize(Policy = "RequireModeratorRole")]
         [HttpPut("announcements/{id}/change-status-accepted")]
         public async Task<ActionResult> ChangeStatusActiveOfAnnouncement(long id)
         {

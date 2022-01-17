@@ -49,9 +49,9 @@ namespace API.Controllers
             return mapper.Map<AnnouncementDetailsDto>(entity);
         }
 
-    
-        [HttpGet("announcements")]
+
         [AllowAnonymous]
+        [HttpGet("announcements")]
         public async Task<ActionResult<IEnumerable<AnnouncementCardDto>>> GetAnnouncements([FromQuery] AnnouncementParams announcementParams) // FromQuery jest potrzebne ponieważ musimy wskazać, skąd ma pobrać nasze parametry, czyli z ciagu zapytania
         {
             var announcements = await unitOfWork.AnnouncementRepository.GetAnnouncementsAsync(announcementParams);

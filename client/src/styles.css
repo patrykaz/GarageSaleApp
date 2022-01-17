@@ -23,7 +23,6 @@
 .btn-blue-style-clicked{
   background: rgb(3, 163, 255);
   color: white;
-  transition: 0.5s;
 }
 
 .btn-red-style{
@@ -42,7 +41,6 @@
 .btn-red-style-clicked{
   background: rgb(190, 42, 5);
   color: white;
-  transition: 0.5s;
 }
 
 .btn-red-style:hover{
@@ -67,7 +65,6 @@
 .btn-green-style-clicked{
   background: rgb(36, 155, 0);
   color: white;
-  transition: 0.5s;
 }
 
 .btn-green-style:hover{
