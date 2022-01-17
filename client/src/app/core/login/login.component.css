@@ -9,7 +9,7 @@
 button{
   margin-top: 20px;
   min-width: 100px;
-  height: 50px;
+  height: 40px;
   border-radius: 25px;
   font-size: 18px;
   font-weight: 700;
@@ -37,4 +37,11 @@ button[disabled]{
 
 .signup-link a:hover{
   text-decoration: underline;
+}
+
+.txt-field{
+  max-width: 300px;
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
 }

@@ -5,8 +5,6 @@
     <form [formGroup]="loginForm" autocomplete="off" (ngSubmit)="loginForm.valid && login()" autocomplete="off">
       <div class="txt-field">
         <gs-text-input [formControl]='loginForm.controls["userName"]' [label]='"Nazwa użytkownika"'></gs-text-input>
-      </div>
-      <div class="txt-field">
         <gs-text-input [formControl]='loginForm.controls["password"]' [label]='"Hasło"' [type]='"password"'></gs-text-input>
       </div>
       <div class="col-md-12 text-center">

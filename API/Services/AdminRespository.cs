@@ -48,7 +48,7 @@ namespace API.Services
 
             if (memberParams.gender != null)
             {
-                query = query.Where(u => u.Gender.Contains(memberParams.gender));
+                query = query.Where(u => u.Gender == memberParams.gender);
             }
 
             if (memberParams.Role != null)

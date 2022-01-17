@@ -26,7 +26,7 @@ nav ul li{
 
 nav ul li a{
   text-decoration: none;
-  line-height:  73px;
+  line-height:  70px;
   font-size: 18px;
   padding: 8px 15px;
   color: white;
@@ -50,7 +50,7 @@ nav ul ul{
 }
 
 nav ul li:hover > ul{
-  top: 73px;
+  top: 70px;
   opacity: 1;
   visibility: visible;
   z-index: 3;
@@ -107,7 +107,7 @@ nav .ul-left{
 }
 
 img {
-  max-height: 50px;
+  max-height: 40px;
   border: 2px solid #fff;
   display: inline;
   margin: 10px;
