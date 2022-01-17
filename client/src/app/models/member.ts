@@ -11,4 +11,5 @@ export interface Member {
   dateLastActive: string;
   address: Address;
   roles: string[];
+  lockoutEnabled: boolean;
 }

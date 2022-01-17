@@ -60,6 +60,10 @@ export class AdminService {
     return this.http.put<Member>(this.baseUrl + 'Admin/users/' + userName + '/edit-roles', {})
   }
 
+  setUserAccountBlock(userName: string){
+    return this.http.put<Member>(this.baseUrl + 'Admin/users/' + userName + '/set-user-account-block', {})
+  }
+
   getAdminAnnouncementsForApproval(adminAnnouncementParams: AdminAnnouncementParams){
     getPaginationHeaders(adminAnnouncementParams.pageNumber, adminAnnouncementParams.pageSize);
 

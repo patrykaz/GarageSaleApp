@@ -49,9 +49,16 @@ export class UsersListComponent implements OnInit {
     })
   }
 
-  roleModerator(member: Member){
+  setRoleModerator(member: Member){
     this.adminService.roleModerator(member.userName).subscribe(() => {
       this.toastr.success("Zmiana roli została pomyślnie wykonana")
+      this.loadMembers();
+    });
+  }
+
+  setUserAccountBlock(member: Member){
+    this.adminService.setUserAccountBlock(member.userName).subscribe(() => {
+      this.toastr.success("Zmiana sie udała")
       this.loadMembers();
     });
   }

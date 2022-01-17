@@ -42,5 +42,5 @@
     class="btn-blue-style" [ngClass]="announcement.isActive ? 'btn-red-style' : 'btn-green-style'">
     {{announcement.isActive ? "Dezaktywuj" : "Aktywuj"}}
   </button>
-  <button (click)="deleteAnnouncement(announcement)" class="btn-red-style">Usuń</button>
+  <button *gsHasRole='"Admin"' (click)="deleteAnnouncement(announcement)" class="btn-red-style">Usuń</button>
 </div>

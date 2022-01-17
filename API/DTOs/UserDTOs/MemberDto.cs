@@ -18,6 +18,7 @@ namespace API.DTOs
         public DateTime DateCreated { get; set; }
         public DateTime DateLastActive { get; set; }
         public AddressDto Address { get; set; }
-        public List<string> Roles { get; set; }   
+        public List<string> Roles { get; set; }
+        public bool LockoutEnabled { get; set; }
     }
 }

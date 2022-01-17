@@ -53,6 +53,11 @@
       <img  class="photo" src="{{'./assets/user.png'}}" alt="{{'./assets/user.png'}}">
     </div>
   </div>
-  <button (click)="roleModerator(member)" class="btn-blue-style" [ngClass]="isModerator === true ? 'btn-blue-style-clicked' : 'btn-blue-style'">Moderator</button>
+  <button (click)="setRoleModerator(member)" class="btn-blue-style" [ngClass]="isModerator === true ? 'btn-blue-style-clicked' : 'btn-blue-style'">Moderator</button>
+  <button
+    (click)="setUserAccountBlock(member)"
+    [ngClass]="member.lockoutEnabled === true ? 'btn-red-style btn-red-style-clicked' : 'btn-green-style btn-green-style-clicked'">
+    {{member.lockoutEnabled === true ? "Konto Zablokowane" : "Konto Aktywne"}}
+  </button>
 </div>
 

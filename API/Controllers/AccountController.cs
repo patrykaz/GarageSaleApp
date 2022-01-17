@@ -43,6 +43,8 @@ namespace API.Controllers
 
             if (!result.Succeeded) return BadRequest(result.Errors);
 
+            await userManager.SetLockoutEnabledAsync(user, false);
+
             var roleResult = await userManager.AddToRoleAsync(user, "Member");
 
             if (!roleResult.Succeeded) return BadRequest(roleResult.Errors);
@@ -69,6 +71,11 @@ namespace API.Controllers
 
             if (!result.Succeeded) return Unauthorized("Błędny login lub hasło");
 
+            if(user.LockoutEnabled) return Unauthorized("Konto zostało zablokowane");
+
+            user.DateLastActive = DateTime.Now;
+
+            await userManager.UpdateAsync(user);
 
             return new UserDto
             {

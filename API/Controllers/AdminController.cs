@@ -70,6 +70,25 @@ namespace API.Controllers
             return Ok(await userManager.GetRolesAsync(user));
         }
 
+
+        [HttpPut("users/{username}/set-user-account-block")]
+        public async Task<ActionResult> SetUserAccountBlock(string username)
+        {
+            var user = await unitOfWork.UserRepository.GetUserByUsernameAsync(username);
+            if (user == null)
+                return NotFound();
+
+            if (!User.IsInRole("Admin"))
+                return Unauthorized();
+
+            user.LockoutEnabled = !user.LockoutEnabled;
+
+            if (await unitOfWork.Complete()) return Ok();
+
+            return BadRequest("Wystąpił problem z zmianą statusu blokady konta");
+        }
+
+
         [HttpGet("announcements-for-approval")]
         public async Task<ActionResult<IEnumerable<AnnouncementEditCardDto>>> GetAnnouncements([FromQuery] AdminAnnouncementParams adminAnnouncementParams) // FromQuery jest potrzebne ponieważ musimy wskazać, skąd ma pobrać nasze parametry, czyli z ciagu zapytania
         {
@@ -83,8 +102,6 @@ namespace API.Controllers
         [HttpPut("announcements/{id}/change-status-accepted")]
         public async Task<ActionResult> ChangeStatusActiveOfAnnouncement(long id)
         {
-            var user = await unitOfWork.UserRepository.GetUserByUsernameAsync(User.GetUsername());
-
             var announcement = await unitOfWork.AnnouncementRepository.GetAnnouncementByIdAsync(id);
             if (announcement == null)
                 return NotFound();
@@ -98,6 +115,5 @@ namespace API.Controllers
 
             return BadRequest("Wystąpił problem z akceptacją ogłoszenia");
         }
-
     }
 }

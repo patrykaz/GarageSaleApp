@@ -64,7 +64,11 @@
 
   <div class="">
     <div class="" *ngFor="let member of members">
-      <gs-user-card [member]="member" (parentRoleModerator)="roleModerator(member)"></gs-user-card>
+      <gs-user-card
+        [member]="member"
+        (parentSetRoleModerator)="setRoleModerator(member)"
+        (parentSetUserAccountBlock)="setUserAccountBlock(member)">
+      </gs-user-card>
     </div>
   </div>
 

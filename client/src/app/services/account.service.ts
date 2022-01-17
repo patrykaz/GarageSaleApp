@@ -4,6 +4,8 @@ import { ReplaySubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { User } from '../models/user';
+import { AdminService } from './admin.service';
+import { AnnouncementService } from './announcement.service';
 
 @Injectable({
   providedIn: 'root'
@@ -47,7 +49,6 @@ export class AccountService {
     localStorage.removeItem('user'); // usuwa uzytkownika z pamieci lokalnej przegladarki
     this.currentUserSource.next(null);
   }
-
   getDecodedToken(token: string){
     return JSON.parse(atob(token.split('.')[1])); // 1 = get a part of token
   }
