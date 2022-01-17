@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { AnnouncementService } from 'src/app/services/announcement.service';
 import { NgxGalleryOptions } from '@kolkov/ngx-gallery';
 import { NgxGalleryImage } from '@kolkov/ngx-gallery';
@@ -23,6 +23,7 @@ export class AnnouncementDetailsComponent implements OnInit {
       private activatedroute: ActivatedRoute,
       private cdr: ChangeDetectorRef,
       private adminService: AdminService,
+      private router: Router,
       private toastr: ToastrService) {}
 
   ngOnInit(): void {
@@ -83,8 +84,8 @@ export class AnnouncementDetailsComponent implements OnInit {
   deleteAnnouncement(announcement: AnnouncementDetails){
     if(confirm("Czy na pewno chcesz usunąć ogłoszenie?")){
       this.announcementService.deleteAnnouncement(announcement.id).subscribe(() => {
+        this.router.navigateByUrl("/")
         this.toastr.success("Ogłoszenie zostało pomyślnie usunięte.")
-        this.loadAnnouncement();
       });
     }
   }

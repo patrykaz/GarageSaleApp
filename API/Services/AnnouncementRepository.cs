@@ -35,6 +35,10 @@ namespace API.Services
             context.Announcements.Add(announcement);
         }
 
+        public void DeleteAnnouncement(Announcement announcement)
+        {
+            context.Announcements.Remove(announcement);
+        }
 
         public async Task<Announcement> GetAnnouncementByIdAsync(long id)
         {
@@ -125,5 +129,6 @@ namespace API.Services
              adminAnnouncementParams.PageNumber, adminAnnouncementParams.PageSize);
 
         }
+
     }
 }

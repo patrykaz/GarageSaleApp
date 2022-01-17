@@ -21,11 +21,13 @@ namespace API.Controllers
     {
         private readonly IMapper mapper;
         private readonly IUnitOfWork unitOfWork;
+        private readonly IPhotoService photoService;
 
-        public AnnouncementsController(IMapper mapper, IUnitOfWork unitOfWork)
+        public AnnouncementsController(IMapper mapper, IUnitOfWork unitOfWork, IPhotoService photoService)
         {
             this.mapper = mapper;
             this.unitOfWork = unitOfWork;
+            this.photoService = photoService;
         }
 
         [AllowAnonymous]
@@ -159,12 +161,22 @@ namespace API.Controllers
             if (announcement == null)
                 return NotFound();
 
-            if (!(User.IsInRole("Moderator") || User.IsInRole("Admin")))
+            if (!User.IsInRole("Admin"))
                 if (announcement.AppUserId != user.Id)
                     return Unauthorized();
 
-            announcement.IsActive = false;
-            announcement.IsDeleted = true;
+            var photos = announcement.Photos;
+            if (photos != null)
+            {
+                foreach(var photo in photos)
+                {
+                    var result = await photoService.DeletePhotoAsync(photo.PublicId);
+                    if (result.Error != null) return BadRequest(result.Error.Message);
+                    announcement.Photos.Remove(photo);
+                }
+            }
+
+            unitOfWork.AnnouncementRepository.DeleteAnnouncement(announcement);
 
             if (await unitOfWork.Complete()) return Ok();
 

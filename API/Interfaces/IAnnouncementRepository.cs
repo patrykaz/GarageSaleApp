@@ -12,6 +12,7 @@ namespace API.Interfaces
     {
         void Update(Announcement announcement);
         void AddAnnouncement(Announcement announcement);
+        void DeleteAnnouncement(Announcement announcement);
         Task<Announcement> GetAnnouncementByIdAsync(long id);
         Task<PagedList<AnnouncementCardDto>> GetAnnouncementsAsync(AnnouncementParams announcementParams);
         Task<PagedList<AnnouncementEditCardDto>> GetUserAnnouncementsAsync(UserAnnouncementParams userAnnouncementParams, long userId);

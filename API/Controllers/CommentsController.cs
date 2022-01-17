@@ -70,7 +70,9 @@ namespace API.Controllers
 
             if (comment.SenderId == userId || comment.Announcement.AppUserId == userId || User.IsInRole("Moderator") || User.IsInRole("Admin"))
             {
-                comment.IsDeleted = true;
+                var announcement = await unitOfWork.AnnouncementRepository.GetAnnouncementByIdAsync(comment.AnnouncementId);
+
+                announcement.Comments.Remove(comment);
 
                 if (await unitOfWork.Complete()) return Ok();
 
