@@ -14,6 +14,5 @@ namespace API.Entity
         public Announcement Announcement { get; set; }
         public string Content { get; set; }
         public DateTime DateSend{ get; set; } = DateTime.Now;
-        public bool IsDeleted { get; set; }
     }
 }

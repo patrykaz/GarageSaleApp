@@ -46,6 +46,7 @@ namespace API.Data
 
             await userManager.CreateAsync(admin, "Admin123@");
             await userManager.AddToRolesAsync(admin, new[] { "Admin", "Moderator" });
+            await userManager.SetLockoutEnabledAsync(admin, false);
 
         }
     }

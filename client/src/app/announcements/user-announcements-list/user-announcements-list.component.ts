@@ -23,7 +23,7 @@ export class UserAnnouncementsListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loadAnnouncements();
+    this.loadActiveAnnouncements()
   }
 
   loadAnnouncements(){

@@ -43,7 +43,7 @@ namespace API.Services
         public async Task<IEnumerable<CommentDto>> GetCommentsForAnnouncement(long AnnouncementId)
         {
             var comments = await context.Comments
-                .Where(c => c.AnnouncementId == AnnouncementId && c.IsDeleted == false)
+                .Where(c => c.AnnouncementId == AnnouncementId)
                 .OrderBy(c => c.DateSend)
                 .ProjectTo<CommentDto>(mapper.ConfigurationProvider)
                 .ToListAsync();

@@ -53,7 +53,6 @@ namespace API.Services
         {
             var query = context.Announcements.AsQueryable();
 
-            query = query.Where(u => u.IsDeleted == false);
             query = query.Where(u => u.IsAccepted == true);
             query = query.Where(u => u.IsActive == true);
 
@@ -96,7 +95,6 @@ namespace API.Services
         {
             var query = context.Announcements.AsQueryable();
 
-            query = query.Where(u => u.IsDeleted == false);
             query = query.Where(u => u.AppUserId == userId);
 
         
@@ -117,7 +115,7 @@ namespace API.Services
         {
             var query = context.Announcements.AsQueryable();
 
-            query = query.Where(u => u.IsDeleted == false && u.IsAccepted == false && u.IsActive == true);
+            query = query.Where(u => u.IsAccepted == false && u.IsActive == true);
                        
             // switch wybiera wartość, a jeśli jej nie ma wybiera domyślną _=>
             query = adminAnnouncementParams.OrderBy switch

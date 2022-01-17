@@ -1,9 +1,11 @@
 <div class="announcement-container">
+  <div class="description">
+    <h3>
+      {{announcement.name}}
+    </h3>
+  </div>
   <div class="announcement-card">
     <div class="description">
-        <h3 class="">
-            {{announcement.name}}
-        </h3>
         <div class="info-row">
           <label>Start:</label>
           <a> {{announcement.startDate | date:'d/M/yy, h:mm a' }}</a>

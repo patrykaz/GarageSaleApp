@@ -38,8 +38,8 @@ export class AnnouncementFormComponent implements OnInit {
       this.btnSubmitText = "Aktualizuj";
 
       this.registerForm = this.fb.group({
-        name: [this.announcement.name, [Validators.required, Validators.minLength(6), Validators.maxLength(50)]],
-        description: [this.announcement.description, [Validators.required, Validators.minLength(10), Validators.maxLength(250)]],
+        name: [this.announcement.name, [Validators.required, Validators.minLength(6), Validators.maxLength(100)]],
+        description: [this.announcement.description, [Validators.required, Validators.minLength(10), Validators.maxLength(1000)]],
         startDate: [this.announcement.startDate, [Validators.required]],
         duration: [this.announcement.duration, [Validators.required, Validators.min(1), Validators.max(12)]],
         address: this.fb.group({
@@ -53,8 +53,8 @@ export class AnnouncementFormComponent implements OnInit {
       this.btnSubmitText = "Zapisz";
 
       this.registerForm = this.fb.group({
-        name: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(50)]],
-        description: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(250)]],
+        name: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(100)]],
+        description: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(1000)]],
         startDate: ['', [Validators.required]],
         duration: ['', [Validators.required, Validators.min(1), Validators.max(12)]],
         address: this.fb.group({
