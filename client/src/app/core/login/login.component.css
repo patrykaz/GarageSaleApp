@@ -1,71 +1,40 @@
-*{
-  margin: 0;
-  padding: 0;
-}
-
-.login-page{
-  overflow: hidden;
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%);
-  width: 400px;
-  background: rgb(3, 163, 255);
-  border-radius: 10px;
-}
-
-h1{
-  text-align: center;
-  color: white;
-  padding: 20px 0;
-  margin-bottom: 30px;
-  border-bottom: 1px solid white;
-}
-
-form {
-  padding: 0 40px;
-  box-sizing: border-box;
-}
-.txt-field{
-  margin-bottom: 30px;
+.login-form{
+  max-width: 500px;
+  background-color: white;
+  border-radius: 6px;
+  border-bottom: 1px solid;
+  padding: 30px;
 }
 
 button{
-  width: 100%;
+  margin-top: 20px;
+  min-width: 100px;
   height: 50px;
-  border: 1px solid;
-  background: white;
   border-radius: 25px;
   font-size: 18px;
   font-weight: 700;
-  color: rgb(3, 163, 255);
-  cursor: pointer;
 }
 
-button:hover{
-  border-color: white;
-  transition: .5s;
+
+button[disabled]{
+  transition: 0.5s;
+  border: 1px solid #999999;
+  background-color: #dadada;
+  color: #666666;
+  cursor: default;
 }
 
 .signup-link{
-  margin: 30px 0;
+  margin: 10px;
   text-align: center;
   font-size: 16px;
-  color: white;
-  cursor: pointer;
 }
 
 .signup-link a{
-  color: cyan;
+  color: #0D6EFD;
   text-decoration: none;
 }
 
 .signup-link a:hover{
   text-decoration: underline;
-}
-
-button[disabled]{
-  border: 1px solid #999999;
-  background-color: #dadada;
-  color: #666666;
-  cursor: default;
 }

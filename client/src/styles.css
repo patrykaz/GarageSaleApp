@@ -4,13 +4,14 @@
 .btn-blue-style{
   height: 40px;
   width: 200px;
-  border: 1px solid;
+  border: 1px solid rgb(3, 163, 255);
   background: white;
   border-radius: 25px;
   font-size: 18px;
   font-weight: 700;
   color: rgb(3, 163, 255);
   margin: 0 10px 10px 0;
+  transition: 0.5s;
 }
 
 .btn-blue-style:hover{
@@ -22,18 +23,20 @@
 .btn-blue-style-clicked{
   background: rgb(3, 163, 255);
   color: white;
+  transition: 0.5s;
 }
 
 .btn-red-style{
   height: 40px;
   width: 200px;
-  border: 1px solid;
+  border: 1px solid rgb(190, 42, 5);;
   background: white;
   border-radius: 25px;
   font-size: 18px;
   font-weight: 700;
   color: rgb(253, 15, 15);
   margin: 0 10px 10px 0;
+  transition: 0.5s;
 }
 
 .btn-red-style:hover{
@@ -52,6 +55,7 @@
   font-weight: 700;
   color: rgb(36, 155, 0);
   margin: 0 10px 10px 0;
+  transition: 0.5s;
 }
 
 .btn-green-style:hover{
@@ -63,6 +67,6 @@
 .form-container{
   background-color: white;
   padding: 20px;
-  border-radius: 0.4cm;
+  border-radius: 10px;
   border-bottom: solid 1px;
 }

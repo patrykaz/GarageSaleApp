@@ -1,17 +1,23 @@
-<div class="login-page">
-  <h1>Logowanie</h1>
-  <form [formGroup]="loginForm" autocomplete="off" (ngSubmit)="loginForm.valid && login()" autocomplete="off">
-    <div class="txt-field">
-      <gs-text-input [formControl]='loginForm.controls["userName"]' [label]='"Nazwa użytkownika"'></gs-text-input>
-    </div>
-    <div class="txt-field">
-      <gs-text-input [formControl]='loginForm.controls["password"]' [label]='"Hasło"' [type]='"password"'></gs-text-input>
-    </div>
-    <button type="submit" [disabled]="!loginForm.valid">
-      Zaloguj
-    </button>
-    <div class="signup-link">
-      Nie masz konta? <a routerLink="/register">Rejestracja</a>
-    </div>
-  </form>
+<div class="row justify-content-center">
+  <div class="login-form">
+    <h1 class="text-center text-primary">Logowanie</h1>
+    <hr>
+    <form [formGroup]="loginForm" autocomplete="off" (ngSubmit)="loginForm.valid && login()" autocomplete="off">
+      <div class="txt-field">
+        <gs-text-input [formControl]='loginForm.controls["userName"]' [label]='"Nazwa użytkownika"'></gs-text-input>
+      </div>
+      <div class="txt-field">
+        <gs-text-input [formControl]='loginForm.controls["password"]' [label]='"Hasło"' [type]='"password"'></gs-text-input>
+      </div>
+      <div class="col-md-12 text-center">
+        <button class="btn-blue-style" type="submit" [disabled]="!loginForm.valid">Zaloguj</button>
+      </div>
+      <div class="signup-link">
+        Nie masz konta? <a routerLink="/register">Rejestracja</a>
+      </div>
+      <div class="signup-link">
+        <a routerLink="/">Strona główna</a>
+      </div>
+    </form>
+  </div>
 </div>
