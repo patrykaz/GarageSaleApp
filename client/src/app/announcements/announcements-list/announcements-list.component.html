@@ -28,7 +28,7 @@
         </div>
 
         <div class="col-auto">
-          <label>Sortuj: </label>
+          <label style="padding-left: 5px;">Sortuj: </label>
           <select [(ngModel)]="announcementParams.orderBy" name="orderBy" style="width: 130px" class="form-control ms-1">
               <option *ngFor="let sort of sortList" [value]="sort.value">
                   {{sort.display}}

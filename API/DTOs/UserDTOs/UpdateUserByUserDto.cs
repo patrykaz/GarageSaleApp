@@ -9,8 +9,12 @@ namespace API.DTOs
     public class UpdateUserByUserDto
     {
         [Required]
+        [MinLength(3)]
+        [MaxLength(50)]
         public string FirstName { get; set; }
         [Required]
+        [MinLength(3)]
+        [MaxLength(50)]
         public string LastName { get; set; }
         public DateTime? DateOfBirth { get; set; }
         [Required]

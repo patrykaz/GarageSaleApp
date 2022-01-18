@@ -22,7 +22,7 @@
         </div>
 
         <div class="col-auto">
-          <label>Płeć: </label>
+          <label style="padding-left: 5px;">Płeć: </label>
           <select [(ngModel)]="memberParams.gender" name="gender" style="width: 130px" class="form-control ms-1">
               <option *ngFor="let gender of genderList" [value]="gender.value">
                   {{gender.display}}
@@ -31,7 +31,7 @@
         </div>
 
         <div class="col-auto">
-          <label>Rola: </label>
+          <label style="padding-left: 5px;" >Rola: </label>
           <select [(ngModel)]="memberParams.role" name="role" style="width: 130px" class="form-control ms-1">
               <option *ngFor="let role of roleList" [value]="role.value">
                   {{role.display}}
@@ -40,7 +40,7 @@
         </div>
 
         <div class="col-auto">
-          <label>Sortuj: </label>
+          <label style="padding-left: 5px;">Sortuj: </label>
           <select [(ngModel)]="memberParams.orderBy" name="orderBy" style="width: 150px" class="form-control ms-1">
               <option *ngFor="let sort of sortList" [value]="sort.value">
                   {{sort.display}}

@@ -10,8 +10,12 @@ namespace API.DTOs
     public class AnnouncementFormDto
     {
         [Required]
+        [MinLength(6)]
+        [MaxLength(100)]
         public string Name { get; set; }
         [Required]
+        [MinLength(10)]
+        [MaxLength(1000)]
         public string Description { get; set; }
         [Required]
         public DateTime StartDate { get; set; }

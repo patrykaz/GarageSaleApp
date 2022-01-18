@@ -8,7 +8,7 @@
       <gs-text-input [formControl]='registerForm.controls["lastName"]' [label]='"Nazwisko"'></gs-text-input>
 
       <div class="form-group mb-2">
-        <label class="control-label" style="margin-right: 10px;">Płeć: </label>
+        <label class="control-label" style="margin-right: 10px; font-weight: 600;">Płeć: </label>
         <label class="radio-inline">
             <input type="radio" value="male" formControlName='gender'> Mężczyzna
         </label>
@@ -24,7 +24,7 @@
       </mat-form-field>
 
       <div class="form-group mb-2">
-        <label class="control-label" style="margin-right: 10px;">Adres:</label>
+        <label class="control-label" style="margin-right: 10px; font-weight: 600;">Adres:</label>
         <label class="radio-inline">
           <input type="radio" name="address" value="set_address" (click)="unsetAddress()" checked> Brak
         </label>

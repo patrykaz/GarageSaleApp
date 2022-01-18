@@ -166,7 +166,7 @@ namespace API.Controllers
                     return Unauthorized();
 
             var photos = announcement.Photos;
-            if (photos != null)
+            if (photos.Count > 0)
             {
                 foreach(var photo in photos)
                 {
