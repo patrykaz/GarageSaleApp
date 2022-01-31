@@ -10,6 +10,8 @@ import { AccountService } from '../../services/account.service';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {
+  showToggle = false;
+  bigScreen = false;
 
   constructor(
     public accountService: AccountService,
@@ -18,6 +20,16 @@ export class NavComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
+    this.bigScreen = window.innerWidth > 1400;
+    window.addEventListener("resize", event => {
+      this.bigScreen = window.innerWidth > 1400;
+      if(this.bigScreen == true)
+        this.showToggle = false
+    });
+  }
+
+  onToggle() {
+    this.showToggle = !this.showToggle;
   }
 
   logout(){
@@ -26,5 +38,6 @@ export class NavComponent implements OnInit {
     this.announcementService.resetUserAnnouncementParams();
     this.adminService.resetMemberParams();
     this.router.navigateByUrl('/login');
+    this.showToggle = !this.showToggle;
   }
 }

@@ -29,10 +29,10 @@ namespace API.Controllers
         }
 
 
-        [HttpGet("{username}")]
-        public async Task<ActionResult<MemberDto>> GetUser(string username)
+        [HttpGet("current-user")]
+        public async Task<ActionResult<MemberDto>> GetCurrentUser()
         {
-            var user = await unitOfWork.UserRepository.GetMemberAsync(username);
+            var user = await unitOfWork.UserRepository.GetMemberAsync(User.GetUsername());
             if (user is null)
                 return NotFound();
 
@@ -52,7 +52,8 @@ namespace API.Controllers
             }
             else
             {
-                var addressExist = unitOfWork.AddressRepository.FindAddresByProperties(updateUserByUserDto.Address.Street, updateUserByUserDto.Address.City, updateUserByUserDto.Address.Province);
+                var addressExist = unitOfWork.AddressRepository.FindAddresByProperties(updateUserByUserDto.Address.Street,
+                    updateUserByUserDto.Address.City, updateUserByUserDto.Address.Province);
 
                 if (addressExist is null)
                 {

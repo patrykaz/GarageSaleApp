@@ -32,7 +32,7 @@ namespace API
             catch (Exception ex)
             {
                 var logger = services.GetRequiredService<ILogger<Program>>();
-                logger.LogError(ex, "An error occurred during migration");
+                logger.LogError(ex, "Wystapi³ b³¹d podczas tworzenia migracji");
             }
 
             await host.RunAsync();

@@ -39,7 +39,7 @@ nav ul ul li a:hover{
   box-shadow: none;
 }
 
-nav ul ul{
+.navulul_bigScreen{
   list-style-type: none;
   position: absolute;
   top: 90px;
@@ -49,7 +49,7 @@ nav ul ul{
   transition: top .3s;
 }
 
-nav ul li:hover > ul{
+nav ul .bigScreen:hover > ul{
   top: 70px;
   opacity: 1;
   visibility: visible;
@@ -111,4 +111,23 @@ img {
   border: 2px solid #fff;
   display: inline;
   margin: 10px;
+}
+
+.toggle-button{
+  position: absolute;
+  top: 1.2rem;
+  right: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 40px;
+  height: 31px;
+  cursor: pointer;
+}
+
+.toggle-button .bar{
+  height: 6px;
+  width: 100%;
+  background-color: white;
+  border-radius: 10px;
 }

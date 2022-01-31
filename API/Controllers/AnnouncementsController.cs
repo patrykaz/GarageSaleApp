@@ -31,8 +31,8 @@ namespace API.Controllers
         }
 
         [AllowAnonymous]
-        [HttpGet("announcements/{id}", Name = "Fetch")]
-        public async Task<ActionResult<AnnouncementDetailsDto>> Fetch(long id)
+        [HttpGet("announcements/{id}", Name = "GetAnnouncement")]
+        public async Task<ActionResult<AnnouncementDetailsDto>> GetAnnouncement(long id)
         {
             var entity = await unitOfWork.AnnouncementRepository.GetAnnouncementByIdAsync(id);
 
@@ -55,7 +55,6 @@ namespace API.Controllers
         public async Task<ActionResult<IEnumerable<AnnouncementCardDto>>> GetAnnouncements([FromQuery] AnnouncementParams announcementParams) // FromQuery jest potrzebne ponieważ musimy wskazać, skąd ma pobrać nasze parametry, czyli z ciagu zapytania
         {
             var announcements = await unitOfWork.AnnouncementRepository.GetAnnouncementsAsync(announcementParams);
-            // dodajemy do odpowiedzi paginacje uzytkownika, którą wysłał z rządaniem get
             Response.AddPaginationHeader(announcements.CurrentPage, announcements.PagesSize, announcements.TotalCount, announcements.TotalPages);
             return Ok(announcements);
         }

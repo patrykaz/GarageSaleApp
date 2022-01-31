@@ -29,7 +29,7 @@ export class AnnouncementEditComponent implements OnInit {
   }
 
   loadUserOfAccount(){
-    this.memberService.getUserOfAccount().subscribe(userOfAccount => {
+    this.memberService.getCurrentUser().subscribe(userOfAccount => {
       this.userOfAccount = userOfAccount;
     })
   }

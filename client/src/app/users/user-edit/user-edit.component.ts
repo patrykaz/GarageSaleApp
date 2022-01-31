@@ -19,7 +19,7 @@ export class UserEditComponent implements OnInit {
   }
 
   loadUserOfAccount(){
-    this.memberService.getUserOfAccount().subscribe(user => {
+    this.memberService.getCurrentUser().subscribe(user => {
       this.member = user;
     })
 
