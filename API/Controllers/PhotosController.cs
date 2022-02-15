@@ -60,7 +60,7 @@ namespace API.Controllers
 
             if (await unitOfWork.Complete())
             {
-                return CreatedAtRoute("Fetch", new { id = announcement.Id }, mapper.Map<AnnouncementDetailsDto>(announcement));
+                return CreatedAtRoute("GetAnnouncement", new { id = announcement.Id }, mapper.Map<AnnouncementDetailsDto>(announcement));
             }
 
 

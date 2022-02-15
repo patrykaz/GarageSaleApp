@@ -16,7 +16,7 @@ export class AnnouncementFormComponent implements OnInit {
   @Input() userOfAccount: Member;
   @ViewChild('picker') picker: any;
 
-  registerForm: FormGroup;
+  announcementForm: FormGroup;
   minDate: Date;
   validationErrors: string[] = [];
 
@@ -37,7 +37,7 @@ export class AnnouncementFormComponent implements OnInit {
     if(this.announcement){
       this.btnSubmitText = "Aktualizuj";
 
-      this.registerForm = this.fb.group({
+      this.announcementForm = this.fb.group({
         name: [this.announcement.name, [Validators.required, Validators.minLength(6), Validators.maxLength(100)]],
         description: [this.announcement.description, [Validators.required, Validators.minLength(10), Validators.maxLength(1000)]],
         startDate: [this.announcement.startDate, [Validators.required]],
@@ -52,9 +52,9 @@ export class AnnouncementFormComponent implements OnInit {
     else{
       this.btnSubmitText = "Zapisz";
 
-      this.registerForm = this.fb.group({
+      this.announcementForm = this.fb.group({
         name: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(100)]],
-        description: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(1000)]],
+        description: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(1000)]],
         startDate: ['', [Validators.required]],
         duration: ['', [Validators.required, Validators.min(1), Validators.max(12)]],
         address: this.fb.group({
@@ -67,20 +67,20 @@ export class AnnouncementFormComponent implements OnInit {
   }
 
   setEmptyAddress(){
-    this.registerForm.get(['address','street']).setValue('');
-    this.registerForm.get(['address','city']).setValue('');
-    this.registerForm.get(['address','province']).setValue('');
+    this.announcementForm.get(['address','street']).setValue('');
+    this.announcementForm.get(['address','city']).setValue('');
+    this.announcementForm.get(['address','province']).setValue('');
   }
 
   setUserAddress(){
-    this.registerForm.get(['address','street']).setValue(this.userOfAccount.address.street);
-    this.registerForm.get(['address','city']).setValue(this.userOfAccount.address.city);
-    this.registerForm.get(['address','province']).setValue(this.userOfAccount.address.province);
+    this.announcementForm.get(['address','street']).setValue(this.userOfAccount.address.street);
+    this.announcementForm.get(['address','city']).setValue(this.userOfAccount.address.city);
+    this.announcementForm.get(['address','province']).setValue(this.userOfAccount.address.province);
   }
 
   saveAnnouncement(){
     if(this.announcement == null){
-      this.announcementService.addAnnouncement(this.registerForm.value).subscribe(response => {
+      this.announcementService.addAnnouncement(this.announcementForm.value).subscribe(response => {
         this.announcement = response;
         this.initializeForm();
         this.btnSubmitText = "Aktualizuj";
@@ -88,7 +88,7 @@ export class AnnouncementFormComponent implements OnInit {
       });
     }
     else{
-      this.announcementService.updateAnnouncement(this.announcement.id, this.registerForm.value).subscribe(response => {
+      this.announcementService.updateAnnouncement(this.announcement.id, this.announcementForm.value).subscribe(response => {
         this.announcement = response;
         this.initializeForm();
         this.toastr.success("Ogłoszenie zostało pomyślnie zaktualizowane");

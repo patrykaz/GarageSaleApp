@@ -10,7 +10,7 @@ import { AccountService } from 'src/app/services/account.service';
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
-  address: FormGroup;
+  addressForm: FormGroup;
   validationErrors: string[] = [];
   maxDate: Date;
   setUserAddress = false;
@@ -33,13 +33,12 @@ export class RegisterComponent implements OnInit {
       password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(50)]],
       confirmPassword: ['', [Validators.required, this.matchValues('password')]]
     })
-    // sprawdzenie czy hasło zostało zmienione, i aktualizuje pole powtórz hasło
     this.registerForm.controls['password'].valueChanges.subscribe(() => {
       this.registerForm.controls['confirmPassword'].updateValueAndValidity();
     })
 
 
-    this.address = this.fb.group({
+    this.addressForm = this.fb.group({
       street: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
       city: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
       province: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]]
@@ -65,7 +64,7 @@ export class RegisterComponent implements OnInit {
 
   setAddress(){
     this.setUserAddress = true;
-    this.registerForm.addControl('address', this.address);
+    this.registerForm.addControl('address', this.addressForm);
     this.registerForm.updateValueAndValidity();
   }
 
@@ -75,3 +74,4 @@ export class RegisterComponent implements OnInit {
     this.registerForm.updateValueAndValidity();
   }
 }
+

@@ -38,6 +38,6 @@ export class NavComponent implements OnInit {
     this.announcementService.resetUserAnnouncementParams();
     this.adminService.resetMemberParams();
     this.router.navigateByUrl('/login');
-    this.showToggle = !this.showToggle;
+    this.showToggle = false;
   }
 }

@@ -17,7 +17,7 @@ export class UserFormComponent implements OnInit {
   @Input() member: Member
   user: User;
   userForm: FormGroup;
-  address: FormGroup;
+  addressForm: FormGroup;
   validationErrors: string[] = [];
   maxDate: Date;
   setUserAddress = false;
@@ -45,7 +45,7 @@ export class UserFormComponent implements OnInit {
       dateOfBirth: [this.member?.dateOfBirth]
     })
 
-    this.address = this.fb.group({
+    this.addressForm = this.fb.group({
       street: [this.member.address?.street, [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
       city: [this.member.address?.city, [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
       province: [this.member.address?.province, [Validators.required, Validators.minLength(3), Validators.maxLength(50)]]
@@ -67,7 +67,7 @@ export class UserFormComponent implements OnInit {
 
   setAddress(){
     this.setUserAddress = true;
-    this.userForm.addControl('address', this.address);
+    this.userForm.addControl('address', this.addressForm);
     this.userForm.updateValueAndValidity();
   }
 

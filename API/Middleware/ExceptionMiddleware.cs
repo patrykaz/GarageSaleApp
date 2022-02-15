@@ -33,12 +33,12 @@ namespace API.Middleware
             catch (Exception ex)
             {
                 logger.LogError(ex, ex.Message);
-                context.Response.ContentType = "application/jason";
+                context.Response.ContentType = "application/json";
                 context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 
                 var response = env.IsDevelopment()
                 ? new ApiException(context.Response.StatusCode, ex.Message, ex.StackTrace?.ToString())
-                : new ApiException(context.Response.StatusCode, "Internal Server Error");
+                : new ApiException(context.Response.StatusCode, "Wewnętrzny błąd serwera");
 
                 var options = new JsonSerializerOptions
                 {

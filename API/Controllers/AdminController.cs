@@ -79,9 +79,6 @@ namespace API.Controllers
             if (user == null)
                 return NotFound();
 
-            if (!User.IsInRole("Admin"))
-                return Unauthorized();
-
             user.LockoutEnabled = !user.LockoutEnabled;
 
             if (await unitOfWork.Complete()) return Ok();
@@ -91,7 +88,7 @@ namespace API.Controllers
 
         [Authorize(Policy = "RequireModeratorRole")]
         [HttpGet("announcements-for-approval")]
-        public async Task<ActionResult<IEnumerable<AnnouncementEditCardDto>>> GetAnnouncements([FromQuery] AdminAnnouncementParams adminAnnouncementParams) // FromQuery jest potrzebne ponieważ musimy wskazać, skąd ma pobrać nasze parametry, czyli z ciagu zapytania
+        public async Task<ActionResult<IEnumerable<AnnouncementEditCardDto>>> GetAnnouncementsForApproval([FromQuery] AdminAnnouncementParams adminAnnouncementParams) // FromQuery jest potrzebne ponieważ musimy wskazać, skąd ma pobrać nasze parametry, czyli z ciagu zapytania
         {
             var announcements = await unitOfWork.AnnouncementRepository.GetAnnouncementsForApprovalAsync(adminAnnouncementParams);
             // dodajemy do odpowiedzi paginacje uzytkownika, którą wysłał z rządaniem get
@@ -106,9 +103,6 @@ namespace API.Controllers
             var announcement = await unitOfWork.AnnouncementRepository.GetAnnouncementByIdAsync(id);
             if (announcement == null)
                 return NotFound();
-
-            if(!(User.IsInRole("Moderator") || User.IsInRole("Admin")))
-                return Unauthorized();
   
             announcement.IsAccepted = !announcement.IsAccepted;
 
