@@ -11,6 +11,7 @@
 
 .announcement-card{
   min-height: 200px;
+  margin-bottom: 20px;
   height: auto;
   display: flex;
   justify-content: space-between;
@@ -18,7 +19,7 @@
 }
 
 .description{
-  min-width: 400px;
+  min-width: 300px;
   padding: 5px;
 }
 

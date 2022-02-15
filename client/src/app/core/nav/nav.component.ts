@@ -11,7 +11,7 @@ import { AccountService } from '../../services/account.service';
 })
 export class NavComponent implements OnInit {
   showToggle = false;
-  bigScreen = false;
+  bigScreen = true;
 
   constructor(
     public accountService: AccountService,
@@ -20,12 +20,13 @@ export class NavComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
-    this.bigScreen = window.innerWidth > 1400;
+    this.bigScreen = window.innerWidth > 1100;
     window.addEventListener("resize", event => {
-      this.bigScreen = window.innerWidth > 1400;
+      this.bigScreen = window.innerWidth > 1100;
       if(this.bigScreen == true)
         this.showToggle = false
     });
+    this.bigScreen = true;
   }
 
   onToggle() {

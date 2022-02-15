@@ -11,15 +11,15 @@
 
 .announcement-card{
   min-height: 200px;
+  margin-bottom: 20px;
   height: auto;
-
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
 }
 
 .description{
-  min-width: 400px;
+  min-width: 300px;
   padding: 5px;
 }
 

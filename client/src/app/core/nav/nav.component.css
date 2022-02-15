@@ -20,7 +20,7 @@ nav:after{
 
 nav ul li{
   display: inline-block;
-  margin: 0 10px;
+  margin: 0 5px;
   background: rgb(3, 163, 255);
 }
 
@@ -81,7 +81,7 @@ nav .logo{
   font-size: 27px;
   font-weight: 600;
   line-height: 70px;
-  padding-left: 60px;
+  padding-left: 20px;
 }
 
 .welcome{
@@ -95,14 +95,14 @@ nav .logo{
 nav .ul-right{
   float: right;
   list-style: none;
-  margin-right: 40px;
+  margin-right: 20px;
   position: relative;
 }
 
 nav .ul-left{
   float: left;
   list-style: none;
-  margin-left: 40px;
+  margin-left: 20px;
   position: relative;
 }
 
