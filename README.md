@@ -7,5 +7,5 @@ Aby uruchomić serwis należy:
 * Uruchomić serwer aplikacji i wejść pod wskazany URL w przeglądarce interentowej.
 
 Dane logowania do konta administratora:
-Login: admin
-Hasło: Admin123@
+* Login: admin
+* Hasło: Admin123@
