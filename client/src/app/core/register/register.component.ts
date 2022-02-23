@@ -32,7 +32,7 @@ export class RegisterComponent implements OnInit {
       gender: ['male'],
       dateOfBirth: [null],
       password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(50), 
-        Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]],
+        Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{0,}')]],
       confirmPassword: ['', [Validators.required, this.matchValues('password')]]
     })
     this.registerForm.controls['password'].valueChanges.subscribe(() => {
